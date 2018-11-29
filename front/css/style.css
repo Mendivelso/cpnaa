@@ -1,0 +1,1002 @@
+@font-face {font-family: "MyriadPro-Regular";
+  src: url("../css/fonts/MyriadPro-Regular.otf") format("TTF"), /* chrome、firefox */
+  url("../css/fonts/MyriadPro-Regular.otf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+
+@font-face {font-family: "BEBAS";
+  src: url("../css/fonts/BEBAS.ttf") format("TTF"), /* chrome、firefox */
+  url("../css/fonts/BEBAS.ttf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+
+@font-face {font-family: "MyriadPro-Bold";
+  src: url("../css/fonts/MyriadPro-Bold.otf") format("TTF"), /* chrome、firefox */
+  url("../css/fonts/MyriadPro-Bold.otf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+
+@font-face {font-family: "MyriadPro-Semibold";
+  src: url("../css/fonts/MyriadPro-SemiboldIt.otf") format("TTF"), /* chrome、firefox */
+  url("../css/fonts/MyriadPro-SemiboldIt.otf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+body{
+  background: lightgray;
+}
+
+/*POPUP MENSJE*/
+.mimodal {
+    position: relative;
+    background-color: none;
+    background-image: url(../images/font_formulario.png);
+    background-size: cover;
+    background-position: bottom;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+.from_pacto .error {
+    color: #000;
+    font-family: "MyriadPro-Regular";
+}
+
+
+
+.modal-content p, h4 {color: #fff;}
+
+
+.pdd{padding: 0px 90px 0px 90px;}
+.pdd2{padding: 0px 140px 0px 140px;}
+
+
+.login-content a {color: #fff;}
+
+.login-content a:hover {color: #fff; text-decoration: none;}
+.login-content a:active {color: #fff; text-decoration: none;}
+
+.per{background-color: #be2934; color: #fff;}
+.per:hover{background-color: #be2934; color: #fff;}
+
+.pd{
+  margin-left: 30px;
+}
+
+.white{
+  background-color: #fff;
+}
+
+.mg{margin-left: 15px; margin-right: 15px;}
+
+.not{
+  padding: 0px;
+}
+
+.alertify-button-ok{
+  background-color: #012c55 !important;
+  border: 1px solid #0085ca !important;
+}
+.alertify{border: 1px solid rgb(13, 78, 88) !important; font-family: "segoe-mt" !important; font-size: 18px !important; }
+
+
+.container{
+  width: 1200px !important;
+}
+
+.login{
+  background-color: #444C5C;
+
+}
+
+.login-content{
+  background-color: #BE2934;
+}
+
+.login-content p{
+  color: #fff;
+  margin-top: 10px;
+  font-size: 16px;
+  float: right;
+  font-family: "MyriadPro-Regular";
+  text-transform: uppercase;
+}
+
+.login-content .icon{
+  padding-left: 25px;
+}
+
+
+
+.navbar-inverse {
+  background-color: #fff;
+  border-color: #fff;
+  height: 95px;
+}
+
+.navbar{
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 0px;
+  border: 0px solid transparent;
+  border-radius: 0px;
+}
+
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 35px 16px 0px 16px;
+    color: #444C5C !important;
+    font-family: "BEBAS";
+    font-weight: bold;
+}
+
+/****************************************************************/
+
+.banner{
+  height: 304px;
+  background-image: url(../images/banner_2.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.title{
+  position: relative;
+  top: 120px;
+  text-align: left;
+}
+
+
+.banner p{
+  color: #fff;
+  font-size: 30px;
+  font-family: "MyriadPro-Regular";
+  margin-top: 7px;
+
+}
+
+
+.banner p strong {
+  color: #fff;
+      font-size: 30px;
+      font-family: "MyriadPro-Bold";
+      position: relative;
+      top: -14px;
+
+}
+
+.ejercicio{
+  padding: 0px;
+  background: #fff;
+  position: relative;
+  top: 273px;
+}
+
+.ejercicio p {
+  font-size: 17px;
+  color: #000;
+  font-family: "MyriadPro-Regular";
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+.company{
+  padding: 5px;
+  text-align: justify;
+  background-color: #fff;
+}
+
+.company h3{
+  font-family: "MyriadPro-Bold";
+  color: #444C5C;
+}
+
+.company p{
+  font-family: "MyriadPro-Regular";
+  color: #444C5C;
+  padding: 5px 30px 5px 30px;
+  font-size: 16px;
+}
+
+.beneficios{
+  height: 64px;
+  background-image: url(../images/franja.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #fff;
+}
+
+
+.beneficios .t{
+  color: #fff;
+  font-family: "MyriadPro-Regular";
+}
+
+.beneficios .p{
+  color: #444C5C;
+  font-family: "MyriadPro-Semibold";
+  font-size: 16px;
+  position: relative;
+  top: 20px;
+  padding-left: 40px;
+}
+
+.line{
+  background-color: #444C5C;
+  height: 8px;
+  margin: 5px 25px 5px 17px;
+}
+
+
+#beneficios{
+  height:525px;
+  max-height: 525px;
+}
+#beneficios img{
+  width: 100%;
+  height: auto;
+}
+
+#beneficios .text-galeria{
+  background-color: #fff;
+}
+
+.carousel-caption {
+    right: 25%;
+    left: 0;
+    padding-bottom: 150px;
+}
+
+.cnt_t{
+  margin: 3px;
+  padding: 5px;
+  border: 1.5px #000 solid;
+}
+
+.cnt_t p{
+ text-align: justify;
+ color: #444C5C;
+ text-shadow: none;
+ line-height: 14px;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: lightgray;
+}
+
+.carousel-indicators .active {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    background-color: red;
+}
+
+
+.dir{
+  width: 32px !important;
+  position: relative;
+  top: 90%;
+}
+
+
+
+
+
+.resultados{
+  height: 56px;
+  background-image: url(../images/franja_2.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #fff;
+  padding-top:  20px;
+  padding-bottom:  20px;
+}
+
+
+.resultados .result{
+  color: #fff;
+  margin: 0;
+  padding-left: 40px;
+  font-family: "MyriadPro-Bold";
+}
+
+.resultados .result span{
+  font-family: "MyriadPro-Regular" !important;
+
+}
+
+
+/*------------------------------------------------------------*/
+.plano{
+  height:336px;
+  background-image: url(../images/plano.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.resul{
+
+}
+
+.resul li{
+  width:144px;
+  height: 195px;
+  background-image: url(../images/pestanas.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+
+}
+
+
+
+.msj{
+  background-color:#444C5C;
+}
+
+.plano .msj{
+  text-align: center;
+  color: #fff;
+  font-family: "MyriadPro-Regular";
+  font-size: 16px;
+  line-height: 34px;
+}
+
+.para_cpnaa p{
+  font-family: "MyriadPro-Regular";
+  color: #444C5C;
+  text-align: justify;
+  padding: 15px;
+
+}
+
+.border_r{
+  border-right: 1px #000 solid;
+}
+
+.msj p{
+  color: #fff;
+  font-family: "MyriadPro-Regular";
+  text-align: center;
+  font-size: 16px;
+
+}
+
+.line2{
+  background-color: #444C5C;
+  height: 8px;
+}
+
+.info p{
+  color: #000;
+  font-family: "MyriadPro-Regular";
+  font-size: 18px;
+  padding: 15px;
+}
+
+.bg{
+  background-color: #444c5c;
+}
+
+.bg{
+  color: #fff;
+  font-family: "MyriadPro-Regular";
+}
+
+
+footer .redes{
+  list-style: none;
+
+}
+
+footer .redes li{
+  display: inline-block;
+  width: 20px;
+}
+
+
+
+.carousel-control.right{
+  right: 15px;
+}
+
+.carousel-control.left{
+  left: 15px;
+}
+
+.bm{
+  display: none;
+}
+
+
+
+/*+++++++++++++++  ESTILOS PANEL DE USUARIO   ++++++++++*/
+
+.galeria_beneficios{
+  height: 573px;
+  background-image: url('../images/galeria_beneficios.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.numero{
+  background-color: #444c5c;
+
+}
+.numero h2{
+   font-family: "MyriadPro-Regular";
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+}
+.desc{
+  background-color: #fff;
+
+}
+.desc p{
+  color: #000;
+  font-family: "MyriadPro-Regular";
+  padding: 30px;
+}
+.bdr{
+  border-right: 1px #000 solid;
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
+}
+.top_bene{
+  position: relative;
+  top: 100px;
+}
+
+/*+++++++++++++       SUbir Arquitectos css        +++++++++++++++*/
+
+.subir_arq{
+  height: 590px;
+  background-image: url('../images/foto1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.cont_arq{
+  position: relative;
+  top: 30px;
+}
+
+
+.from_arq{
+  background-color: rgba(68, 76, 92, 0.5);
+  padding: 20px;
+}
+
+.from_arq h4{
+  color: #fff;
+   font-family: "MyriadPro-Regular";
+   text-align: justify;
+   padding: 5px 20px 5px 20px;
+}
+
+.from_arq .input{
+  border-radius: 15px;
+  border-radius: 5px;
+  padding: 12px;
+  height: 41px;
+  width: 90%;
+  margin: 0 auto;
+}
+.form-group {
+    margin-bottom: 11px;
+}
+.from_arq button {
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  font-family: "MyriadPro-Regular";
+  border: none;
+  font-size: 18px;
+}
+
+.rojo{
+  background-color: red;
+  padding: 25px;
+
+}
+
+.rojo h4{
+  color: #fff;
+   font-family: "MyriadPro-Regular";
+
+}
+
+
+.azul{
+  background-color:  #444c5c;
+  padding: 25px;
+
+}
+
+.azul h4{
+  color: #fff;
+   font-family: "MyriadPro-Regular";
+
+}
+
+
+
+
+/*}++++++++++++++++++  EXPERIENCIAS USER PANEL    +++++++++++++++++*/
+.Experiencias_user{
+  height: 807px;
+  background-image: url('../images/fondo3.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++  ESTILOS FIRMA AL PACTO  +++++++++++++++++++++++++++++++*/
+
+.cont_firma{
+  height: 614px;
+   background-image: url('../images/fondo1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.descripcion_firma{
+  background-color: #444c5c;
+  padding: 10px 20px 10px 50px;
+}
+
+.descripcion_firma p{
+  color: #fff;
+   font-family: "MyriadPro-Regular";
+   font-size: 16px;
+   text-align: justify;
+   line-height: 17px;
+
+
+}
+.number{
+  background-color: #444c5c;
+  padding: 8px;
+  width: 70px;
+  text-align: center;
+  color: #fff;
+  font-family: "MyriadPro-Regular";
+  float: left;
+}
+
+.number_p{
+  background-color: lightgray;
+  color: #000;
+  font-family: "MyriadPro-Regular";
+  text-align: left;
+  float: right;
+  width: 200px;
+  padding: 8px;
+  line-height: 17px;
+}
+
+/*++++++++++   EStilos formulario firma del pacto+++++++++++++++++*/
+.from_pacto{
+  height: auto;
+  background-image: url('../images/font_formulario.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: -200px;
+}
+
+.from_pacto h4{
+  color: #fff;
+   font-family: "MyriadPro-Regular";
+   padding-top: 20px;
+   font-size: 25px;
+}
+
+.from_pacto .input{
+  width: 85%;
+  margin: 0 auto;
+}
+
+.from_pacto label{color: #fff;  font-family: "MyriadPro-Regular"; }
+.from_pacto button {
+  color: #fff;
+  font-family: "MyriadPro-Regular";
+  background-color: #444c5c;
+  margin-bottom: 5px;
+
+
+}
+
+.from_pacto button:hover {
+  background-color: #444c5c;
+  border: 1px red solid;
+  color: #fff;
+}
+
+.firmantes{
+  background-color: #d8282b;
+}
+.firmantes p{
+  color: #fff;
+  font-family: "MyriadPro-Regular";
+  text-align: center;
+
+}
+
+
+/*/*placeholder*/
+/*.input::-webkit-input-placeholder { color: darkgray; font-weight: bold;}
+.input:-moz-placeholder { color: darkgray; font-weight: bold;  }
+.input::-moz-placeholder { color: darkgray; font-weight: bold;  }
+.input:-ms-input-placeholder { color: darkgray; font-weight: bold;  }
+
+select::-webkit-input-placeholder { color: darkgray; font-weight: bold;}
+select:-moz-placeholder { color: darkgray; font-weight: bold;  }
+select::-moz-placeholder { color: darkgray; font-weight: bold;  }
+select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
+
+/************************************** RESPONSIVE DESIGN********************************************************/
+
+@media (min-width: 1200px){
+  .container {
+      width: 1200px !important;
+  }
+}
+
+@media screen and (max-width: 1199px){
+  .container {
+      width: 970px !important;
+  }
+
+  .nav>li>a {
+      position: relative;
+      display: block;
+      padding: 35px 5px 0px 5px;
+      color: #444C5C !important;
+      font-family: "BEBAS";
+      font-weight: bold;
+  }
+  .banner p {
+      color: #fff;
+      font-size: 26px;
+      font-family: "MyriadPro-Regular";
+      margin-top: 7px;
+  }
+  .ejercicio {
+      padding: 0px;
+      background: #fff;
+      position: relative;
+      top: 280px;
+  }
+  .banner p strong {
+      color: #fff;
+      font-size: 24px;
+      font-family: "MyriadPro-Bold";
+      position: relative;
+      top: -14px;
+  }
+
+  .ejercicio p {
+      font-size: 14px;
+      color: #000;
+      font-family: "MyriadPro-Regular";
+      text-align: right;
+      padding-right: 20px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+  }
+  .navbar-header{
+    width:225px;
+  }
+
+  .beneficios .p {
+      color: #444C5C;
+      font-family: "MyriadPro-Semibold";
+      font-size: 13px;
+      position: relative;
+      top: 20px;
+      padding-left: 8px;
+  }
+  #beneficios {
+      height: auto;
+      max-height: 525px;
+  }
+
+  .resul li {
+      width: 124px;
+      height: 195px;
+      background-image: url(../images/pestanas.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      display: inline-block;
+  }
+
+  .miembros{width: 100%;}
+
+
+}
+
+@media screen and (max-width: 991px){
+  .container {
+      width: 750px !important;
+  }
+
+  .nav>li>a {
+      position: relative;
+      display: block;
+      padding: 35px 3px 0px 3px;
+      color: #444C5C !important;
+      font-family: "BEBAS";
+      font-weight: bold;
+      font-size: 11px;
+  }
+  .navbar-header {
+      width: 165px;
+      /* background: red; */
+  }
+  .login-content p {
+      color: #fff;
+      margin-top: 10px;
+      font-size: 14px;
+      float: right;
+      font-family: "MyriadPro-Regular";
+  }
+  .banner p {
+      color: #fff;
+      font-size: 22px;
+      font-family: "MyriadPro-Regular";
+      margin-top: 7px;
+      position: relative;
+      top: 10px;
+      left: -56px;
+  }
+
+  .ejercicio p {
+      font-size: 14px;
+      color: #000;
+      font-family: "MyriadPro-Regular";
+      text-align: right;
+      padding-right: 20px;
+      margin-top: 0px;
+      margin-bottom: 5px;
+  }
+  .ejercicio {
+      padding: 0px;
+      background: #fff;
+      position: relative;
+      top: 197px;
+  }
+
+  .beneficios .p {
+      color: #444C5C;
+      font-family: "MyriadPro-Semibold";
+      font-size: 13px;
+      position: relative;
+      top: 20px;
+      padding-left: 19px;
+  }
+
+  .plano {
+      height: auto;
+      background-image: url(../images/plano.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+  }
+
+  .num{
+    width: 120px;
+  }
+  .border_r {
+      border-right: none;
+  }
+  .none{
+    display: none;
+  }
+
+ }
+
+
+
+
+
+
+@media screen and (max-width: 767px){
+
+  .banner{
+    display: none;
+  }
+  .bm{display: block;}
+
+  .container {
+      width:100% !important;
+  }
+  .navbar-inverse {
+    background-color: #fff;
+    border-color: #fff;
+    height: auto;
+  }
+
+  .navbar-toggle {
+      position: relative;
+      float: right;
+      padding: 9px 10px;
+      margin-top: 8px;
+      margin-right: 52px;
+      margin-bottom: 8px;
+      background-color: #3e4c5d;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+
+  }
+
+  .navbar-header{
+    width: 100%;
+    height:75px;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+  }
+
+  .nav>li>a {
+      position: relative;
+      display: block;
+      padding: 35px 16px 0px 16px;
+      color: #fff !important;
+      font-family: "BEBAS";
+      font-weight: bold;
+      margin-left: 42px;
+      font-size: 20px;
+      top: -14px;
+  }
+  .nav li {
+    border-bottom: 1px #fff solid;
+  }
+  .nav {
+    width: 75%;
+    background-color: #444C5C;
+  }
+
+  .container>.navbar-collapse{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+  }
+
+
+
+
+
+}
+
+
+@media screen and (max-width: 641px){
+
+  .resultados .result {
+    color: #fff;
+    margin: 0;
+    padding-left: 28px;
+    font-family: "MyriadPro-Bold";
+    font-size: 19px;
+}
+
+}
+
+
+
+@media screen and (max-width: 581px){
+  .beneficios .t {
+      color: #fff;
+      font-family: "MyriadPro-Regular";
+      font-size: 18px;
+  }
+
+}
+
+
+
+@media screen and (max-width: 400px){
+  .navbar-brand>img {
+      display: block;
+      position: relative;
+      top: -40px;
+  }
+  .container>.navbar-collapse {
+      margin-right: 0px !important;
+      margin-left: 0px !important;
+      width: 100%;
+  }
+  .beneficios .p {
+      color: #444C5C;
+      font-family: "MyriadPro-Semibold";
+      font-size: 11px;
+      position: relative;
+      top: 12px;
+      padding-left: 15px;
+  }
+  .resultados .result {
+      color: #fff;
+      margin: 0;
+      padding-left: 25px;
+      font-family: "MyriadPro-Bold";
+      font-size: 13px;
+  }
+  .msj p {
+      color: #fff;
+      font-family: "MyriadPro-Regular";
+      text-align: center;
+      font-size: 16px;
+      line-height: 23px;
+  }
+  .para_cpnaa p {
+      font-family: "MyriadPro-Regular";
+      color: #444C5C;
+      text-align: justify;
+      padding: 0px;
+  }
+  .msj p {
+      color: #fff;
+      font-family: "MyriadPro-Regular";
+      text-align: center;
+      font-size: 16px;
+      line-height: 17px;
+  }
+  .login-content .icon {
+      padding-left: 0px;
+  }
+
+  .mis-nav-buttons a {
+      color: #d12121 !important;
+  }
+  .mis-nav-buttons a:hover{
+      color: #d12121 !important;
+  }
+}
+
+
+@media screen and (max-width: 570px){
+
+
+}
+
+@media screen and (max-width: 454px){
+
+
+
+}
+
+
+@media screen and (max-width: 430px){
+
+}
+
+@media screen and (max-width: 350px){
+
+}
+
+
+

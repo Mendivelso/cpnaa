@@ -1,0 +1,206 @@
+/*tipografias*/
+@font-face {font-family: "Brandon_light";
+  src: url("../css/fonts/Brandon_light.otf") format("TTF"), /* chrome、firefox */
+  url("../css/fonts/Brandon_light.otf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
+
+
+.contenedor{
+  /*background:#e2e2e2;*/
+  /*max-width: 1300px;*/
+  max-width: 900px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.navbar{
+  position: relative;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  height: 47px;
+  top: 12px;
+
+}
+
+nav ul {
+  padding: 0;
+  font-size: 0;
+  /*background: #e2e2e2;*/
+  list-style: none;
+}
+
+nav ul li {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 15px;
+  padding:10px;
+  width: 20%;
+  height: 45px;
+  text-align: center;
+  font-family: "Brandon_light";
+}
+
+nav ul li img {
+  height: auto;
+  width: 80%;
+}
+
+nav ul li a{
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+
+}
+
+
+
+nav ul li ul {
+  display: none;
+  position: absolute;
+  background: red;
+  max-width: 240px;
+
+}
+
+nav ul li:hover ul{
+  display: block;
+}
+
+nav ul li ul li{
+  display: block;
+  position: relative;
+  padding: 10px;
+  height: 60px;
+  width: 100%;
+}
+nav ul li ul li a{
+  font-size: 15px;
+}
+
+
+.menu_bar {
+  display:none;
+}
+
+@media screen and (max-width: 767px){
+  .contenedor{width: 100%; height: 0px;}
+   nav {
+    width:70%;
+    left:-100%;
+    margin:0;
+    position: fixed;
+    top: 1px;
+    z-index: 10;
+
+  }
+  nav ul {
+    background:#d98583;
+  }
+   nav ul li {
+    display:block;
+    float:none;
+    border-bottom:1px solid #fff;
+    width: 100%;
+    text-align: justify;
+
+  }
+  nav ul li a {color: #fff;}
+  .menu_bar {
+    display:block;
+    width:100%;
+    background:#d98583;
+  }
+
+  .menu_bar .bt-menu {
+    display:block;
+    padding:5px;
+    background:#024959;
+    color:#fff;
+    text-decoration:none;
+    font-weight: bold;
+    font-size:25px;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    text-align:left;
+    width: 100%;
+  }
+
+  .menu_bar span {
+    float:right;
+    font-size:40px;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*1640px*/
+ @media screen and (max-width:1640px ) {
+    #cont-servi {
+      width: 1000px;
+      height: 615px;
+    }
+ }
+
+  /*responsive servicios*/
+   @media screen and (max-width:1199px ) {
+    #cont-servi {
+      width: 945px;
+      height: 615px;
+    }
+
+   }
