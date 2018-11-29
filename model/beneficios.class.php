@@ -1,5 +1,5 @@
 <?php
-    class servicio{
+    class beneficio{
         /**
         * Almacena la conexion a la base de datos
         */
@@ -15,7 +15,7 @@
         */
         public function __construct($db){
             $this->db = $db;
-            $this->table = "servicios";
+            $this->table = "beneficios";
 
 
         }
@@ -26,7 +26,7 @@
         */
         public function selectAll($where = ""){
              /** Realiza el query */
-                $sql = "SELECT Id, Titulo, Descripcion, Imagen_principal, Status, Url, Created_by, Created_date
+                $sql = "SELECT Id, Titulo, Descripcion, Enlace, Imagen_principal, Status, Created_by, Created_date
                     FROM " . $this->table . "" . $where;
             //echo $sql;
             $result = $this->db->ejecutar($sql);
@@ -64,7 +64,7 @@
         * @param string condicion where del query, si se requiere
         */
         public function pagerCount($page){
-            $sql = "SELECT  count(*) as num FROM servicios Where Status = 1";
+            $sql = "SELECT  count(*) as num FROM beneficios Where Status = 1";
             $result = $this->db->ejecutar($sql);
 
             if($this->db->numRows($result)){

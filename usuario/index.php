@@ -2,6 +2,7 @@
 	include_once("../AnsTek_libs/integracion.inc.php");
 	include_once("../model/firmantes.class.php");
 	include_once("../model/arquitectos.class.php");
+	include_once("../model/beneficios.class.php");
 	include_once("../vista/resourcesView.php");
 	Session::valida_sesion("","../admin/logout.php");
 	if(Session::get('Perfil') != 0)
@@ -15,22 +16,21 @@
 	$result = $empresa->selectAll($where);
 
 	/** Carga Combo Empresas **/
-$option="";
-if($db->numRows($result) > 0){
-while ($r = $db->datos($result)) {
-  $option .= "<option value=".$r["Nit"].">" . $r["Nit"] . "</option>";
-}
-}
-
+	$option="";
+	if($db->numRows($result) > 0){
+	while ($r = $db->datos($result)) {
+	  $option .= "<option value=".$r["Nit"].">" . $r["Nit"] . "</option>";
+	}
+	}
 
 	$objArq = new arquitecto($db);
-
-	$whereArq = " Where Cedula_RL = ". $Repre;
+	$whereArq = " Where arq.Cedula_RL = ". $Repre;
 	$resultArq = $objArq->selectAll($whereArq);
 
-
-
-
+	//OBJETO PARA LISTAR BENEFICIOS
+	$bene = new beneficio($db);
+	$whereB = " Where Status = 1";
+	$resultB = $bene->selectAll($whereB);
 
 
 ?>
@@ -149,75 +149,43 @@ while ($r = $db->datos($result)) {
 		</div>
 
 		<div class="row top_bene">
-			<div class="col-md-offset-1 col-md-10">
-				<div id="Slider_beneficios" class="carousel slide" data-ride="carousel">
-			  <!-- Indicators -->
-			  <ol class="carousel-indicators">
-			    <li data-target="#Slider_beneficios" data-slide-to="0" class="active"></li>
-			    <li data-target="#Slider_beneficios" data-slide-to="1"></li>
-			    <li data-target="#Slider_beneficios" data-slide-to="2"></li>
-			  </ol>
+			<div class=" col-md-12 pdd">
+				<div class="row">
 
-			  <!-- Wrapper for slides -->
-			  <div class="carousel-inner">
-			    <div class="item active">
-			      <div class="row">
-			      	<div class="col-md-3 bdr">
-			      		<div class="row text-center numero">
-			      			<h2>01</h2>
-			      		</div>
-			      		<div class="row desc">
-			      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse earum, quidem quas tempora, provident ipsa illo soluta, magnam ex nemo dolorum! Tempora nobis, neque magnam odio ad repudiandae praesentium veritatis.</p>
-			      		</div>
+					<?php
+					if($db->numRows($resultB) > 0){
+					  while ($rB = $db->datos($resultB)) {
+					  	$enlace = '';
+					  	if ($rB['Enlace'] != "") {
+					  		$enlace = '<a href='.$rB['Enlace'].' class="ver" target="black">Ver más</a> ';
+					  	}else{
+					  		$enlace = '';
+					  	}
 
-			      	</div>
-			      	<div class="col-md-3 bdr">
-			      		<div class="row text-center numero">
-			      			<h2>02</h2>
-			      		</div>
-			      		<div class="row desc">
-			      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse earum, quidem quas tempora, provident ipsa illo soluta, magnam ex nemo dolorum! Tempora nobis, neque magnam odio ad repudiandae praesentium veritatis.</p>
-			      		</div>
-			      	</div>
-			      	<div class="col-md-3 bdr">
-			      		<div class="row text-center numero">
-			      			<h2>03</h2>
-			      		</div>
-			      		<div class="row desc">
-			      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse earum, quidem quas tempora, provident ipsa illo soluta, magnam ex nemo dolorum! Tempora nobis, neque magnam odio ad repudiandae praesentium veritatis.</p>
-			      		</div>
-			      	</div>
-			      	<div class="col-md-3 bdr">
-			      		<div class="row text-center numero">
-			      			<h2>04</h2>
-			      		</div>
-			      		<div class="row desc">
-			      			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse earum, quidem quas tempora, provident ipsa illo soluta, magnam ex nemo dolorum! Tempora nobis, neque magnam odio ad repudiandae praesentium veritatis.</p>
-			      		</div>
-			      	</div>
+					    echo '
 
-			      </div>
-			    </div>
+							  <div class="col-md-3 bdr text-center cont_bene">
+							      <div class="row numero">
+							          <h2>'.$rB['Titulo'].'</h2>
+							      </div>
+							      <div class="row desc">
+						          <p>'.$rB['Descripcion'].'</p>
+							      </div>
+							      <div class="row" style="height: 33px; background-color: #fff">
+							      	'.$enlace.'
+							      </div>
 
-			    <div class="item">
-			      <img src="chicago.jpg" alt="Chicago">
-			    </div>
+							  </div>
 
-			    <div class="item">
-			      <img src="ny.jpg" alt="New York">
-			    </div>
-			  </div>
+					    ';
+					  }
+					}
+					else{
+					  echo "NO HAY REGISTROS PARA MOSTRAR";
+					}
+					?>
 
-			  <!-- Left and right controls -->
-			  <a class="left carousel-control" href="#Slider_beneficios" data-slide="prev">
-			    <span class="glyphicon glyphicon-chevron-left"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="right carousel-control" href="#Slider_beneficios" data-slide="next">
-			    <span class="glyphicon glyphicon-chevron-right"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
-			</div>
+				</div>
 			</div>
 
 		</div>
@@ -310,6 +278,7 @@ while ($r = $db->datos($result)) {
 					            <thead>
 					            <tr>
 					               <th width="5%"><i class="icon_profile"></i>Status</th>
+					               <th width="5%"><i class="icon_profile"></i>Detalle</th>
 					               <th><i class="icon_profile"></i>Nombres</th>
 				                    <th><i class="icon_calendar"></i> Apellidos</th>
 				                    <th><i class="icon_mail_alt"></i>Cédula</th>
@@ -324,10 +293,19 @@ while ($r = $db->datos($result)) {
 									<?php
 									if($db->numRows($resultArq) > 0){
 									  while ($r = $db->datos($resultArq)) {
-
-									    $valStatus = ($r['Status'] == 1) ? "<img src='../img/edo_ok.png' alt='Activo'>" : "<img src='../img/edo_nok.png' alt='Inactivo'>";
+									  	$msj = "";
+									    if ($r['Status'] == 1 ) {
+									    	$msj = '<a onclick=javascript:Aprovacion('.$r['Cedula'].','. $r['Status'].') class="btn btn-success btn-md btn-xs" >  Aprobado </a>';
+									    }
+									    if ($r['Status'] == 2 ) {
+									    	$msj = '<a onclick=javascript:Aprovacion('.$r['Cedula'].','. $r['Status'].') class="btn btn-danger btn-md btn-xs"> Rechazado</a>';
+									    }
+									    if ($r['Status'] == 3 ) {
+									    	$msj = '<a onclick=javascript:Aprovacion('.$r['Cedula']. ','. $r['Status'].') class="btn btn-warning btn-md btn-xs" >Pendiente</a>';
+									    }
 									    echo "<tr>";
-									    echo "<td>" . $r['Status']     . "</td>";
+									    echo "<td>" . $msj     . "</td>";
+									    echo "<td>" . $r['Detalle']     . "</td>";
 									    echo "<td>" . $r['Nombres']     . "</td>";
 									    echo "<td>" . $r['Apellidos']     . "</td>";
 									    echo "<td>" . $r['Cedula'] . "</td>";
@@ -336,11 +314,8 @@ while ($r = $db->datos($result)) {
 									    echo "<td>" . $r['Nit_empresa'] . "</td>";
 									    echo "<td>" . $r['Nivel_educativo']. "</td>";
 									    echo "<td>" . $r['Cedula_RL']. "</td>";
-
 									    echo "</tr>";
 
-
-									    //$r['Id']
 									  }
 									}
 									else{
@@ -355,8 +330,6 @@ while ($r = $db->datos($result)) {
 
 		</div>
 	</div>
-
-
 
 	<div class="container resultados white">
 		<div class="row">
@@ -379,9 +352,6 @@ while ($r = $db->datos($result)) {
 	</div>
 
 
-
-
-
 	<footer class="container text-center bg">
 		<p>www.cpnaa.gov.co</p>
 		<ul class="redes">
@@ -402,9 +372,7 @@ while ($r = $db->datos($result)) {
 	</footer>
 
 
-
     <!-- Scripts -->
-
     <script type="text/javascript" src="../front/js/jquery.min.js"></script>
     <script type="text/javascript" src="../front/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../front/js/jquery.validate.min.js"></script>

@@ -1,0 +1,37 @@
+DELIMITER $$
+
+USE `desarrollo_cpnaa`$$
+
+DROP TRIGGER /*!50032 IF EXISTS */ `insert_Arq`$$
+
+CREATE
+    /*!50017 DEFINER = 'root'@'localhost' */
+    TRIGGER `insert_Arq` AFTER INSERT ON `arquitectos` 
+    FOR EACH ROW BEGIN
+	INSERT INTO hoja_ruta (Arquitecto, Detalle, STATUS, Created_by, Created_date) VALUES (new.Cedula, 'Pendiente por aprobación', 1, 1, NOW());
+    END;
+$$
+
+DELIMITER ;
+
+
+
+
+//**********************************************************************
+
+
+DELIMITER $$
+
+USE `desarrollo_cpnaa`$$
+
+DROP TRIGGER /*!50032 IF EXISTS */ `Update_hojaruta`$$
+
+CREATE
+    /*!50017 DEFINER = 'root'@'localhost' */
+    TRIGGER `Update_hojaruta` AFTER UPDATE ON `hoja_ruta` 
+    FOR EACH ROW BEGIN
+	UPDATE arquitectos SET STATUS = new.Status WHERE Cedula = new.Arquitecto; 
+    END;
+$$
+
+DELIMITER ;

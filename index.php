@@ -1,3 +1,14 @@
+<?php
+	include_once("AnsTek_libs/integracion.inc.php");
+	include_once("model/beneficios.class.php");
+	//OBJETO PARA LISTAR BENEFICIOS
+	$bene = new beneficio($db);
+	$whereB = " Where Status = 1";
+	$resultB = $bene->selectAll($whereB);
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -238,48 +249,56 @@
 			    <li data-target="#beneficios" data-slide-to="0" class="active"></li>
 			    <li data-target="#beneficios" data-slide-to="1"></li>
 			    <li data-target="#beneficios" data-slide-to="2"></li>
+			    <li data-target="#beneficios" data-slide-to="3"></li>
+			    <li data-target="#beneficios" data-slide-to="4"></li>
+			    <li data-target="#beneficios" data-slide-to="5"></li>
+			    <li data-target="#beneficios" data-slide-to="6"></li>
+			    <li data-target="#beneficios" data-slide-to="7"></li>
+			    <li data-target="#beneficios" data-slide-to="8"></li>
+			    <li data-target="#beneficios" data-slide-to="9"></li>
 			  </ol>
 
 			  <!-- Wrapper for slides -->
 			  <div class="carousel-inner">
-			    <div class="item active">
-			      <img src="front/images/beneficios_1.png" alt="Chania" width="100%">
-			      <div class="carousel-caption">
-			      	<div class="col-md-8 text-galeria">
-			      		<div class="cnt_t">
-			      			<p>Acceso a documentos y módulos de aprendizaje a través de la página web del CPNAA</p>
-			      		</div>
 
-			      	</div>
+				<?php
+				if($db->numRows($resultB) > 0){
+				  while ($rB = $db->datos($resultB)) {
+				  	$class = '';
+				  	if ($rB['Id'] == 5) {
+				  		$class = 'item  active';
+				  	}else{
+				  		$class = 'item';
+				  	}
 
-			      </div>
-			    </div>
+				    echo '
 
-			    <div class="item">
-			      <img src="front/images/beneficios_1.png" alt="Chicago" width="100%">
-			      <div class="carousel-caption">
-			      	<div class="col-md-8 text-galeria">
-			      		<div class="cnt_t">
-			      			<p>Acceso a documentos y módulos de aprendizaje a través de la página web del CPNAA</p>
-			      		</div>
+						  <div class="'.$class.'">
+						    <img src="'.$rB['Imagen_principal'].'" alt="Chania" width="100%">
+						    <div class="carousel-caption">
+						    	<div class="col-md-8 text-galeria">
+						    		<div class="cnt_t">
+						    			<p>'.$rB['Descripcion'].'</p>
+						    		</div>
 
-			      	</div>
+						    	</div>
 
-			      </div>
-			    </div>
+						    </div>
+						  </div>
 
-			    <div class="item">
-			      <img src="front/images/beneficios_1.png" alt="New York" width="100%">
-			      <div class="carousel-caption">
-			      	<div class="col-md-8 text-galeria">
-			      		<div class="cnt_t">
-			      			<p>Acceso a documentos y módulos de aprendizaje a través de la página web del CPNAA</p>
-			      		</div>
+				    ';
+				  }
+				}
+				else{
+				  echo "NO HAY REGISTROS PARA MOSTRAR";
+				}
+				?>
 
-			      	</div>
 
-			      </div>
-			    </div>
+
+
+
+
 			  </div>
 
 			  <!-- Left and right controls -->

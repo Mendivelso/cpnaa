@@ -1,9 +1,9 @@
 <?php
     /** incluye todos los recursos */
     include_once("../AnsTek_libs/integracion.inc.php");
-    include_once("../model/servicios.class.php");
+    include_once("../model/beneficios.class.php");
     /** Instancia la clase experiencia*/
-    $ser = new servicio($db);
+    $ser = new beneficio($db);
     $user = 1;
     /** captura el tipo de accion a realizar*/
     $accion = $_REQUEST['accion'];
@@ -23,8 +23,8 @@
         $jsondata['Titulo'] = $r["Titulo"];
         $jsondata['Imagen_principal'] = $r["Imagen_principal"];
         $jsondata['Descripcion'] = $r["Descripcion"];
+        $jsondata['Enlace'] = $r["Enlace"];
         $jsondata['Status'] = $r["Status"];
-        $jsondata['Url'] = $r["Url"];
         $jsondata['success'] = true;
         $jsondata['message'] = "recuperado correctamente";
       }
@@ -42,18 +42,18 @@
       $vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
       if(($vType == "png") or ($vType == "jpg")){
       		// Realiza Insert
-		    $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
+		    $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
 		    );
 		  	if($ser->insertData($data)){
 			  	/* Tomamos el Id del ultimo registro*/
 			  	$vId = $db->lastInsert();
-			  	$carpeta = "../public/servicios/".$vId;
+			  	$carpeta = "../public/beneficios/".$vId;
 			  	if (!file_exists($carpeta)) {
 			  	    mkdir($carpeta, 0777, true);
 			  	}
 			  	$name = $_FILES['txtImg']['name'];
-			  	$destino = "../public/servicios/".$vId."/".$name;
-			  	$dest = "public/servicios/".$vId."/".$name."'-";
+			  	$destino = "../public/beneficios/".$vId."/".$name;
+			  	$dest = "public/beneficios/".$vId."/".$name."'-";
 			  	$ruta = $_FILES['txtImg']['tmp_name'];
 			  	if(copy($ruta,$destino)){
 			  		$data = array("Imagen_principal"=>$dest);
@@ -90,15 +90,15 @@
       $vimg = $_FILES['txtImg']['name'];
       if ($vimg != "") {
         // si file viene lleno
-		$data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
+		$data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
 		);
         $where = "Id = " . $_REQUEST['txtId'];
         $ser->updateData($data, $where);
         $vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
         if(($vType == "png") or ($vType == "jpg")){
-          $carpeta = "../public/servicios/".$_REQUEST['txtId'];
-          $destino2 = "../public/servicios/".$_REQUEST['txtId']."/".$vimg;
-          $dest = "public/servicios/".$_REQUEST['txtId']."/".$vimg."'-";
+          $carpeta = "../public/beneficios/".$_REQUEST['txtId'];
+          $destino2 = "../public/beneficios/".$_REQUEST['txtId']."/".$vimg;
+          $dest = "public/beneficios/".$_REQUEST['txtId']."/".$vimg."'-";
           $ruta2 = $_FILES['txtImg']['tmp_name'];
           if(copy($ruta2,$destino2)){
             $data = array("Imagen_principal"=>$dest);
@@ -123,7 +123,7 @@
 
       }else{
         /*si tipo file esta vacio*/
-        $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
+        $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
         );
         $where = "Id = " . $_REQUEST['txtId'];
         if($ser->updateData($data, $where))
@@ -145,7 +145,7 @@
    case "status":
       $jsondata = array();
       // Realiza Insert
-        $data = array("Status"=>$_REQUEST['pStatus'], "Descripcion"=>$_REQUEST['txtDes'], "Updated_by"=>$user, "Updated_at"=>date("Y-m-d H:i:s")
+        $data = array("Status"=>$_REQUEST['pStatus'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Updated_by"=>$user, "Updated_at"=>date("Y-m-d H:i:s")
                   );
       $where = "Id = " . $_REQUEST['pId'];
      if($servicio->updateData($data, $where))

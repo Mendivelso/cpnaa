@@ -43,7 +43,10 @@ body{
     font-family: "MyriadPro-Regular";
 }
 
-
+.row2 {
+    margin-right: -13px !important;
+    margin-left: -13px !important;
+}
 
 .modal-content p, h4 {color: #fff;}
 
@@ -256,7 +259,7 @@ body{
 
 .cnt_t{
   margin: 3px;
-  padding: 5px;
+  padding: 15px;
   border: 1.5px #000 solid;
 }
 
@@ -264,7 +267,8 @@ body{
  text-align: justify;
  color: #444C5C;
  text-shadow: none;
- line-height: 14px;
+ line-height: 21px;
+ font-size: 19px;
 }
 
 .carousel-indicators li {
@@ -426,7 +430,7 @@ footer .redes li{
 /*+++++++++++++++  ESTILOS PANEL DE USUARIO   ++++++++++*/
 
 .galeria_beneficios{
-  height: 573px;
+  height: 1100px;
   background-image: url('../images/galeria_beneficios.jpg');
   background-repeat: no-repeat;
   background-position: center;
@@ -450,18 +454,28 @@ footer .redes li{
 .desc p{
   color: #000;
   font-family: "MyriadPro-Regular";
-  padding: 30px;
+  padding: 10px 10px 0px 10px;
 }
 .bdr{
   border-right: 1px #000 solid;
   -webkit-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
 box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
+
+
+
 }
 .top_bene{
   position: relative;
-  top: 100px;
+  top: 25px;
 }
+
+.cont_bene{
+  height: 280px;
+  background-color: #fff;
+  margin-top: 8px;
+}
+
 
 /*+++++++++++++       SUbir Arquitectos css        +++++++++++++++*/
 
@@ -646,6 +660,15 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
   text-align: center;
 
 }
+
+
+.ver{
+  color: #fff;
+  padding: 8px;
+  background-color: #e52a2c;
+  font-family: "MyriadPro-Regular";
+}
+
 
 
 /*/*placeholder*/

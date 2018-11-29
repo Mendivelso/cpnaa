@@ -1,5 +1,5 @@
 <?php
-    class arquitecto{
+    class hoja_ruta{
         /**
         * Almacena la conexion a la base de datos
         */
@@ -16,7 +16,7 @@
         public function __construct($db){
 
             $this->db = $db;
-            $this->table = "arquitectos";
+            $this->table = "hoja_ruta";
 
         }
 
@@ -26,10 +26,8 @@
         */
         public function selectAll($where = ""){
             /** Realiza el query */
-            $sql = "SELECT arq.Id, arq.Nombres, arq.Apellidos, arq.Cedula, arq.Email, arq.Telefono, arq.Nit_empresa, arq.Nivel_educativo, arq.Cedula_RL, arq.Status,
-             arq.Created_date, arq.Created_by, arq.Updated_date , arq.Updated_by, hr.Detalle AS Detalle
-                            FROM " . $this->table ." arq
-							LEFT JOIN hoja_ruta hr ON  arq.Cedula = hr.Arquitecto
+            $sql = "SELECT Id, Arquitecto, Detalle, Status, Created_date, Created_by
+                            FROM " . $this->table . "
                             " . $where;
             //echo $sql;
             $result = $this->db->ejecutar($sql);
@@ -53,7 +51,7 @@
         */
         public function selectOne(){
             /** Realiza el query */
-            $sql = "SELECT Id, Nombres
+            $sql = "SELECT Id, Nombre
                      FROM " . $this->table . " Where Status = 1";
             //echo $sql;
             $result = $this->db->ejecutar($sql);
