@@ -366,6 +366,18 @@
 		            <span>Inicio</span>
 		        </a>
 		      </li>
+		      <li class="">
+		        <a class="" href="../firmantes/">
+		            <i class="icon_house_alt"></i>
+		            <span>Firmantes</span>
+		        </a>
+		      </li>
+		      <li class="">
+		        <a class="" href="../arquitectos/">
+		            <i class="icon_house_alt"></i>
+		            <span>Arquitectos</span>
+		        </a>
+		      </li>
 		      <li class="sub-menu">
 		        <a href="javascript:;" class="">
 		          <i class="icon_document_alt"></i>
