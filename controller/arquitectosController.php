@@ -184,115 +184,105 @@
     break;
 
         case "imp":
-        // header('Content-type: application/json; charset=utf-8');
-        // echo json_encode($jsondata);
-
-          echo "ESTOY EN IMPORTAR";
-           $archivo = $_FILES['uploadExcel']['name'];
-          echo "var ". $_FILES['uploadExcel'];
-
-
-        // include_once("../Classes/PHPExcel/IOFactory.php");
-        // set_time_limit(300);
-
-        //  $vType = substr($_FILES['uploadExcel']['name'], strlen($_FILES['uploadExcel']['name'])-4, strlen($_FILES['uploadExcel']['name']));
-        //  if($vType == "xlsx"){
-
-
-        //   $carpeta = "../arquitectos/".$UserId;
-        //   if (!file_exists($carpeta)) {
-        //       mkdir($carpeta, 0777, true);
-        //   }
-        //     // datos para copiar el archivo
-        //
-
-        //    $destino = "../arquitectos/".$UserId;
-        //    $dest = "arquitectos/".$UserId."/".$archivo."'-";
-        //    $ruta2 = $_FILES['uploadExcel']['tmp_name'];
-        //    if(copy($ruta2,$destino)){
-        //       $jsondata['success'] = true;
-        //       $jsondata['message'] = "el archivo se ha subido correctamente";
-        //       echo " Subio";
-        //    }else{
-        //      $jsondata['success'] = false;
-        //      $jsondata['message'] = "No Fue posible subir su archivo";
-        //      echo "NOOOO Subio";
-        //    }
-
-        //  }else{
-        //    $jsondata['success'] = false;
-        //    $jsondata['message'] = "Formato de arvchivo incorrecto, Debe subir el mismo archivo descargado";
-        //  }
 
 
 
+        $file = $_FILES['txtImg']['name'];
+        // echo $file;
+        $vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-4, strlen($_FILES['txtImg']['name']));
+        // echo $vType;
+	      if($vType == 'xlsx'){
+	      			// Creamos Carpeta
+				  	$carpeta = "../public/Arquitectos/".$UserId;
+				  	if (!file_exists($carpeta)) {
+				  	    mkdir($carpeta, 0777, true);
+				  	}
+				  	$name = $_FILES['txtImg']['name'];
+				  	$destino = "../public/Arquitectos/".$UserId."/".$name;
+				  	$dest = "public/Arquitectos/".$UserId."/".$name."'-";
+				  	$ruta = $_FILES['txtImg']['tmp_name'];
+				  	if(copy($ruta,$destino)){
 
-        // header('Content-type: application/json; charset=utf-8');
-        // echo json_encode($jsondata);
-        // $nombreArchivo = $_FILES['uploadExcel']['name'];
-        // $nombreArchivo = '../arquitectos.xlsx';
-        // $objPHPExcel = PHPExcel_IOFactory::load($nombreArchivo);
-        // $objPHPExcel->setActiveSheetIndex(0);
-        // $numRows = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
-        // echo 'Numero de registros cargados'. $numRows. ' ';
-        // echo '
-        // <html>
-        // <head> </head>
-        // <body>
-        //     <table class="table table-striped table-bordered table-hover">
-        //         <thead>
-        //         <tr>
-        //            <th width="5%"><i class="icon_profile"></i>Status</th>
-        //            <th><i class="icon_profile"></i>Nombres</th>
-        //             <th><i class="icon_calendar"></i>Apellidos</th>
-        //             <th><i class="icon_mail_alt"></i>Cedula</th>
-        //             <th width="10%"><i class="icon_mobile"></i>Email</th>
-        //             <th><i class="icon_mobile"></i>Telefono</th>
-        //             <th><i class="icon_mobile"></i>Nit_empresa</th>
-        //             <th><i class="icon_mobile"></i>Nivel_educativo</th>
-        //             <th><i class="icon_cogs"></i> Cedula_RL</th>
-        //         </tr>
-        //         </thead>
-        //   <tbody>
-        // ';
-        // for ($i=2; $i <= $numRows; $i++) {
-        //   //Recojemos el valor de cada columna
-        //   $nombres = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
-        //   $apellidos = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-        //   $cedula = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-        //   $email = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-        //   $telefono = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-        //   $nit = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-        //   $nivel = $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-        //   $cedula_rl = $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+				  			     include_once("../Classes/PHPExcel/IOFactory.php");
+				  			     set_time_limit(300);
+				  		        $nombreArchivo = $destino;
+				  		        $objPHPExcel = PHPExcel_IOFactory::load($nombreArchivo);
+				  		        $objPHPExcel->setActiveSheetIndex(0);
+				  		        $numRows = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
 
-        //   echo '<tr>';
-        //   echo '<td>'.$nombres.'</td>';
-        //   echo '<td>'.$apellidos.'</td>';
-        //   echo '<td>'.$cedula.'</td>';
-        //   echo '<td>'.$email.'</td>';
-        //   echo '<td>'.$telefono.'</td>';
-        //   echo '<td>'.$nit.'</td>';
-        //   echo '<td>'.$nivel.'</td>';
-        //   echo '<td>'.$cedula_rl.'</td>';
+				  		        for ($i=2; $i <= $numRows; $i++) {
+				  		        	if($i == 2){
+	        		  		          //Recojemos el valor de cada columna
+	        		  		          $nombres = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
+	        		  		          $apellidos = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+	        		  		          $cedula = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+	        		  		          $email = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
+	        		  		          $telefono = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+	        		  		          $nit = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+	        		  		          $nivel = $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+	        		  		          $cedula_rl = $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
 
-        //   echo '</body> </html>';
 
-        //   $data = array("Nombres"=>$nombres,"Apellidos"=>$apellidos, "Cedula"=>$cedula,
-        //           "Email"=>$email, "Telefono"=>$telefono,
-        //           "Nit_empresa"=>$nit, "Nivel_educativo"=>$nivel, "Cedula_RL" =>  $cedula_rl,
-        //            "Status"=>3, "Created_date"=>date('Y-m-d H:i:s'), "Created_by" => $UserId
-        //         );
-        //   if($objArq->insertData($data)){
-        //     $jsondata['success'] = true;
-        //     $jsondata['message'] = "Registros cargados correctamente";
-        //   }else{
-        //     $jsondata['success'] = false;
-        //     $jsondata['message'] = "Algo no va bien ! Revisa tu conexión";
-        //   }
-        // }
+
+	        		  		         	  // clausulas where para validar cedula y usuario
+	        		  		         	$whereAr = " Where arq.Cedula = " . "'". $cedula. "'";
+	        		  		         	 $resultA = $objArq->selectAll($whereAr);
+
+	        		  		         	 // echo "CALusula where ". $whereC;
+	        		  		         	 // valida la existencia de una cedula igual
+	        		  		         	 if($db->numRows($resultA) > 0){
+	        		  		         	      if ($A = $db->datos($resultA)) {
+	        		  		         	          $jsondata['success'] = false;
+	        		  		         	          $jsondata['message'] = "Esta Cédula: ".$cedula." Ya Existe en nuestro sistema";
+	        		  		         	      }else{
+	        		  		         	      		$data = array("Nombres"=>$nombres,"Apellidos"=>$apellidos, "Cedula"=>$cedula,
+	        		  		         	      		        "Email"=>$email, "Telefono"=>$telefono,
+	        		  		         	      		        "Nit_empresa"=>$nit, "Nivel_educativo"=>$nivel, "Cedula_RL" =>  $cedula_rl,
+	        		  		         	      		         "Status"=>3, "Created_date"=>date('Y-m-d H:i:s'), "Created_by" => $UserId
+	        		  		         	      		      );
+	        			  		         	        // realiza el registro a la base de datos
+	        			  		         	        if($objArq->insertData($data))
+	        			  		         	        {
+	        			  		         	            $jsondata['success'] = true;
+	        			  		         	            $jsondata['message'] = "Registrado correctamente";
+
+	        			  		         	        }
+	        			  		         	        else
+	        			  		         	        {
+	        			  		         	            $jsondata['success'] = false;
+	        			  		         	            $jsondata['message'] = "Falla al enviar el registro";
+	        			  		         	        }
+
+	        		  		         	         }
+	        		  		         	}
+
+				  		        	}else{
+				  		        		$jsondata['success'] = true;
+				  		        		$jsondata['message'] = "NO HACE NADA";
+
+				  		        	}
+
+
+
+				  		        }
+
+
+				  		  // $jsondata['success'] = true;
+				  		  // $jsondata['message'] = "Archivo Sudido con exito";
+
+				  	}else {
+		            $jsondata['success'] = false;
+		            $jsondata['message'] = "No fue posible subir su Archivo";
+		        }
+
+	      }else{
+	      	  $jsondata['success'] = false;
+	      	  $jsondata['message'] = "Formato Incorrecto debe ser .xlsx";
+	      }
+
+	    header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsondata);
+
         break;
-
-
   }
 ?>

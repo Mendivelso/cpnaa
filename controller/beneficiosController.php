@@ -39,7 +39,9 @@
     /* insert  de Servicios */
     case "ins":
       $jsondata = array();
+      $file = $_FILES['txtImg']['name'];
       $vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
+      // if(($vType == "png") or ($vType == "jpg")){
       if(($vType == "png") or ($vType == "jpg")){
       		// Realiza Insert
 		    $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")

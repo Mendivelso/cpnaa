@@ -30,7 +30,7 @@
              arq.Created_date, arq.Created_by, arq.Updated_date , arq.Updated_by, hr.Detalle AS Detalle
                             FROM " . $this->table ." arq
 							LEFT JOIN hoja_ruta hr ON  arq.Cedula = hr.Arquitecto
-                            " . $where;
+                            " . $where ;
             //echo $sql;
             $result = $this->db->ejecutar($sql);
             if($this->db->numRows($result)){

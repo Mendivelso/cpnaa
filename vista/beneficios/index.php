@@ -45,7 +45,6 @@
 	          </div>
 	          <div class="form-group">
 	            <label for="txtImg">Imagen Principal</label>
-	            <input type="file" name="txtImg" id="txtImg" class="form-control" placeholder="">
 	          </div>
 	      <div class="form-group">
 	        <label for="txtImg">Título</label>
@@ -96,7 +95,7 @@
 	            </ol>
 	          </div>
 	        </div>
-			<!-- <button type="button" class="btn btn-primary" id="new_exp_form">Nuevo</button> -->
+			<button type="button" class="btn btn-primary" id="new_exp_form">Nuevo</button>
 			<section class="panel">
 	            <table id="editable" class="table table-striped table-bordered table-hover table-responsive" width="100%">
 	              <thead>

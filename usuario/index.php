@@ -73,10 +73,10 @@
 	        <h4 class="modal-title" style="color: #000;">Adjunte un archivo excel</h4>
 	      </div>
 	      <div class="modal-body">
-	        <form id="excel_upload" enctype="" action="../controller/arquitectosController.php">
+	        <form id="excel_upload" enctype="multipart/form-data">
 				<div class="form-group">
 				<label class="">Adjuntar archivo</label>
-					<input type="file" class="form-control" name="uploadExcel" id="uploadExcel"  required="">
+					<input type="file" name="txtImg" id="txtImg" class="form-control" placeholder="">
 					<input type="hidden" class="form-control" name="accion" id="" value="imp">
 				</div>
 	          <button type="submit" class="btn btn-default">Enviar</button>
@@ -379,6 +379,7 @@
     <script type="text/javascript" src="../js/process/arquitectos.js"></script>
     <script type="text/javascript" src="../front/js/alertify.min.js"></script>
     <script type="text/javascript" src="../front/js/valid.js"></script>
+    <script type="text/javascript" src="../js/process/subir_arquitectos.js"></script>
 
     <!-- Data Tables -->
     <script src="../js/jquery.dataTables.js"></script>
@@ -388,8 +389,6 @@
 
 
     <script type="text/javascript" src="../front/js/sweetalert.min.js"></script>
-
-
 
     <script type="text/javascript">
       $(document).ready(function(){
