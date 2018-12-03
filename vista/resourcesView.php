@@ -384,6 +384,12 @@
 		            <span>Beneficios</span>
 		        </a>
 		      </li>
+		      <li class="">
+		        <a class="" href="../experiencias/">
+		            <i class="icon_house_alt"></i>
+		            <span>Experiencias</span>
+		        </a>
+		      </li>
 		      <li class="sub-menu">
 		        <a href="javascript:;" class="">
 		          <i class="icon_document_alt"></i>

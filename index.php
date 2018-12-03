@@ -1,12 +1,16 @@
 <?php
 	include_once("AnsTek_libs/integracion.inc.php");
 	include_once("model/beneficios.class.php");
+	include_once("model/experiencias.class.php");
 	//OBJETO PARA LISTAR BENEFICIOS
 	$bene = new beneficio($db);
 	$whereB = " Where Status = 1";
 	$resultB = $bene->selectAll($whereB);
 
-
+	//OBJETO PARA LISTAR EXPERIENCIAS
+	$Exp = new experiencia($db);
+	$whereE = " Where Status = 1";
+	$resultE = $Exp->selectAll($whereE);
 
 ?>
 <!DOCTYPE html>
@@ -62,7 +66,6 @@
 	                            <div class="panel-body">
 	                                <div class="row">
 	                                    <div class="col-lg-12">
-
 	                                        <form id="login-form" action="#" method="post" role="form" style="display: block;">
 	                                            <div class="form-group">
 	                                                <input type="text" name="txtUser" id="txtUser" tabindex="1" Rclass="form-control" placeholder="Username" >
@@ -71,7 +74,6 @@
 	                                                <input type="password" name="txtPass" id="txtPass" tabindex="2" class="form-control" placeholder="Password">
 	                                                <input type="hidden" name="txtTab" id="txtTab" tabindex="2" class="form-control" value="0">
 	                                            </div>
-
 	                                            <div class="form-group">
 	                                                <div class="row">
 	                                                    <div class="col-sm-6 col-sm-offset-3">
@@ -89,7 +91,6 @@
 	                                                </div>
 	                                            </div>
 	                                        </form>
-
 	                                    </div>
 	                                    <div class="col-lg-12">
 	                                    	<form id="usuarios"  action="#" method="post" role="form" style="display: none;">
@@ -270,9 +271,7 @@
 				  	}else{
 				  		$class = 'item';
 				  	}
-
 				    echo '
-
 						  <div class="'.$class.'">
 						    <img src="'.$rB['Imagen_principal'].'" alt="Chania" width="100%">
 						    <div class="carousel-caption">
@@ -280,12 +279,9 @@
 						    		<div class="cnt_t">
 						    			<p>'.$rB['Descripcion'].'</p>
 						    		</div>
-
 						    	</div>
-
 						    </div>
 						  </div>
-
 				    ';
 				  }
 				}
@@ -294,13 +290,7 @@
 				}
 				?>
 
-
-
-
-
-
 			  </div>
-
 			  <!-- Left and right controls -->
 			  <a class="left carousel-control" href="#beneficios" data-slide="prev">
 			    <img src="front/images/flecha-hacia-la-izquierda.png" class="dir">
@@ -441,55 +431,25 @@
 			    <div class="mis-stage">
 			        <!-- The element to select and apply miSlider to - the class is optional -->
 			        <ol class="mis-slider">
-
-
-				 	<li class="mis-slide">
-				 	    <a href="#" class="mis-container">
-				 	        <figure onclick="">
-				 	            <img src="front/images/arq1.jpg" alt='titulo1'>
-				 	            <figcaption>Titulo 1</figcaption>
-				 	        </figure>
-				 	    </a>
-				 	</li>
-
-					<li class="mis-slide">
-					    <a href="#" class="mis-container">
-					        <figure onclick="">
-					            <img src="front/images/arq2.jpg" alt='titulo1'>
-					            <figcaption>Titulo 1</figcaption>
-					        </figure>
-					    </a>
-					</li>
-
-					<li class="mis-slide">
-					    <a href="#" class="mis-container">
-					        <figure onclick="">
-					            <img src="front/images/arq3.jpg" alt='titulo1'>
-					            <figcaption>Titulo 1</figcaption>
-					        </figure>
-					    </a>
-					</li>
-
-					<li class="mis-slide">
-					    <a href="#" class="mis-container">
-					        <figure onclick="">
-					            <img src="front/images/arq1.jpg" alt='titulo1'>
-					            <figcaption>Titulo 1</figcaption>
-					        </figure>
-					    </a>
-					</li>
-
-					<li class="mis-slide">
-					    <a href="#" class="mis-container">
-					        <figure onclick="">
-					            <img src="front/images/arq3.jpg" alt='titulo1'>
-					            <figcaption>Titulo 1</figcaption>
-					        </figure>
-					    </a>
-					</li>
-
-
-
+			        	<?php
+			        	if($db->numRows($resultE) > 0){
+			        			  while ($rExp = $db->datos($resultE)) {
+			        			    echo '
+			        					<li class="mis-slide">
+			        					    <a href="experiencias/?v='.$rExp['Id'].'" class="mis-container">
+			        					        <figure onclick="">
+			        					            <img src="'.$rExp['Imagen'].'" alt="'.$rExp['Titulo'].'">
+			        					            <figcaption>'.$rExp['Titulo'].'</figcaption>
+			        					        </figure>
+			        					    </a>
+			        					</li>
+			        			    ';
+			        			  }
+			        	}
+			        	else{
+			        	  echo "NO HAY REGISTROS PARA MOSTRAR";
+			        	}
+			        	?>
 
 			        </ol>
 			    </div>

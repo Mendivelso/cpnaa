@@ -349,6 +349,39 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="row cont_exp">
+			<div class="col-md-4">
+				<form class="" role="form" id="form_exp">
+					<h3>SUBE TU EXPERIENCIA </h3>
+				  <div class="form-group">
+				    <input type="text" class="form-control inp" id="txtTi" name="txtTi" placeholder="Título">
+				  </div>
+				  <div class="form-group">
+				  	<label>Imagen Destacada</label>
+				    <input class="form-control inp" type="file" name="txtImagen" id="txtImagen" placeholder="Imagen Destacada">
+				  </div>
+				  <div class="form-group">
+				    <input class="form-control inp" type="text" name="txtLink" id="txtLink" placeholder="Link del video">
+				  </div>
+				  <div class="form-group">
+				  	<label>Documento (opcional)</label>
+				    <input class="form-control inp" type="file" name="txtFile" id="txtFile" placeholder="Un documento">
+				    <input class="form-control inp" type="hidden" name="accion" id="accion" value="ins">
+				  </div>
+
+				  <div class="form-group">
+				    <textarea class="form-control inp" name="txtDes" id="txtDes" placeholder="Cuentanos tu experiencia" rows="5"></textarea>
+				  </div>
+
+				  <button type="submit" class="btn btn-default">Enviar</button>
+				</form>
+			</div>
+			<div class="col-md-8"></div>
+
+		</div>
+
+
 	</div>
 
 
@@ -372,6 +405,7 @@
 	</footer>
 
 
+
     <!-- Scripts -->
     <script type="text/javascript" src="../front/js/jquery.min.js"></script>
     <script type="text/javascript" src="../front/js/bootstrap.min.js"></script>
@@ -379,7 +413,7 @@
     <script type="text/javascript" src="../js/process/arquitectos.js"></script>
     <script type="text/javascript" src="../front/js/alertify.min.js"></script>
     <script type="text/javascript" src="../front/js/valid.js"></script>
-    <script type="text/javascript" src="../js/process/subir_arquitectos.js"></script>
+    <script type="text/javascript" src="../js/process/experiencias.js"></script>
 
     <!-- Data Tables -->
     <script src="../js/jquery.dataTables.js"></script>

@@ -669,8 +669,48 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
   font-family: "MyriadPro-Regular";
 }
 
+.cont_exp{
+  height:414px;
+  background-image: url('../images/fondo_experiencias.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  top: 100px;
 
+}
 
+.cont_exp form{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.cont_exp form h3{
+  font-family: "MyriadPro-Regular";
+  color: darkgray;
+  text-align: center;
+
+}
+
+.cont_exp form textarea {
+  resize: none;
+}
+
+.cont_exp form button {
+  background-color: #BD2934;
+  color:#fff;
+  font-size: 16px;
+  font-family: "MyriadPro-Regular";
+  border:none;
+}
+
+.cont_exp form .inp {
+  border: 2px solid #eee;
+
+}
+.cont_exp form .error{
+  color:  #BD2934;
+}
 /*/*placeholder*/
 /*.input::-webkit-input-placeholder { color: darkgray; font-weight: bold;}
 .input:-moz-placeholder { color: darkgray; font-weight: bold;  }
