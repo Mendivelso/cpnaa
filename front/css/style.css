@@ -599,7 +599,7 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
 }
 
 .number_p{
-  background-color: lightgray;
+  background-color: #fff;
   color: #000;
   font-family: "MyriadPro-Regular";
   text-align: left;
@@ -731,6 +731,16 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
 }
 
 @media screen and (max-width: 1199px){
+  #editable{
+    width: 100%;
+  }
+  .cont_firma {
+      height: auto;
+      background-image: url(../images/fondo1.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+  }
   .container {
       width: 970px !important;
   }
@@ -805,8 +815,64 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
 }
 
 @media screen and (max-width: 991px){
+  .pd {
+      margin-left: 5px;
+  }
+  .top_bene {
+      position: relative;
+      top: 5px;
+  }
   .container {
       width: 750px !important;
+  }
+  .pdd {
+      padding: 0px 30px 0px 30px;
+  }
+  .desc p {
+    color: #000;
+    font-family: "MyriadPro-Regular";
+    padding: 5px 5px 0px 5px;
+  }
+  .cont_bene {
+      height: 343px;
+      background-color: #fff;
+      margin-top: 8px;
+  }
+  .galeria_beneficios {
+    height: 1200px;
+    background-image: url(../images/galeria_beneficios.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  .resultados .result {
+      color: #fff;
+      margin: 0;
+      padding-left: 4px;
+      font-family: "MyriadPro-Bold";
+      font-size: 21px;
+  }
+  .from_pacto {
+    height: auto;
+    background-image: url(../images/font_formulario.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: -63px;
+  }
+  .number_p {
+      background-color: #fff;
+      color: #000;
+      font-family: "MyriadPro-Regular";
+      text-align: left;
+      float: right;
+      width: 165px;
+      padding: 6px;
+      line-height: 17px;
   }
 
   .nav>li>a {
@@ -860,7 +926,7 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
       font-family: "MyriadPro-Semibold";
       font-size: 13px;
       position: relative;
-      top: 20px;
+      top: 11px;
       padding-left: 19px;
   }
 
@@ -890,7 +956,67 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
 
 
 @media screen and (max-width: 767px){
-
+  .subir_arq {
+      height: auto;
+      background-image: url(../images/foto1.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+  }
+  .cont_arq {
+      position: relative;
+      top: 6px;
+  }
+  .resultados .result {
+      color: #fff;
+      margin: 0;
+      padding-left: 4px;
+      font-family: "MyriadPro-Bold";
+      font-size: 21px;
+      padding-top: 15px;
+  }
+  .cont_bene {
+      height: 215px;
+      background-color: #fff;
+      margin-top: 8px;
+  }
+  .galeria_beneficios {
+      height: auto;
+      background-image: url(../images/galeria_beneficios.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+  }
+  .beneficios {
+      height: 64px;
+      background-image: url(../images/franja.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      background-color: #fff;
+  }
+  .number_p {
+      background-color: #fff;
+      color: #000;
+      font-family: "MyriadPro-Regular";
+      text-align: left;
+      float: right;
+      width: 100%;
+      padding: 6px;
+      line-height: 17px;
+  }
+  .from_pacto {
+      height: auto;
+      background-image: url(../images/font_formulario.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      top: 0;
+  }
   .banner{
     display: none;
   }
@@ -965,7 +1091,16 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
     padding-left: 28px;
     font-family: "MyriadPro-Bold";
     font-size: 19px;
-}
+  }
+  .resultados .result {
+      color: #fff;
+      margin: 0;
+      padding-left: 4px;
+      font-family: "MyriadPro-Bold";
+      font-size: 18px;
+      padding-top: 5px;
+  }
+
 
 }
 

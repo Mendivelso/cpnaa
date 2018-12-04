@@ -89,13 +89,13 @@
 
 	<div class="container">
 		<div class="row">
-			<img src="../front/images/fondo_firma_pacto.jpg" class="" >
+			<img src="../front/images/fondo_firma_pacto.jpg" class="" width="100%">
 		</div>
 	</div>
 
 	<div class="container cont_firma">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-sm-6 col-md-6">
 				<div class="row descripcion_firma">
 					<p>
 						Entiendo que la ética y el ejercicio ético de la prefesión debe hacer parte de la
@@ -111,7 +111,7 @@
 					<p>Los firmantes del pacto por el ejercicio ético y responsable se comprometen a :</p>
 				</div>
 				<div class="row"><br>
-					<div class="col-md-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="number">
 							1
 						</div>
@@ -122,7 +122,7 @@
 
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="number">
 							2
 						</div>
@@ -135,7 +135,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="number">
 							3
 						</div>
@@ -147,7 +147,7 @@
 
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="number">
 							4
 						</div>
@@ -161,7 +161,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="number">
 							5
 						</div>
@@ -173,7 +173,7 @@
 
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="number">
 							6
 						</div>
@@ -187,7 +187,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="number">
 							7
 						</div>
@@ -199,7 +199,7 @@
 
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-sm-6 col-md-6">
 						<div class="number">
 							8
 						</div>
@@ -213,7 +213,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-sm-6 col-md-6">
 				<!-- formulario para la firma del pacto -->
 				<div class="row">
 					<form  class="from_pacto"  id="from_pacto" enctype="multipart/form-data">

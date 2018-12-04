@@ -132,7 +132,7 @@
 
 	<div class="container">
 		<div class="row">
-			<img src="../front/images/pactos_por_regulacion.jpg" class="" >
+			<img src="../front/images/pactos_por_regulacion.jpg" class="" width="100%">
 		</div>
 	</div>
 
@@ -164,7 +164,7 @@
 
 					    echo '
 
-							  <div class="col-md-3 bdr text-center cont_bene">
+							  <div class="col-sm-3 col-md-3 bdr text-center cont_bene">
 							      <div class="row numero">
 							          <h2>'.$rB['Titulo'].'</h2>
 							      </div>
@@ -202,8 +202,8 @@
 
 	<div class="container subir_arq">
 		<div class="row">
-			<div class="col-md-offset-1 col-md-10 cont_arq">
-				<div class="col-md-7 text-center">
+			<div class="col-md-offset-1 col-sm-12  col-md-10 cont_arq">
+				<div class="col-sm-7 col-md-7 text-center">
 					<form  class="from_arq" id="arq">
 						<h4>Por favor llene el siguiente formualrio para agregar sus arquitectos, si lo decea puede utilizar la opción de subir un archivo con varios registros.</h4>
 
@@ -240,7 +240,7 @@
 					  <button type="submit" class="btn btn-default">Enviar</button>
 					</form>
 				</div>
-				<div class="col-md-5">
+				<div class="col-sm-5 col-md-5">
 					<a href="../arquitectos.xlsx" download="../arquitectos.xlsx" title="Descargar formato para subir arquitectos">
 					<div class="row text-center rojo">
 						<h4>Descarga el archivo en excel y sube a tus arquitectos </h4>
@@ -272,8 +272,8 @@
 
 	<div class="container subir_arq">
 		<div class="row">
-			<div class="col-md-offset-1 col-md-10 cont_arq">
-						<section class="panel">
+			<div class="col-md-offset-1 col-sm-12  col-md-10 cont_arq">
+						<section class="panel table-responsive">
 				            <table class="table table-striped table-bordered table-hover " id="editable" >
 					            <thead>
 					            <tr>
@@ -351,7 +351,7 @@
 		</div>
 
 		<div class="row cont_exp">
-			<div class="col-md-4">
+			<div class="col-sm-5 col-md-4">
 				<form class="" role="form" id="form_exp">
 					<h3>SUBE TU EXPERIENCIA </h3>
 				  <div class="form-group">
