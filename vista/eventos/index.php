@@ -4,10 +4,10 @@
     if(Session::get('Perfil') != 1)
     header('Location: ../../admin/logout.php');
   include_once("../resourcesView.php");
-  include_once("../../model/beneficios.class.php");
+  include_once("../../model/eventos.class.php");
 
-  $ser = new beneficio($db);
-  $result =  $ser->selectAll();
+  $event = new evento($db);
+  $result =  $event->selectAll();
   $vNom = Session::get('Nombre');
 ?>
 <html lang="en">
@@ -30,7 +30,7 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="gridSystemModalLabel">Nuevo Servicio</h4>
+	        <h4 class="modal-title" id="gridSystemModalLabel">Nuevo Evento</h4>
 	        <div id="linkImg" style="float: right"></div>
 	      </div>
 	      <div class="modal-body">
@@ -42,6 +42,10 @@
 	                <option value="1">Activo</option>
 	                <option value="0">Inactivo</option>
 	            </select>
+	          </div>
+	          <div class="form-group">
+	            <label for="txtDate">Fecha del evento:</label>
+	            <input class="form-control" type="date" name="txtDate" id="txtDate" placeholder="">
 	          </div>
 	          <div class="form-group">
 	            <label for="txtImg">Imagen Principal</label>
@@ -89,10 +93,10 @@
 	        <!--overview start-->
 	        <div class="row">
 	          <div class="col-lg-12">
-	            <h3 class="page-header"><i class="fa fa-laptop"></i>Beneficios</h3>
+	            <h3 class="page-header"><i class="fa fa-laptop"></i>Eventos</h3>
 	            <ol class="breadcrumb">
 	              <li><i class="fa fa-home"></i><a href="index.html">Inicio</a></li>
-	              <li><i class="fa fa-laptop"></i>Beneficios</li>
+	              <li><i class="fa fa-laptop"></i>Eventos</li>
 	            </ol>
 	          </div>
 	        </div>
@@ -107,6 +111,7 @@
 	                   <th width="15%">Enlace</th>
 	                   <th width="auto">Descripción</th>
 	                   <th width="auto">Imagen_Principal</th>
+	                   <th width="auto">Fecha del evento</th>
 	                   <th width="10%">Fecha Registro</th>
 	                   <th width="10%">Acciones</th>
 	                </tr>
@@ -122,13 +127,15 @@
 	                      echo "<td>" . $r['Titulo'] . "</td>";
 	                      echo "<td>" . $r['Enlace'] . "</td>";
 	                      echo "<td>" . $r['Descripcion'] . "</td>";
-	                      echo "<td>". '<center>'. '<img src="../../'.$r['Imagen_principal'].'" width="35%">'.'<center>' ."</td>";
+	                      echo "<td>". '<center>'. '<img src="../../'.$r['Imagen_principal'].'" width="100px">'.'<center>' ."</td>";
+	                      echo "<td>" . $r['Fecha'] . "</td>";
 	                      //echo "<td>" .$r['Imagen_principal']."</td>";
 	                      echo "<td>" . $r['Created_date']     . "</td>";
 
 	                      echo "<td>
 	                          <center>
 	                              <a href=\"#\" onclick=\"javascript:openAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-success btn-md btn-xs\" title=\"Editar\"><i class=\"fa fa-refresh fa-lg\"></i></a>&nbsp;
+	                              <a href=\"#\" onclick=\"javascript:DelAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-danger btn-md btn-xs\" title=\"Editar\"><i class=\"fa fa- fa-lg\">borrar</i></a>&nbsp;
 	                          </center>
 	                      </td>";
 	                      echo "</tr>";
@@ -140,18 +147,7 @@
 	                  }
 	                ?>
 	              </tbody>
-	              <tfoot>
-	                <tr>
-	                 <th width="2%">#</th>
-	                   <th width="2%">Estado</th>
-	                   <th width="15%">Título</th>
-	                   <th width="auto">Descripción</th>
-	                   <th width="auto">Imagen_Principal</th>
-	                   <th width="10%">Fecha Registro</th>
-	                   <th width="10%">Acciones</th>
-	                </tr>
-	                </tr>
-	              </tfoot>
+
 	            </table>
 			</section>
 	      </section>
@@ -165,7 +161,7 @@
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 	<!-- <script type="text/javascript" src="../../js/jquery.validate.min.js"></script> -->
 	<script type="text/javascript" src="../../js/process/usuarios.js"></script>
-	<script type="text/javascript" src="../../js/process/beneficios.js"></script>
+	<script type="text/javascript" src="../../js/process/eventos.js"></script>
 	<script>
 	    $(document).ready(function() {
 	    	$("#new_User").click(function(){

@@ -1,8 +1,4 @@
-<?php
-echo md5('123456');
 
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -711,6 +711,34 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
 .cont_exp form .error{
   color:  #BD2934;
 }
+
+/*ESTILOS PREGUNTAS FRECUENTES*/
+
+.franjapf{
+  height:56px;
+  background-image: url(../images/franja_pf.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  }
+
+  .franjapf h1 {
+      color: #fff;
+      padding-left: 40px;
+      font-family: "MyriadPro-Bold";
+  }
+
+  .mainpf{
+    height:auto;
+    background-image: url(../images/fondo_pf.png);
+    background-repeat: repeat-y;
+    background-position: center;
+    background-size: inherit;
+  }
+
+  .pre{font-family: "MyriadPro-Bold"; text-align: justify; font-size: 17px; padding: 5px 40px 0px 40px;}
+  .rta{font-family: "MyriadPro-Regular"; text-align: justify; font-size: 17px; padding: 0px 40px 0px 40px;}
+
 /*/*placeholder*/
 /*.input::-webkit-input-placeholder { color: darkgray; font-weight: bold;}
 .input:-moz-placeholder { color: darkgray; font-weight: bold;  }

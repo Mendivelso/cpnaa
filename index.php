@@ -12,6 +12,15 @@
 	$whereE = " Where Status = 1";
 	$resultE = $Exp->selectAll($whereE);
 
+	if(Session::get('Perfil') != 0  ){
+		header('Location: admin/logout.php');
+	}
+	$name = Session::get('Nombre');
+	if ($name == "") {
+		$IS =" INICIAR SESIÓN";
+	}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -144,9 +153,27 @@
 
 	<div class="container login">
 		<div class="row">
-			<div class="col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-xs-4 col-sm-2 col-md-2 login-content">
-				<strong class="icon"><a href="#" data-toggle="modal" data-target="#myModal"><img src="front/images/iniciar-session.png" class="" ></strong><p>INICIAR SESIÓN</a></p>
-			</div>
+			<?php
+				if ($name == "") {
+					echo '
+						<div class="col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-xs-4 col-sm-2 col-md-2 login-content">
+							<strong class="icon"><a href="#" data-toggle="modal" data-target="#myModal"><img src="front/images/iniciar-session.png" class="" ></strong><p>'.$IS.'</a></p>
+						</div>
+
+					';
+				}else{
+					echo '
+						<div class="dropdown login-content" style="float: right;">
+						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="front/images/iniciar-session.png" class="" > </strong>'.$name.'
+						  <span class="caret"></span></button>
+						  <ul class="dropdown-menu">
+						    <li><a href="../logout.php" title="">Cerrar Sessión</a></li>
+						  </ul>
+						</div>
+
+					';
+				}
+			 ?>
 		</div>
 
 	</div>
@@ -166,11 +193,11 @@
 	        <li><a href="#">INICIO</a></li>
 
 	        <li><a href="#">FIRMA DE PACTO</a></li>
-	        <li><a href="#">BENEFICIOS</a></li>
-	        <li><a href="#">VIVE LOS RESULTADOS</a></li>
-	        <li><a href="#">EXPERIENCIAS</a></li>
-	        <li><a href="#">PREGUNTAS FRECUENTES</a></li>
-	        <li><a href="#">FIRMANTES Y ALIADOS</a></li>
+	        <li><a href="#bene">BENEFICIOS</a></li>
+	        <li><a href="#resultados">VIVE LOS RESULTADOS</a></li>
+	        <li><a href="#experiencias">EXPERIENCIAS</a></li>
+	        <li><a href="preguntas_frecuentes/">PREGUNTAS FRECUENTES</a></li>
+	        <li><a href="aliados/">FIRMANTES Y ALIADOS</a></li>
 	      </ul>
 
 	    </div>
@@ -215,7 +242,7 @@
 				</p>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-6">
-				<h3 class="text-center">EL OBJETIVO:</h3>
+				<h3 class="text-center" >EL OBJETIVO:</h3>
 				<p>
 					El objetivo principal de esta iniciativa, es lograr que los empresarios Colombianos,
 					con el apoyo del CPNAA, trabajen en las organizaciones para fortalecer el ejercicio
@@ -226,7 +253,7 @@
 	</div>
 
 
-	<div class="container white">
+	<div class="container white" id="bene">
 		<div class="row">
 			<div class="col-sm-11 col-md-11 beneficios pd">
 				<div class="col-xs-6 col-sm-6 col-md-6">
@@ -303,7 +330,7 @@
 	</div>
 
 
-	<div class="container resultados white">
+	<div class="container resultados white" id="resultados">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6">
 				<h1 class="result">VIVE LOS <span>RESULTADOS</span></h1>
@@ -406,7 +433,7 @@
 	</div>
 
 
-	<div class="container resultados white">
+	<div class="container resultados white" id="experiencias">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6">
 				<h1 class="result">EXPERIENCIAS</span></h1>
@@ -506,6 +533,7 @@
     <script type="text/javascript" src="js/process/registros.js"></script>
     <script type="text/javascript" src="front/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="js/validacion.js"></script>
+    <script type="text/javascript" src="front/js/scroll.js"></script>
 
 	<!-- Galeria trabajos -->
 	<script src="//cdn.jsdelivr.net/modernizr/2.8.3/modernizr.min.js"></script>
