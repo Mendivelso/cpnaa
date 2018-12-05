@@ -44,9 +44,20 @@
 
           alert(data.firma_pacto);
           if (data.firma_pacto == 1) {
-            document.location.href = "usuario/";
+            if (vId == 0) {
+              document.location.href = "usuario/";
+            }else{
+              document.location.href = "../usuario/";
+            }
+
+
           }else{
-            document.location.href = "firma_del_pacto/";
+            if (vId == 0) {
+              document.location.href = "firma_del_pacto/";
+            }else{
+              document.location.href = "../firma_del_pacto/";
+            }
+
           }
 
           document.getElementById("form_zonasegura").reset();

@@ -2,7 +2,7 @@ function redireccionarPagina() {
   window.location = "https://www.bufa.es";
 }
 // VALIDACION FORMULARIO CONTACTO
-    $("#arq").validate({
+    $("#from_arq").validate({
     rules:{
       txtName:{
         required: true

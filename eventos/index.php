@@ -2,6 +2,7 @@
 	$name="";
 	include_once("../AnsTek_libs/integracion.inc.php");
 	include_once("../model/eventos.class.php");
+	include_once("../model/usuarios.class.php");
 	// Session::valida_sesion("","../admin/logout.php");
 	if(Session::get('Perfil') != 0  ){
 		header('Location: ../admin/logout.php');
@@ -14,6 +15,38 @@
 	$event = new evento($db);
 	$where = " Where Status = 1";
 	$result = $event->selectAll($where);
+
+	$Id = Session::get('Id');
+
+
+	if ($Id != "") {
+		//OBJETO USUARIOS
+		$Vuser = new usuario($db);
+		$where = " Where Us.Id = ".$Id;
+		$resultUser = $Vuser->selectAll($where);
+		if($db->numRows($resultUser) > 0){
+			if($rU = $db->datos($resultUser)){
+				$rU['firma_pacto'];
+				$firmo = $rU['firma_pacto'];
+				if ($firmo == 0) {
+					$IS =" INICIAR SESIÓN";
+					$firma = '<li><a href="../firma_del_pacto/">FIRMA EL PACTO</a></li>';
+				}else{
+					$firma = '<li><a href="../usuario/">USUARIO</a></li>';
+				}
+
+			}else{
+
+			}
+		}else{
+
+		}
+
+
+	}else{
+		$IS =" INICIAR SESIÓN";
+		$firma = '<li><a href="#">FIRMA EL PACTO</a></li>';
+	}
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +71,7 @@
 
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="60">
-	
+
 	<div class="container login">
 		<div class="row">
 			<?php
@@ -76,9 +109,8 @@
 	    </div>
 	    <div class="collapse navbar-collapse not" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	        <li><a href="#">INICIO</a></li>
-
-	        <li><a href="../#">FIRMA DE PACTO</a></li>
+	        <li><a href="../#">INICIO</a></li>
+			<?php echo $firma; ?>
 	        <li><a href="../#bene">BENEFICIOS</a></li>
 	        <li><a href="../#resultados">VIVE LOS RESULTADOS</a></li>
 	        <li><a href="../#experiencias">EXPERIENCIAS</a></li>
@@ -104,7 +136,7 @@
 				<?php
 				if($db->numRows($result) > 0){
 				  while ($r = $db->datos($result)) {
-				  	
+
 				    echo '
 						<div class="row text-justify pe">
 							<div class="col-md-5 text-center">

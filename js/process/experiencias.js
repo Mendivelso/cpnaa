@@ -1,4 +1,4 @@
-// NUEVA IMAGEN GALERIA PRINCIPAL
+  // NUEVA IMAGEN GALERIA PRINCIPAL
     $("#form_exp").validate({
     rules:{
         txtTi:{

@@ -72,13 +72,15 @@
       var vImg = $('#txtImg').val();
       var vData = '';
 
-             var vId  = $('#txtId').val();
-
+      var vId  = $('#txtId').val();
+            var vurl = "";
             if (vId > 0) {
              /* envia todos los campos del formulario*/
               var vData = new FormData(document.getElementById("usuarios"));
+              var vurl = "../controller/usuariosController.php";
             }else{
               var vData = new FormData(document.getElementById("usuarios"));
+              var vurl = "controller/usuariosController.php";
             }
 
 
@@ -87,7 +89,7 @@
               data: vData,
               type: "POST",
               datatype: "json",
-              url:"controller/usuariosController.php",
+              url:vurl,
               contentType: false,
               processData: false,
             })

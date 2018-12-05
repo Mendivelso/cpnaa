@@ -117,14 +117,13 @@
 	    </div>
 	    <div class="collapse navbar-collapse not" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	        <li><a href="#">INICIO</a></li>
-
-	        <li><a href="#">FIRMA DE PACTO</a></li>
-	        <li><a href="#">BENEFICIOS</a></li>
-	        <li><a href="#">VIVE LOS RESULTADOS</a></li>
-	        <li><a href="#">EXPERIENCIAS</a></li>
-	        <li><a href="#">PREGUNTAS FRECUENTES</a></li>
-	        <li><a href="#">FIRMANTES Y ALIADOS</a></li>
+	        <li><a href="../">INICIO</a></li>
+	        <li><a href="#">USUARIO</a></li>
+	        <li><a href="#bene">BENEFICIOS</a></li>
+	        <li><a href="#arq">TUS ARQUITECTOS</a></li>
+	        <li><a href="#exp">EXPERIENCIAS</a></li>
+	        <li><a href="../preguntas_frecuentes/">PREGUNTAS FRECUENTES</a></li>
+	        <li><a href="../aliados/">FIRMANTES Y ALIADOS</a></li>
 	      </ul>
 	    </div>
 	  </div>
@@ -136,7 +135,7 @@
 		</div>
 	</div>
 
-	<div class="container galeria_beneficios">
+	<div class="container galeria_beneficios" id="bene">
 		<div class="row">
 			<div class="col-sm-11 col-md-11 beneficios pd">
 				<div class="col-xs-6 col-sm-6 col-md-6">
@@ -157,7 +156,7 @@
 					  while ($rB = $db->datos($resultB)) {
 					  	$enlace = '';
 					  	if ($rB['Enlace'] != "") {
-					  		$enlace = '<a href='.$rB['Enlace'].' class="ver" target="black">Ver más</a> ';
+					  		$enlace = '<a href='.$rB['Enlace'].' class="ver" target="self">Ver más</a> ';
 					  	}else{
 					  		$enlace = '';
 					  	}
@@ -192,7 +191,7 @@
 
 	</div>
 
-	<div class="container resultados white">
+	<div class="container resultados white" id="arq">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6">
 				<h1 class="result">INSCRIBE A <span>TUS ARQUITECTOS</span></h1>
@@ -204,7 +203,7 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-sm-12  col-md-10 cont_arq">
 				<div class="col-sm-7 col-md-7 text-center">
-					<form  class="from_arq" id="arq">
+					<form  class="from_arq" id="from_arq">
 						<h4>Por favor llene el siguiente formualrio para agregar sus arquitectos, si lo decea puede utilizar la opción de subir un archivo con varios registros.</h4>
 
 					  <div class="form-group">
@@ -331,7 +330,7 @@
 		</div>
 	</div>
 
-	<div class="container resultados white">
+	<div class="container resultados white" id="exp">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6">
 				<h1 class="result">EXPERIENCIAS</span></h1>
@@ -414,6 +413,8 @@
     <script type="text/javascript" src="../front/js/alertify.min.js"></script>
     <script type="text/javascript" src="../front/js/valid.js"></script>
     <script type="text/javascript" src="../js/process/experiencias.js"></script>
+    <script type="text/javascript" src="../js/process/cargarArquitectos.js"></script>
+    <script type="text/javascript" src="../front/js/scroll.js"></script>
 
     <!-- Data Tables -->
     <script src="../js/jquery.dataTables.js"></script>

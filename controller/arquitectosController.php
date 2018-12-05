@@ -211,7 +211,7 @@
 				  		        $numRows = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
 
 				  		        for ($i=2; $i <= $numRows; $i++) {
-				  		        	if($i == 2){
+
 	        		  		          //Recojemos el valor de cada columna
 	        		  		          $nombres = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
 	        		  		          $apellidos = $objPHPExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
@@ -225,16 +225,17 @@
 
 
 	        		  		         	  // clausulas where para validar cedula y usuario
-	        		  		         	$whereAr = " Where arq.Cedula = " . "'". $cedula. "'";
-	        		  		         	 $resultA = $objArq->selectAll($whereAr);
+	        		  		         	// $whereAr = " Where arq.Cedula = " . "'". $cedula. "'";
+	        		  		         	//  $resultA = $objArq->selectAll($whereAr);
 
 	        		  		         	 // echo "CALusula where ". $whereC;
 	        		  		         	 // valida la existencia de una cedula igual
-	        		  		         	 if($db->numRows($resultA) > 0){
-	        		  		         	      if ($A = $db->datos($resultA)) {
-	        		  		         	          $jsondata['success'] = false;
-	        		  		         	          $jsondata['message'] = "Esta Cédula: ".$cedula." Ya Existe en nuestro sistema";
-	        		  		         	      }else{
+	        		  		         	 // if($db->numRows($resultA) > 0){
+	        		  		         	 //      if ($A = $db->datos($resultA)) {
+	        		  		         	 //          $jsondata['success'] = false;
+	        		  		         	 //          $jsondata['message'] = "Esta Cédula: ".$cedula." Ya Existe en nuestro sistema";
+	        		  		         	 //      }else{
+
 	        		  		         	      		$data = array("Nombres"=>$nombres,"Apellidos"=>$apellidos, "Cedula"=>$cedula,
 	        		  		         	      		        "Email"=>$email, "Telefono"=>$telefono,
 	        		  		         	      		        "Nit_empresa"=>$nit, "Nivel_educativo"=>$nivel, "Cedula_RL" =>  $cedula_rl,
@@ -253,14 +254,12 @@
 	        			  		         	            $jsondata['message'] = "Falla al enviar el registro";
 	        			  		         	        }
 
-	        		  		         	         }
-	        		  		         	}
 
-				  		        	}else{
-				  		        		$jsondata['success'] = true;
-				  		        		$jsondata['message'] = "NO HACE NADA";
 
-				  		        	}
+	        		  		         	         // }
+	        		  		         	// }
+
+
 
 
 

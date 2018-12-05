@@ -26,7 +26,7 @@
 		*/
 		public function selectAll($where = ""){
 			/** Realiza el query */
-			$sql = "SELECT Us.Id, Us.Nombre, Us.Cedula, Us.Direccion, Us.Telefono, Us.Email, Us.Perfil, Us.Usuario, Us.Foto, Us.Status, Us.Created_at
+			$sql = "SELECT Us.Id, Us.Nombre, Us.Cedula, Us.Direccion, Us.Telefono, Us.Email, Us.Perfil, Us.Usuario, Us.Foto, Us.Status, Us.firma_pacto, Us.Created_at
 							FROM " . $this->table . " Us
 							" . $where;
 			//echo $sql;

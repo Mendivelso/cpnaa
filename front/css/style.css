@@ -20,7 +20,12 @@
 body{
   background: lightgray;
 }
+#IrArriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
 
+}
 /*POPUP MENSJE*/
 .mimodal {
     position: relative;
@@ -759,7 +764,7 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
   }
   .pe p,h5,strong,a{
     font-family: "MyriadPro-Regular";
-    padding-right: 15px;
+    padding-right: 2px;
   }
   .pe .sitio{
     width: 120px;

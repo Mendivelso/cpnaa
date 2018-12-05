@@ -2,6 +2,7 @@
 	include_once("AnsTek_libs/integracion.inc.php");
 	include_once("model/beneficios.class.php");
 	include_once("model/experiencias.class.php");
+	include_once("model/usuarios.class.php");
 	//OBJETO PARA LISTAR BENEFICIOS
 	$bene = new beneficio($db);
 	$whereB = " Where Status = 1";
@@ -11,13 +12,40 @@
 	$Exp = new experiencia($db);
 	$whereE = " Where Status = 1";
 	$resultE = $Exp->selectAll($whereE);
-
+	$firma ="";
 	if(Session::get('Perfil') != 0  ){
 		header('Location: admin/logout.php');
 	}
 	$name = Session::get('Nombre');
-	if ($name == "") {
+	$firmo = Session::get('firma_pacto');
+	$Id = Session::get('Id');
+
+	if ($Id != "") {
+		//OBJETO USUARIOS
+		$Vuser = new usuario($db);
+		$where = " Where Us.Id = ".$Id;
+		$resultUser = $Vuser->selectAll($where);
+		if($db->numRows($resultUser) > 0){
+			if($rU = $db->datos($resultUser)){
+				$firmo = $rU['firma_pacto'];
+				if ($rU['firma_pacto'] == 0) {
+					$IS =" INICIAR SESIÓN";
+					$firma = '<li><a href="firma_del_pacto/">FIRMA EL PACTO</a></li>';
+				}else{
+					$firma = '<li><a href="usuario/">USUARIO</a></li>';
+				}
+
+			}else{
+
+			}
+		}else{
+
+		}
+
+
+	}else{
 		$IS =" INICIAR SESIÓN";
+		$firma = '<li><a href="#">FIRMA EL PACTO</a></li>';
 	}
 
 
@@ -67,7 +95,7 @@
 	                                        <a href="#" class="active" id="login-form-link">Login</a>
 	                                    </div>
 	                                    <div class="col-xs-6">
-	                                        <a href="#" id="register-form-link">Register</a>
+	                                        <a href="#" id="register-form-link">Registrese</a>
 	                                    </div>
 	                                </div>
 	                                <hr>
@@ -76,11 +104,12 @@
 	                                <div class="row">
 	                                    <div class="col-lg-12">
 	                                        <form id="login-form" action="#" method="post" role="form" style="display: block;">
+	                                        	<h3 class="text-center">INICIAR SESIÓN</h3>
 	                                            <div class="form-group">
-	                                                <input type="text" name="txtUser" id="txtUser" tabindex="1" Rclass="form-control" placeholder="Username" >
+	                                                <input type="text" name="txtUser" id="txtUser" tabindex="1" class="form-control" placeholder="Usuario">
 	                                            </div>
 	                                            <div class="form-group">
-	                                                <input type="password" name="txtPass" id="txtPass" tabindex="2" class="form-control" placeholder="Password">
+	                                                <input type="password" name="txtPass" id="txtPass" tabindex="2" class="form-control" placeholder="Contraseña">
 	                                                <input type="hidden" name="txtTab" id="txtTab" tabindex="2" class="form-control" value="0">
 	                                            </div>
 	                                            <div class="form-group">
@@ -94,7 +123,7 @@
 	                                                <div class="row">
 	                                                    <div class="col-lg-12">
 	                                                        <div class="text-center">
-	                                                            <a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+	                                                            <a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Olvido su contraseña?</a>
 	                                                        </div>
 	                                                    </div>
 	                                                </div>
@@ -104,7 +133,7 @@
 	                                    <div class="col-lg-12">
 	                                    	<form id="usuarios"  action="#" method="post" role="form" style="display: none;">
 	                                    	      <div class="form-group">
-	                                    	      <label class="">Adjuntar Foto</label>
+	                                    	      <label class="">Adjuntar Logo</label>
 	                                    	          <input type="file" class="form-control" name="txtImg" id="txtImg" autofocus>
 	                                    	      </div>
 	                                    	    <div class="form-group">
@@ -126,14 +155,14 @@
 	                                    	      <input type="text" class="form-control" id="txtUser" name="txtUser" placeholder="Ingrese un nombre de Usuario">
 	                                    	    </div>
 	                                    	    <div class="form-group">
-	                                    	      <input type="text" class="form-control" id="txtPass1" name="txtPass1" placeholder="Genere una contraseña">
+	                                    	      <input type="password" class="form-control" id="txtPass1" name="txtPass1" placeholder="Genere una contraseña">
 	                                    	    </div>
 	                                    	    <div class="form-group">
-	                                    	      <input type="text" class="form-control" id="txtPass2" name="txtPass2" placeholder="Confirme su contraseña">
+	                                    	      <input type="password" class="form-control" id="txtPass2" name="txtPass2" placeholder="Confirme su contraseña">
 	                                    	       <input type="hidden" name="txtId" id="txtId" value="0">
 	                                    	      <input type="hidden" name="accion" id="" value="ins">
 	                                    	    </div>
-	                                    	    <button type="submit" class="btn btn-default">Enviar</button>
+	                                    	    <button type="submit" class="btn btn-default btn-register">Enviar</button>
 	                                    	</form>
 	                                    </div>
 	                                </div>
@@ -167,7 +196,7 @@
 						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="front/images/iniciar-session.png" class="" > </strong>'.$name.'
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
-						    <li><a href="../logout.php" title="">Cerrar Sessión</a></li>
+						    <li><a href="logout.php" title="">Cerrar Sessión</a></li>
 						  </ul>
 						</div>
 
@@ -191,8 +220,7 @@
 	    <div class="collapse navbar-collapse not" id="myNavbar">
 	      <ul class="nav navbar-nav">
 	        <li><a href="#">INICIO</a></li>
-
-	        <li><a href="#">FIRMA DE PACTO</a></li>
+	        <?php echo $firma; ?>
 	        <li><a href="#bene">BENEFICIOS</a></li>
 	        <li><a href="#resultados">VIVE LOS RESULTADOS</a></li>
 	        <li><a href="#experiencias">EXPERIENCIAS</a></li>
@@ -518,6 +546,10 @@
 			Consejo Profesional Nacional de Arquitectura y sus Profesiones Auxiliares. Nit. 830.059.954-7
 		</p>
 	</footer>
+	<!-- Botom ir arriba-->
+	  <div id='IrArriba'>
+	    <a href='#Arriba'><img src="front/images/subir_lagrima.png" width="120px"></a>
+	  </div>
 
 
 
@@ -567,6 +599,22 @@
 
     <script type="text/javascript">
       $(document).ready(function(){
+      	jQuery("#IrArriba").hide();
+      	jQuery(function () {
+      	jQuery(window).scroll(function () {
+      	if (jQuery(this).scrollTop() > 200) {
+      	jQuery('#IrArriba').fadeIn();
+      	} else {
+      	jQuery('#IrArriba').fadeOut();
+      	}
+      	});
+      	jQuery('#IrArriba a').click(function () {
+      	jQuery('body,html').animate({
+      	scrollTop: 0
+      	}, 800);
+      	return false;
+      	});
+      	});
 
 
 

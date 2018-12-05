@@ -32,6 +32,7 @@
             Session::set('Foto',$d['Foto']);
             Session::set('Email',$d['Email']);
             Session::set('Perfil',$d['Perfil']);
+            Session::set('firma_pacto',$d['firma_pacto']);
             $jsondata['success'] = true;
             $jsondata['Perfil'] = $d['Perfil'];
             $jsondata['Perfil'] = $d['Perfil'];
