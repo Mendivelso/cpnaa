@@ -95,7 +95,7 @@
         // si file viene lleno
 		$data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Fecha"=>$_REQUEST['txtDate'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
 		);
-        $where = "Id = " . $_REQUEST['txtId'];
+        $where = " Id = " . $_REQUEST['txtId'];
         $event->updateData($data, $where);
         $vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
         if(($vType == "png") or ($vType == "jpg")){

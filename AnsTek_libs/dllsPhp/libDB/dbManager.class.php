@@ -473,7 +473,6 @@ class dbManager
 
 
 
-
 		$result = $this->DB->prepare($sql);
 
 

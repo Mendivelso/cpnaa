@@ -5,6 +5,6 @@
 $dataBase = array('host'=>'localhost',
 		    'user'=>'root',
 		    'pass'=>'',
-		    'baseDatos'=>'Desarrollo_cpnaa',
+		    'baseDatos'=>'cpnaa',
 		    'motorDB'=>'mysql'
 		 );

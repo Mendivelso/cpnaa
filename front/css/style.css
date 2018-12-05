@@ -739,6 +739,35 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
   .pre{font-family: "MyriadPro-Bold"; text-align: justify; font-size: 17px; padding: 5px 40px 0px 40px;}
   .rta{font-family: "MyriadPro-Regular"; text-align: justify; font-size: 17px; padding: 0px 40px 0px 40px;}
 
+  /*ESTILOS EVENTOS Y ACTIVIDADES CPNAA*/
+
+  .img_evento{
+    width: 300px;
+  }
+  .separador{
+    height: 4px;
+    background-color: #444c5c;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .pe{
+    padding: 8px 15px 8px 15px;
+  }
+  .pe h3{
+    font-family: "MyriadPro-Bold";
+
+  }
+  .pe p,h5,strong,a{
+    font-family: "MyriadPro-Regular";
+    padding-right: 15px;
+  }
+  .pe .sitio{
+    width: 120px;
+    background-color: #be2934;
+    color: #fff;
+    font-family: "MyriadPro-Regular";
+
+  }
 /*/*placeholder*/
 /*.input::-webkit-input-placeholder { color: darkgray; font-weight: bold;}
 .input:-moz-placeholder { color: darkgray; font-weight: bold;  }
