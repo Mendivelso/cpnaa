@@ -92,9 +92,9 @@ function redireccionarPagina() {
               .done(function(data){
                 if (data.success)
                 {
-                  document.getElementById("arq").reset();
                   alert(data.message);
-
+                  document.getElementById("from_arq").reset();
+                  document.location.href = "index.php";
                 }
               else
               {

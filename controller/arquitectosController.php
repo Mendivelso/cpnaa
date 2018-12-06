@@ -1,7 +1,7 @@
 <?php
     /** incluye todos los recursos */
   include_once("../AnsTek_libs/integracion.inc.php");
-    Session::valida_sesion("","../../index.php");
+  Session::valida_sesion("","../../index.php");
   include_once("../model/arquitectos.class.php");
 
 
@@ -208,9 +208,16 @@
 				  		        $nombreArchivo = $destino;
 				  		        $objPHPExcel = PHPExcel_IOFactory::load($nombreArchivo);
 				  		        $objPHPExcel->setActiveSheetIndex(0);
-				  		        $numRows = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
 
-				  		        for ($i=2; $i <= $numRows; $i++) {
+				  		        // $numRows = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+				  		        $sheet = $objPHPExcel->getSheet(0);
+								$highestRow = $sheet->getHighestRow();
+								$highestColumn = $sheet->getHighestColumn();
+								$resta = ($highestRow - 1);
+								$resta2 = ($highestRow - 2);
+
+
+				  		        for ($i=2; $i <= $resta; $i++) {
 
 	        		  		          //Recojemos el valor de cada columna
 	        		  		          $nombres = $objPHPExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
@@ -223,51 +230,27 @@
 	        		  		          $cedula_rl = $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
 
 
+		  		         	      		$data = array("Nombres"=>$nombres,"Apellidos"=>$apellidos, "Cedula"=>$cedula,
+		  		         	      		        "Email"=>$email, "Telefono"=>$telefono,
+		  		         	      		        "Nit_empresa"=>$nit, "Nivel_educativo"=>$nivel, "Cedula_RL" =>  $cedula_rl,
+		  		         	      		         "Status"=>3, "Created_date"=>date('Y-m-d H:i:s'), "Created_by" => $UserId
+		  		         	      		      );
+			  		         	        // realiza el registro a la base de datos
+			  		         	        if($objArq->insertData($data))
+			  		         	        {
+			  		         	            $jsondata['success'] = true;
+			  		         	            $jsondata['message'] = "Registrado correctamente";
+			  		         	            $jsondata['numRows'] = $resta2;
 
-	        		  		         	  // clausulas where para validar cedula y usuario
-	        		  		         	// $whereAr = " Where arq.Cedula = " . "'". $cedula. "'";
-	        		  		         	//  $resultA = $objArq->selectAll($whereAr);
-
-	        		  		         	 // echo "CALusula where ". $whereC;
-	        		  		         	 // valida la existencia de una cedula igual
-	        		  		         	 // if($db->numRows($resultA) > 0){
-	        		  		         	 //      if ($A = $db->datos($resultA)) {
-	        		  		         	 //          $jsondata['success'] = false;
-	        		  		         	 //          $jsondata['message'] = "Esta Cédula: ".$cedula." Ya Existe en nuestro sistema";
-	        		  		         	 //      }else{
-
-	        		  		         	      		$data = array("Nombres"=>$nombres,"Apellidos"=>$apellidos, "Cedula"=>$cedula,
-	        		  		         	      		        "Email"=>$email, "Telefono"=>$telefono,
-	        		  		         	      		        "Nit_empresa"=>$nit, "Nivel_educativo"=>$nivel, "Cedula_RL" =>  $cedula_rl,
-	        		  		         	      		         "Status"=>3, "Created_date"=>date('Y-m-d H:i:s'), "Created_by" => $UserId
-	        		  		         	      		      );
-	        			  		         	        // realiza el registro a la base de datos
-	        			  		         	        if($objArq->insertData($data))
-	        			  		         	        {
-	        			  		         	            $jsondata['success'] = true;
-	        			  		         	            $jsondata['message'] = "Registrado correctamente";
-
-	        			  		         	        }
-	        			  		         	        else
-	        			  		         	        {
-	        			  		         	            $jsondata['success'] = false;
-	        			  		         	            $jsondata['message'] = "Falla al enviar el registro";
-	        			  		         	        }
-
-
-
-	        		  		         	         // }
-	        		  		         	// }
-
-
-
-
+			  		         	        }
+			  		         	        else
+			  		         	        {
+			  		         	            $jsondata['success'] = false;
+			  		         	            $jsondata['message'] = "Falla al enviar el registro";
+			  		         	        }
 
 				  		        }
 
-
-				  		  // $jsondata['success'] = true;
-				  		  // $jsondata['message'] = "Archivo Sudido con exito";
 
 				  	}else {
 		            $jsondata['success'] = false;

@@ -42,7 +42,7 @@
               .done(function(data){
                 if (data.success)
                 {
-                  alert(data.message);
+                  alert(data.message + "\n Registros cargados : "+data.numRows);
                   document.getElementById("excel_upload").reset();
                   document.location.href = "index.php";
                 }

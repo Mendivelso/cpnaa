@@ -26,6 +26,16 @@ body{
     right: 30px;
 
 }
+.cont_ali{
+  min-height: 200px;
+  padding-top: 20px;
+
+}
+
+.ali{
+  width: 150px;
+  margin: 0 auto;
+}
 /*POPUP MENSJE*/
 .mimodal {
     position: relative;
@@ -486,6 +496,14 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
 
 .subir_arq{
   height: 590px;
+  background-image: url('../images/foto1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.subir_arq2{
+  height: auto;
+  min-height: 590px;
   background-image: url('../images/foto1.jpg');
   background-repeat: no-repeat;
   background-position: center;

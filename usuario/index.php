@@ -24,7 +24,7 @@
 	}
 
 	$objArq = new arquitecto($db);
-	$whereArq = " Where arq.Cedula_RL = ". $Repre;
+	$whereArq = " Where arq.Cedula_RL = ". $Repre. " GROUP BY Cedula";
 	$resultArq = $objArq->selectAll($whereArq);
 
 	//OBJETO PARA LISTAR BENEFICIOS
@@ -269,7 +269,7 @@
 		</div>
 	</div>
 
-	<div class="container subir_arq">
+	<div class="container subir_arq2">
 		<div class="row">
 			<div class="col-md-offset-1 col-sm-12  col-md-10 cont_arq">
 						<section class="panel table-responsive">

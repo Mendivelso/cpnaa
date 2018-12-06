@@ -41,8 +41,6 @@
         if (data.Perfil == 1) {
           document.location.href = "../vista/home/";
         }else{
-
-          alert(data.firma_pacto);
           if (data.firma_pacto == 1) {
             if (vId == 0) {
               document.location.href = "usuario/";

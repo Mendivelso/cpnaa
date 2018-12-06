@@ -41,6 +41,10 @@
 		$firma = '<li><a href="#">FIRMA EL PACTO</a></li>';
 	}
 
+	$Vuser = new usuario($db);
+	$whereU = " Where firma_pacto = 1 AND Status = 1 AND Perfil != 1 ORDER BY RAND() limit 8";
+	$resultU = $Vuser->selectAll($whereU);
+
 
 ?>
 <!DOCTYPE html>
@@ -232,9 +236,22 @@
 
 	<div class="container mainpf">
 		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<img src="../front/images/logos_i.png" width="100%">
-				<img src="../front/images/logos_i.png" width="100%">
+			<div class="col-md-offset-1 col-md-10 pdd">
+				<?php
+					if($db->numRows($resultU) > 0){
+					while ($r = $db->datos($resultU)) {
+					  echo '
+						<div class="col-md-3 cont_ali">
+							<img src="../'.$r['Foto'].'" class="ali">
+						</div>
+
+					  ';
+					}
+					}else{
+						echo "NO HAY DATA";
+					}
+				?>
+
 
 			</div>
 		</div>

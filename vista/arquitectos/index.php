@@ -12,7 +12,7 @@
 	$result = $user->selectAll();
 
 	// Objeto Arquitectos
-	$where = " Where arq.Id > 0 ";
+	$where = " Where arq.Id > 0 GROUP BY Cedula";
 	$Arq = new arquitecto($db);
 	$resultArq = $Arq->selectAll($where);
 
