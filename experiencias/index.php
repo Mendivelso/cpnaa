@@ -12,7 +12,7 @@
     $Exp = new experiencia($db);
     $whereE = " Where Id =". $_GET['v'];
     $resultE = $Exp->selectAll($whereE);
-    //OBJETO USUARIO 
+    //OBJETO USUARIO
     $firma ="";
     $name = Session::get('Nombre');
     $firmo = Session::get('firma_pacto');
@@ -262,16 +262,16 @@
                       if ($rB = $db->datos($resultE)) {
                         $docu = "";
                         if ($rB['Documento'] != "" ) {
-                            $docu = '  
+                            $docu = '
                                 <label>documento</label> <br>
-                                <a href="../'.$rB['Documento'].'">Ver</a>
+                                <a href="../'.$rB['Documento'].'" download="../'.$rB['Documento'].'">Ver</a>
                              ';
                         }else{
                             $docu = '<h5>No tiene archivos compartidos</h5>';
                         }
                         $video = "";
                         if ($rB['Enlace'] != "") {
-                            $video = '  
+                            $video = '
                                 <label>Video</label>
                                 <iframe width="100%" height="315" src='.$rB['Enlace'].' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -312,18 +312,6 @@
         </div>
     </div>
 
-
-
-
-    <div class="container white ">
-        <div class="row text-center info">
-            <p>Miembros del consejo / Sala Plena </p>
-            <img src="../front/images/logos_i.png" class="miembros">
-            <p>Certificación</p>
-            <img src="../front/images/certificados.png">
-        </div>
-
-    </div>
 
 
     <footer class="container text-center bg">

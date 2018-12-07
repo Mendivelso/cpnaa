@@ -49,10 +49,12 @@
             /*  Slide container - inserted around the contents
                 of each slide by the plugin */
             .mis-container {
-                display: block;
-                width: auto;
-                height: auto;
-                border: 0;
+                  display: block;
+                  /*width: 250px;
+                  height: 250px;*/
+                  width: auto;
+                  height: auto;
+                  border: 0;
             }
     /*  Style list navigation */
 	.mis-nav-list {
@@ -77,13 +79,14 @@
       border-radius: 7px; /* Make items round */
       -webkit-box-shadow: inset 0 0 2px #333;
       margin: 0 3px;
-      background-color: #fff;
+      background-color: lightgray;
 		}
 			.mis-nav-list li.mis-current a, .mis-nav-list li a:hover {
-				background: #f7b95e;
-        width: 20px;
-        height: 20px;
-        border-radius: 7px; /* Make items round */
+				background: #b11b2f;
+        width: 17px;
+        height: 17px;
+        border-radius: 8px;
+
 			}
 
     .mis-nav-buttons {
@@ -105,7 +108,7 @@
             text-indent: -9999px; /* Hide for Android */
         }
             .mis-nav-buttons a:hover {
-                color: #ccc;
+                color: #b11b2f;
             }
             .mis-nav-buttons a.mis-next {
                 left: auto;

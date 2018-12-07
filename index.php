@@ -299,7 +299,7 @@
 
 	<div class="container white">
 		<div class="row">
-			<div id="beneficios" class="carousel slide col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-10 col-sm-10 col-md-10" data-ride="carousel">
+			<div id="beneficios" class="carousel slide col-xs-offset-0	 col-sm-offset-1 col-md-offset-1 col-xs-12 col-sm-10 col-md-10" data-ride="carousel">
 			  <!-- Indicators -->
 			  <ol class="carousel-indicators">
 			    <li data-target="#beneficios" data-slide-to="0" class="active"></li>
@@ -330,11 +330,13 @@
 						  <div class="'.$class.'">
 						    <img src="'.$rB['Imagen_principal'].'" alt="Chania" width="100%">
 						    <div class="carousel-caption">
-						    	<div class="col-md-8 text-galeria">
-						    		<div class="cnt_t">
-						    			<p>'.$rB['Descripcion'].'</p>
-						    		</div>
-						    	</div>
+								<div class="row">
+							    	<div class="col-xs-12 col-sm-8 col-md-8 text-galeria">
+							    		<div class="cnt_t">
+							    			<p>'.$rB['Descripcion'].'</p>
+							    		</div>
+							    	</div>
+								</div>
 						    </div>
 						  </div>
 				    ';
@@ -377,11 +379,41 @@
 					<div class="row">
 						<div class="row">
 							<ul class="resul">
-								<li class="pestana"></li>
-								<li class="pestana"></li>
-								<li class="pestana"></li>
-								<li class="pestana"></li>
-								<li class="pestana"></li>
+								<li class="pestana pt2">
+									<div class="pt">
+										<h1>01</h1>
+										<h3>Calidad</h3>
+									</div>
+
+								</li>
+								<li class="pestana">
+									<div class="pt">
+										<h1>02</h1>
+										<p class="pp">Responsabilidad <br> Social</p>
+									</div>
+
+								</li>
+								<li class="pestana">
+									<div class="pt">
+										<h1>03</h1>
+									<p>Certificaciones de <br> ISO Y BUREAV VERITAS</p>
+									</div>
+
+								</li>
+								<li class="pestana">
+									<div class="pt">
+										<h1>04</h1>
+									<p>Gobierno Corporativo <br> y transparencia</p>
+									</div>
+
+								</li>
+								<li class="pestana">
+									<div class="pt">
+										<h1>05</h1>
+									<p>Gestión y capacitación <br> del talento humano</p>
+									</div>
+
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -393,7 +425,7 @@
 
 	<div class="container white">
 		<div class="row">
-			<div class="col-sm-11 col-md-11 beneficios pd">
+			<div class="col-sm-11 col-md-11 franja_cpnaa pd">
 				<div class="col-xs-6 col-sm-6 col-md-6">
 					<h1 class="t">PARA ELLO EL CPNAA</h1>
 				</div>

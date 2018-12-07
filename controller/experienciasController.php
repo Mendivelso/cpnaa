@@ -43,6 +43,10 @@
       $jsondata = array();
       $Doc = $_FILES['txtFile']['name'];
        if ($Doc != "") {
+
+       	$video_final =substr($_REQUEST['txtLink'], -11);
+       	$video_final = "https://www.youtube.com/embed/".$video_final;
+
         // Imagen Destacada
         $file = $_FILES['txtImagen']['name'];
         $vType = substr($_FILES['txtImagen']['name'], strlen($_FILES['txtImagen']['name'])-3, strlen($_FILES['txtImagen']['name']));
@@ -56,7 +60,7 @@
           if(($vType == "png") or ($vType == "jpg")){
 
                 // Realiza Insert
-                $data = array("Titulo"=>$_REQUEST['txtTi'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "R_Legal"=>$Cedula_RL, "Status"=>3, "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
+                $data = array("Titulo"=>$_REQUEST['txtTi'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$video_final, "R_Legal"=>$Cedula_RL, "Status"=>3, "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
                 );
                 if($Exp->insertData($data)){
                     /* Tomamos el Id del ultimo registro*/
@@ -129,13 +133,17 @@
        }else{
         // Cuando el formulario llena sin documneto, solo validamos la imagen
         // Imagen Destacada
+
+        $video_final =substr($_REQUEST['txtLink'], -11);
+        $video_final = "https://www.youtube.com/embed/".$video_final;
+
         $file = $_FILES['txtImagen']['name'];
         $vType = substr($_FILES['txtImagen']['name'], strlen($_FILES['txtImagen']['name'])-3, strlen($_FILES['txtImagen']['name']));
 
         if(($vType == "png") or ($vType == "jpg")){
 
               // Realiza Insert
-              $data = array("Titulo"=>$_REQUEST['txtTi'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "R_Legal"=>$Cedula_RL, "Status"=>3, "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
+              $data = array("Titulo"=>$_REQUEST['txtTi'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$video_final, "R_Legal"=>$Cedula_RL, "Status"=>3, "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
               );
               if($Exp->insertData($data)){
                   /* Tomamos el Id del ultimo registro*/

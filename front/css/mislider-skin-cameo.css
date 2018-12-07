@@ -1,6 +1,9 @@
 ﻿
 /*  Cameo Skin CSS ========================================= */
-
+@font-face {font-family: "MyriadPro-Regular";
+  src: url("../css/fonts/MyriadPro-Regular.otf") format("TTF"), /* chrome、firefox */
+  url("../css/fonts/MyriadPro-Regular.otf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+}
 .mis-stage {
   background-color: #fff;
 }
@@ -18,15 +21,16 @@
         }
         .mis-slider li figcaption {
             font-size: 20px;
-            color: #fff;
+            color: #444c5c;
             text-transform: uppercase;
+             font-family: "MyriadPro-Regular";
         }
         .mis-slider li img {
             /*  Make max-width of image a little less than width of slide
                 to avoid some browser shinking bugs */
-            max-width: 300px;
             /*  for really small screens make width 100% */
             width: 100%;
+            height:auto;
             /*  Make image round */
             border-radius: 50%;
             border: 10px solid #444c5c;
@@ -43,5 +47,5 @@
             margin-top: -138px
         }
     .mis-nav-buttons a {
-        color: #fff;
+        color: #b11b2f;
     }
