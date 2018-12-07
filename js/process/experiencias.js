@@ -8,7 +8,7 @@
             required: true
         },
         txtLink:{
-          required: true
+          // required: true
         },
         txtDes:{
           required:true
@@ -23,7 +23,7 @@
              required: "Este campo es requerido"
         },
         txtLink:{
-          required: "Este campo es requerido"
+          // required: "Este campo es requerido"
         },
         txtDes:{
           required:"Este campo es requerido"

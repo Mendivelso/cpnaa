@@ -703,6 +703,7 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
 
 }
 
+
 .cont_exp form{
   width: 95%;
   margin: 0 auto;
@@ -758,6 +759,7 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
     background-position: center;
     background-size: inherit;
   }
+  
 
   .pre{font-family: "MyriadPro-Bold"; text-align: justify; font-size: 17px; padding: 5px 40px 0px 40px;}
   .rta{font-family: "MyriadPro-Regular"; text-align: justify; font-size: 17px; padding: 0px 40px 0px 40px;}

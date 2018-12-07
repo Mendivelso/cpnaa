@@ -1,6 +1,7 @@
 <?php
     include_once("../AnsTek_libs/integracion.inc.php");
     include_once("../model/experiencias.class.php");
+    include_once("../model/usuarios.class.php");
 
     if(empty($_GET)){
         header('Location:error.php');
@@ -11,6 +12,42 @@
     $Exp = new experiencia($db);
     $whereE = " Where Id =". $_GET['v'];
     $resultE = $Exp->selectAll($whereE);
+    //OBJETO USUARIO 
+    $firma ="";
+    $name = Session::get('Nombre');
+    $firmo = Session::get('firma_pacto');
+    $Id = Session::get('Id');
+
+
+    if ($Id != "") {
+        //OBJETO USUARIOS
+        $Vuser = new usuario($db);
+        $where = " Where Us.Id = ".$Id;
+        $resultUser = $Vuser->selectAll($where);
+        if($db->numRows($resultUser) > 0){
+            if($rU = $db->datos($resultUser)){
+                $rU['firma_pacto'];
+                $firmo = $rU['firma_pacto'];
+                if ($firmo == 0) {
+                    $IS =" INICIAR SESIÓN";
+                    $firma = '<li><a href="../firma_del_pacto/">FIRMA EL PACTO</a></li>';
+                }else{
+                    $firma = '<li><a href="../usuario/">USUARIO</a></li>';
+                }
+
+            }else{
+
+            }
+        }else{
+
+        }
+
+
+    }else{
+        $IS =" INICIAR SESIÓN";
+        $firma = '<li><a href="#">FIRMA EL PACTO</a></li>';
+    }
+
 
 ?>
 <!DOCTYPE html>
@@ -140,9 +177,27 @@
 
     <div class="container login">
         <div class="row">
-            <div class="col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-xs-4 col-sm-2 col-md-2 login-content">
-                <strong class="icon"><a href="#" data-toggle="modal" data-target="#myModal"><img src="../front/images/iniciar-session.png" class="" ></strong><p>INICIAR SESIÓN</a></p>
-            </div>
+            <?php
+                if ($name == "") {
+                    echo '
+                        <div class="col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-xs-4 col-sm-2 col-md-2 login-content">
+                            <strong class="icon"><a href="#" data-toggle="modal" data-target="#myModal"><img src="../front/images/iniciar-session.png" class="" ></strong><p>'.$IS.'</a></p>
+                        </div>
+
+                    ';
+                }else{
+                    echo '
+                        <div class="dropdown login-content" style="float: right;">
+                          <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong>'.$name.'
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="../logout.php" title="">Cerrar Sessión</a></li>
+                          </ul>
+                        </div>
+
+                    ';
+                }
+             ?>
         </div>
 
     </div>
@@ -159,14 +214,13 @@
         </div>
         <div class="collapse navbar-collapse not" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li><a href="#">INICIO</a></li>
-
-            <li><a href="#">FIRMA DE PACTO</a></li>
-            <li><a href="#">BENEFICIOS</a></li>
-            <li><a href="#">VIVE LOS RESULTADOS</a></li>
-            <li><a href="#">EXPERIENCIAS</a></li>
-            <li><a href="#">PREGUNTAS FRECUENTES</a></li>
-            <li><a href="#">FIRMANTES Y ALIADOS</a></li>
+            <li><a href="../#">INICIO</a></li>
+            <?php echo $firma; ?>
+            <li><a href="../#bene">BENEFICIOS</a></li>
+            <li><a href="../#resultados">VIVE LOS RESULTADOS</a></li>
+            <li><a href="../#experiencias">EXPERIENCIAS</a></li>
+            <li><a href="../preguntas_frecuentes/">PREGUNTAS FRECUENTES</a></li>
+            <li><a href="../aliados/">FIRMANTES Y ALIADOS</a></li>
           </ul>
 
         </div>
@@ -176,9 +230,9 @@
     <div class="container bm">
         <div class="row">
             <img src="../front/images/banner_movil.jpg" class="" width="100%">
+
         </div>
     </div>
-
 
     <div class="container banner">
         <div class="row">
@@ -199,13 +253,33 @@
     </div>
 
 
-    <div class="container white pdd">
+    <div class="container white pdd simple_exp mainpf ">
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-offset-1 col-md-10 text-center">
                 <div class="row">
                     <?php
                     if($db->numRows($resultE) > 0){
                       if ($rB = $db->datos($resultE)) {
+                        $docu = "";
+                        if ($rB['Documento'] != "" ) {
+                            $docu = '  
+                                <label>documento</label> <br>
+                                <a href="../'.$rB['Documento'].'">Ver</a>
+                             ';
+                        }else{
+                            $docu = '<h5>No tiene archivos compartidos</h5>';
+                        }
+                        $video = "";
+                        if ($rB['Enlace'] != "") {
+                            $video = '  
+                                <label>Video</label>
+                                <iframe width="100%" height="315" src='.$rB['Enlace'].' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                            ';
+                        }else{
+                            $video = '<h5>No tiene video compartido</h5>';
+                        }
+
                         echo '
 
                             <h3>'.$rB['Titulo'].'</h3>
@@ -214,12 +288,10 @@
                             </div>
                             <div class="row">
                             <div class="col-md-6">
-                                <label>Video</label>
-                                <iframe width="100%" height="315" src='.$rB['Enlace'].' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                '.$video.'
                             </div>
                             <div class="col-md-6">
-                                <label>documento</label> <br>
-                                <a href="../'.$rB['Documento'].'">Ver</a>
+                                '.$docu.'
                             </div>
                             </div>
 
