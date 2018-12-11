@@ -90,7 +90,7 @@
 	<script>
 	    $(document).ready(function() {
 	    	var vId = '<?php echo $Id; ?>';
-	    	perfil(vId);
+	    	perfil(vId,1);
 
 
 	    });

@@ -1,3 +1,18 @@
+<?php
+
+if(empty($_GET)){
+    header('Location:error.php');
+}else{
+    $Id = $_GET['v'];
+    if ($Id == 1) {
+    	$volver = '<a href="index.php">volver</a>';
+    }else{
+    	$volver = '<a href="admin/">volver</a>';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +52,8 @@
           <input type="text" class="form-control" placeholder="Ingrese su cédula" name="txtCed" id="txtCed">
         </div>
         <button class="btn btn-primary btn-lg btn-block" type="submit">Recordar</button>
-        <a href="index.php"><button class="btn btn-danger btn-lg btn-block" type="submit">Volver</button></a>
+        <?php echo $volver; ?>
+
       </div>
     </form>
   </div>

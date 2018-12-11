@@ -180,6 +180,67 @@
       header('Content-type: application/json; charset=utf-8');
       echo json_encode($jsondata);
     break;
+      /* Crea Update de usuarios */
+    case "upd2":
+      $jsondata = array();
+      $vimg = $_FILES['txtImg']['name'];
+
+      if ($vimg != "") {
+      	// si file viene lleno
+      	$data = array("Nombre"=>$_REQUEST['txtName1'],"Cedula"=>$_REQUEST['txtCed1'], "Direccion"=>$_REQUEST['txtDir1'],
+      	        "Telefono"=>$_REQUEST['txtTel1'], "Email"=>$_REQUEST['txtEml1'],
+      	        "Usuario"=>$_REQUEST['txtUser2'],  "Status"=>1, "Updated_by"=>$vname,  "Updated_at"=>date('Y-m-d H:i:s')
+      	      );
+      	$where = " Id = " . $_REQUEST['txtId'];
+      	$objUser->updateData($data, $where);
+      	$vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
+      	if(($vType == "png") or ($vType == "jpg")){
+      	  $carpeta = "../public/usuarios/".$_REQUEST['txtId'];
+      	  $destino2 = "../public/usuarios/".$_REQUEST['txtId']."/".$vimg;
+      	  $dest = "public/usuarios/".$_REQUEST['txtId']."/".$vimg."'-";
+      	  $ruta2 = $_FILES['txtImg']['tmp_name'];
+      	  if(copy($ruta2,$destino2)){
+      	    $data = array("Foto"=>$dest);
+      	    $where = " Id = " . $_REQUEST['txtId'];
+      	    if($objUser->updateData($data, $where)){
+      	      header('Location: ../msj/');
+      	    }else {
+      	      $jsondata['success'] = false;
+      	      $jsondata['message'] = "No fue posible Actualizar sus Datos";
+      	    }
+
+      	  }else{
+      	    $jsondata['success'] = false;
+      	    $jsondata['message'] = "No Fue posible subir su Imagen";
+      	  }
+
+      	}else{
+      	  $jsondata['success'] = false;
+      	  $jsondata['message'] = "Formato de imagen Incorrecto, Debe ser png o jpg";
+      	}
+
+      }else{
+      	/*si tipo file esta vacio*/
+
+      	$data = array("Nombre"=>$_REQUEST['txtName1'],"Cedula"=>$_REQUEST['txtCed1'], "Direccion"=>$_REQUEST['txtDir1'],
+      	        "Telefono"=>$_REQUEST['txtTel1'], "Email"=>$_REQUEST['txtEml1'],
+      	        "Usuario"=>$_REQUEST['txtUser2'], "Status"=>1, "Updated_by"=>$vname,  "Updated_at"=>date('Y-m-d H:i:s')
+      	      );
+      	$where = "Id = " . $_REQUEST['txtId'];
+      	if($objUser->updateData($data, $where))
+      	 {
+      	 	header('Location: ../msj/');
+      	 }else {
+      	  $jsondata['success'] = false;
+      	  $jsondata['message'] = "No fue posible Actualizar sus Datos";
+      	}
+
+      }
+
+
+      header('Content-type: application/json; charset=utf-8');
+      echo json_encode($jsondata);
+    break;
     /* Crea delete de usuarios */
     case "del":
       $Id =  $_REQUEST['pId'];

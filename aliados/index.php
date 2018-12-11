@@ -52,7 +52,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Firmantes y Aliados Pactos CPNAA</title>
     <link rel="stylesheet" type="text/css" href="../front/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../front/css/style.css">
     <link rel="stylesheet" type="text/css" href="../front/css/login.css">
@@ -70,118 +70,110 @@
 
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="60">
-	<!-- Modal -->
-	<div id="myModal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Modal Header</h4>
-	      </div>
-	      <div class="modal-body">
-	        <div class="container">
-	                <div class="row">
-	                    <div class="col-md-6">
-	                        <div class="panel panel-login">
-	                            <div class="panel-heading">
-	                                <div class="row">
-	                                    <div class="col-xs-6">
-	                                        <a href="#" class="active" id="login-form-link">Login</a>
-	                                    </div>
-	                                    <div class="col-xs-6">
-	                                        <a href="#" id="register-form-link">Registrese</a>
-	                                    </div>
-	                                </div>
-	                                <hr>
-	                            </div>
-	                            <div class="panel-body">
-	                                <div class="row">
-	                                    <div class="col-lg-12">
-	                                        <form id="login-form" action="#" method="post" role="form" style="display: block;">
-	                                        	<h3 class="text-center">INICIAR SESIÓN</h3>
-	                                            <div class="form-group">
-	                                                <input type="text" name="txtUser" id="txtUser" tabindex="1" class="form-control" placeholder="Usuario">
-	                                            </div>
-	                                            <div class="form-group">
-	                                                <input type="password" name="txtPass" id="txtPass" tabindex="2" class="form-control" placeholder="Contraseña">
-	                                                <input type="hidden" name="txtTab" id="txtTab" tabindex="2" class="form-control" value="1">
-	                                            </div>
-	                                            <div class="form-group">
-	                                                <div class="row">
-	                                                    <div class="col-sm-6 col-sm-offset-3">
-	                                                        <button type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login">ENTRAR</button>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                            <div class="form-group">
-	                                                <div class="row">
-	                                                    <div class="col-lg-12">
-	                                                        <div class="text-center">
-	                                                            <a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Olvido su contraseña?</a>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </form>
-	                                    </div>
-	                                    <div class="col-lg-12">
-	                                    	<form id="usuarios"  action="#" method="post" role="form" style="display: none;">
-	                                    	      <div class="form-group">
-	                                    	      <label class="">Adjuntar Logo</label>
-	                                    	          <input type="file" class="form-control" name="txtImg" id="txtImg" autofocus>
-	                                    	      </div>
-	                                    	    <div class="form-group">
-	                                    	      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cedula">
-	                                    	    </div>
-	                                    	    <div class="form-group">
-	                                    	      <input type="text" class="form-control" id="txtName" name="txtName" placeholder="Ingrese su nombre">
-	                                    	    </div>
-	                                    	    <div class="form-group">
-	                                    	      <input type="text" class="form-control" id="txtDir" name="txtDir" placeholder="Ingrese su dirección">
-	                                    	    </div>
-	                                    	    <div class="form-group">
-	                                    	      <input type="text" class="form-control" id="txtTel" name="txtTel" placeholder="Ingrese su teléfono">
-	                                    	    </div>
-	                                    	    <div class="form-group">
-	                                    	      <input type="text" class="form-control" id="txtEml" name="txtEml" placeholder="Ingrese su E-mail">
-	                                    	    </div>
-	                                    	    <div class="form-group">
-	                                    	      <input type="text" class="form-control" id="txtUser" name="txtUser" placeholder="Ingrese un nombre de Usuario">
-	                                    	    </div>
-	                                    	    <div class="form-group">
-	                                    	      <input type="password" class="form-control" id="txtPass1" name="txtPass1" placeholder="Genere una contraseña">
-	                                    	    </div>
-	                                    	    <div class="form-group">
-	                                    	      <input type="password" class="form-control" id="txtPass2" name="txtPass2" placeholder="Confirme su contraseña">
-	                                    	       <input type="hidden" name="txtId" id="txtId" value="1">
-	                                    	      <input type="hidden" name="accion" id="" value="ins">
-	                                    	    </div>
-	                                    	    <button type="submit" class="btn btn-default btn-register">Enviar</button>
-	                                    	</form>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      </div>
-	    </div>
-
-	  </div>
-	</div>
+		<!-- Modal -->
+	    	<div id="myModal" class="modal fade" role="dialog">
+	      		<div class="modal-dialog">
+	        		<!-- Modal content-->
+	        		<div class="modal-content">
+			          <div class="modal-header">
+			            <button type="button" class="close" data-dismiss="modal">&times;</button>
+			            <h4 class="modal-title">Modal Header</h4>
+			          </div>
+	          			<div class="modal-body">
+							<div class="row" style="margin-left: 0px; margin-right: 0px;">
+								<div class="panel panel-login">
+									<div class="panel-heading">
+									    <div class="row">
+									        <div class="col-xs-6">
+									            <a href="#" class="active" id="login-form-link">Login</a>
+									        </div>
+									        <div class="col-xs-6">
+									            <a href="#" id="register-form-link">Registrese</a>
+									        </div>
+									    </div>
+									    <hr>
+									</div>
+								</div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-lg-12">
+										    <form id="login-form" action="#" method="post" role="form" style="display: block;">
+										    	<h3 class="text-center">INICIAR SESIÓN</h3>
+										        <div class="form-group">
+										            <input type="text" name="txtUser" id="txtUser" tabindex="1" class="form-control" placeholder="Usuario">
+										        </div>
+										        <div class="form-group">
+										            <input type="password" name="txtPass" id="txtPass" tabindex="2" class="form-control" placeholder="Contraseña">
+										            <input type="hidden" name="txtTab" id="txtTab" tabindex="2" class="form-control" value="1">
+										        </div>
+										        <div class="form-group">
+										            <div class="row">
+										                <div class="col-sm-6 col-sm-offset-3">
+										                    <button type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login">ENTRAR</button>
+										                </div>
+										            </div>
+										        </div>
+										        <div class="form-group">
+										            <div class="row">
+										                <div class="col-lg-12">
+										                    <div class="text-center">
+										                        <a href="../remember_password.php?v=1" tabindex="5" class="forgot-password">Olvido su contraseña?</a>
+										                    </div>
+										                </div>
+										            </div>
+										        </div>
+										    </form>
+										</div>
+										<div class="col-lg-12">
+											<form id="usuarios"  action="#" method="post" role="form" style="display: none;">
+											      <div class="form-group">
+											      <label class="">Adjuntar Logo</label>
+											          <input type="file" class="form-control" name="txtImg" id="txtImg" autofocus>
+											      </div>
+											    <div class="form-group">
+											      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cedula">
+											    </div>
+											    <div class="form-group">
+											      <input type="text" class="form-control" id="txtName" name="txtName" placeholder="Ingrese su nombre">
+											    </div>
+											    <div class="form-group">
+											      <input type="text" class="form-control" id="txtDir" name="txtDir" placeholder="Ingrese su dirección">
+											    </div>
+											    <div class="form-group">
+											      <input type="text" class="form-control" id="txtTel" name="txtTel" placeholder="Ingrese su teléfono">
+											    </div>
+											    <div class="form-group">
+											      <input type="text" class="form-control" id="txtEml" name="txtEml" placeholder="Ingrese su E-mail">
+											    </div>
+											    <div class="form-group">
+											      <input type="text" class="form-control" id="txtUser" name="txtUser" placeholder="Ingrese un nombre de Usuario">
+											    </div>
+											    <div class="form-group">
+											      <input type="password" class="form-control" id="txtPass1" name="txtPass1" placeholder="Genere una contraseña">
+											    </div>
+											    <div class="form-group">
+											      <input type="password" class="form-control" id="txtPass2" name="txtPass2" placeholder="Confirme su contraseña">
+											       <input type="hidden" name="txtId" id="txtId" value="1">
+											      <input type="hidden" name="accion" id="" value="ins">
+											    </div>
+											    <button type="submit" class="btn btn-default btn-register">Enviar</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	          		</div>
+	        	</div>
+	      	</div>
+	<!-- Fin modal -->
 
 	<div class="container login">
 		<div class="row">
 			<?php
 				if ($name == "") {
 					echo '
-						<div class="col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-xs-4 col-sm-2 col-md-2 login-content">
+						<div class="col-xs-offset-6 col-sm-offset-8 col-md-offset-10 col-xs-6 col-sm-4 col-md-2 login-content">
 							<strong class="icon"><a href="#" data-toggle="modal" data-target="#myModal"><img src="../front/images/iniciar-session.png" class="" ></strong><p>'.$IS.'</a></p>
 						</div>
 
@@ -192,6 +184,8 @@
 						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong>'.$name.'
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
+						    <li><a href="../perfil/" title="">Perfil</a></li>
+						    <li><a href="../cambiar_contrasena/" title="">Cambiar contraseña</a></li>
 						    <li><a href="../logout.php" title="">Cerrar Sessión</a></li>
 						  </ul>
 						</div>
@@ -241,7 +235,7 @@
 					if($db->numRows($resultU) > 0){
 					while ($r = $db->datos($resultU)) {
 					  echo '
-						<div class="col-md-3 cont_ali">
+						<div class="col-xs-6 col-sm-3 col-md-3 cont_ali">
 							<img src="../'.$r['Foto'].'" class="ali">
 						</div>
 

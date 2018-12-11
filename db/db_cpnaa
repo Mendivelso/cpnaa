@@ -1,0 +1,254 @@
+/*
+SQLyog Community v12.08 (64 bit)
+MySQL - 10.1.10-MariaDB : Database - desarrollo_cpnaa
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`desarrollo_cpnaa` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+
+USE `desarrollo_cpnaa`;
+
+/*Table structure for table `arquitectos` */
+
+DROP TABLE IF EXISTS `arquitectos`;
+
+CREATE TABLE `arquitectos` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id',
+  `Nombres` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombres del arq',
+  `Apellidos` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Apellidos del arq',
+  `Cedula` bigint(40) NOT NULL COMMENT 'Cedula Arquitecto',
+  `Email` varchar(40) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Email',
+  `Telefono` bigint(30) NOT NULL COMMENT 'TElefono',
+  `Nit_empresa` varchar(200) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Empresa a la que pertenece',
+  `Nivel_educativo` varchar(40) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Tecnico, porf, auxiliar',
+  `Cedula_RL` bigint(40) NOT NULL COMMENT 'Cedula_representante_legal',
+  `Status` int(2) NOT NULL COMMENT 'Estado',
+  `Created_date` datetime NOT NULL COMMENT 'FEcha creacion',
+  `Created_by` int(11) NOT NULL COMMENT 'Quien regsitra',
+  `Updated_date` datetime DEFAULT NULL COMMENT 'Fecha actualiza',
+  `Updated_by` int(11) DEFAULT NULL COMMENT 'Quien actualiza',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `arquitectos` */
+
+/*Table structure for table `beneficios` */
+
+DROP TABLE IF EXISTS `beneficios`;
+
+CREATE TABLE `beneficios` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificar del registro',
+  `Titulo` varchar(45) NOT NULL COMMENT 'titulo del servicio',
+  `Descripcion` varchar(900) NOT NULL COMMENT 'Descripcion del servicio',
+  `Enlace` varchar(60) DEFAULT NULL COMMENT 'Tiene enlace en internet',
+  `Imagen_principal` varchar(300) NOT NULL COMMENT 'Imagen principal del servicio',
+  `Status` int(1) NOT NULL COMMENT 'Estado del registro',
+  `Created_by` varchar(45) NOT NULL COMMENT 'Usuario que crea el registro',
+  `Created_date` date NOT NULL COMMENT 'Fecha creacion del registro',
+  `Updated_by` varchar(45) DEFAULT NULL COMMENT 'Usuario que actualiza el registro',
+  `Updated_date` date DEFAULT NULL COMMENT 'Fecha de actualizacion del registro',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+/*Data for the table `beneficios` */
+
+insert  into `beneficios`(`Id`,`Titulo`,`Descripcion`,`Enlace`,`Imagen_principal`,`Status`,`Created_by`,`Created_date`,`Updated_by`,`Updated_date`) values (5,'01','Charlas grupales para el ejercicio ético de la profesión','google.com.co','public/beneficios/5/beneficio 1.jpg',1,'1','2018-11-29',NULL,NULL),(6,'02','Acceso empresarial al aula virtual de aprendizaje sobre ética. Acompañamiento y seguimiento para capacitaciones en procesos de inducción y reinducción de arquitectos y profesionales auxiliares de la arquitectura en tu organización.','','public/beneficios/6/beneficio2.jpg',1,'1','2018-11-29',NULL,NULL),(7,'03','Acceso a documentos y módulos de aprendizaje a través de la página web del CPNAA','','public/beneficios/7/beneficios_1.png',1,'1','2018-11-29',NULL,NULL),(8,'04','Acompañamiento para que los arquitectos y/o profesionales auxiliares de la arquitectura colombianos que no cuenten con Matrícula y o certificado de inscripción profesional, la tramiten para que ejerzan con todas las de la ley y no pierdan experiencia profesional.','google.com.co','public/beneficios/8/beneficio4.jpg',1,'1','2018-11-29',NULL,NULL),(9,'05','Acompañamiento con el apoyo de migración Colombia para normalizar el trabajo de arquitectos extranjeros en Colombia, ya sea a través de matrícula Temporal especial o indicándoles las opciones para convalidación en Colombia.','google.com.co','public/beneficios/9/beneficio 5.jpg',1,'1','2018-11-29',NULL,NULL),(10,'06','Canales de comunicación para que el área de recursos humanos pueda validar rápidamente si un arquitecto o profesional auxiliar de la arquitectura extranjero y/ o colombiano tiene matrícula profesional.','','public/beneficios/10/beneficio 6.jpg',1,'1','2018-11-29',NULL,NULL),(11,'07','Área especial en nuestra página web para que puedas reportar, consultar y comunicarte con el CPNAA sobre temas relacionados con el ejercicio ético y responsable de la Profesión. ','google.com.co','public/beneficios/11/beneficio 7.jpg',1,'1','2018-11-29',NULL,NULL),(12,'08','Invitaciones a Talleres y actividades gratuitas del CPNAA sobre ética, normatividad  y temas de la profesión. ','../eventos/','public/beneficios/12/beneficio 8.jpg',1,'1','2018-12-05',NULL,NULL),(13,'09','Acceso a descuentos para participación en eventos de los aliados al CPNAA de todos los profesionales que pertenezcan a las empresas que han firmado el pacto.','','public/beneficios/13/beneficio 9.jpg',1,'1','2018-11-29',NULL,NULL),(14,'10','Entrega de material digital para que sea incluido en los programas de recursos humanos en el ejercicio ético.','','public/beneficios/14/beneficio 10.jpg',1,'1','2018-11-29',NULL,NULL);
+
+/*Table structure for table `estados` */
+
+DROP TABLE IF EXISTS `estados`;
+
+CREATE TABLE `estados` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del registro',
+  `Nombre` varchar(45) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre del estado',
+  `Status` int(1) NOT NULL COMMENT 'activo o desactivo',
+  `Created_date` datetime NOT NULL COMMENT 'Fecha de registro',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `estados` */
+
+insert  into `estados`(`Id`,`Nombre`,`Status`,`Created_date`) values (1,'Registrado',1,'2018-06-28 15:31:51'),(2,'Asignado',1,'2018-06-28 15:31:16'),(3,'Llamada a su móvil',1,'2018-07-03 10:04:44'),(4,'Se ha enviado un Email',1,'2018-07-03 10:05:14'),(5,'Pendiente para volver a llamar',1,'2018-07-03 10:07:01'),(6,'Matriculado',1,'2018-07-03 10:08:22'),(7,'Terminado la gestión',1,'2018-07-03 10:08:55'),(8,'Inscrito',1,'2018-09-12 10:00:19'),(9,'Número Equivocado / errado',1,'2018-09-12 10:00:30'),(10,'No interesado',1,'2018-09-12 10:00:48'),(11,'Duplicado',1,'2018-09-12 10:01:05'),(12,'Cargado ',1,'0000-00-00 00:00:00');
+
+/*Table structure for table `eventos` */
+
+DROP TABLE IF EXISTS `eventos`;
+
+CREATE TABLE `eventos` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificar del registro',
+  `Titulo` varchar(45) NOT NULL COMMENT 'titulo del servicio',
+  `Descripcion` varchar(900) NOT NULL COMMENT 'Descripcion del servicio',
+  `Enlace` varchar(60) DEFAULT NULL COMMENT 'Tiene enlace en internet',
+  `Imagen_principal` varchar(300) NOT NULL COMMENT 'Imagen principal del servicio',
+  `Fecha` date NOT NULL COMMENT 'Fecha creacion del evento',
+  `Status` int(1) NOT NULL COMMENT 'Estado del registro',
+  `Created_by` varchar(45) NOT NULL COMMENT 'Usuario que crea el registro',
+  `Created_date` date NOT NULL COMMENT 'Fecha creacion del registro',
+  `Updated_by` varchar(45) DEFAULT NULL COMMENT 'Usuario que actualiza el registro',
+  `Updated_date` date DEFAULT NULL COMMENT 'Fecha de actualizacion del registro',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+/*Data for the table `eventos` */
+
+insert  into `eventos`(`Id`,`Titulo`,`Descripcion`,`Enlace`,`Imagen_principal`,`Fecha`,`Status`,`Created_by`,`Created_date`,`Updated_by`,`Updated_date`) values (16,'Noche de velitas 07 DIC','Se llevara acabo una gran fiestas para todas las familias de los arquitectos que asistan este 7 de diciembre coordial emnte invitados todos.','','public/eventos/16/download.jpg','2018-12-07',1,'1','2018-12-04',NULL,NULL),(17,'Navidad 2018','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','','public/eventos/17/navidad.jpg','2018-12-24',1,'1','2018-12-05',NULL,NULL),(18,'Junta de Arquitectos 2018','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','','public/eventos/18/junta.jpg','2018-12-20',1,'1','2018-12-05',NULL,NULL);
+
+/*Table structure for table `experiencias` */
+
+DROP TABLE IF EXISTS `experiencias`;
+
+CREATE TABLE `experiencias` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id',
+  `Titulo` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Titulo',
+  `Descripcion` varchar(600) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcion',
+  `Enlace` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Enlace del video',
+  `Imagen` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Imagen destacada',
+  `Documento` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Documento que comparte',
+  `R_Legal` bigint(40) NOT NULL COMMENT 'De quien es la experiencia',
+  `Status` int(2) NOT NULL COMMENT 'Estado',
+  `Created_date` datetime NOT NULL COMMENT 'Fecha registro',
+  `Created_by` int(11) NOT NULL COMMENT 'Quien registra',
+  `Updated_date` datetime DEFAULT NULL COMMENT 'Fecha actualiza',
+  `Updated_by` int(11) DEFAULT NULL COMMENT 'Quien actualiza',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `experiencias` */
+
+insert  into `experiencias`(`Id`,`Titulo`,`Descripcion`,`Enlace`,`Imagen`,`Documento`,`R_Legal`,`Status`,`Created_date`,`Created_by`,`Updated_date`,`Updated_by`) values (1,'Experiencia #1','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','https://www.youtube.com/embed/aUQDjK5_HQQ','public/experiencias/1/arq1.jpg','',1015451163,1,'2018-12-03 14:32:16',10,'2018-12-03 14:50:52',1),(2,'Experiencia #2','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','https://www.youtube.com/embed/aUQDjK5_HQQ','public/experiencias/2/arq2.jpg',NULL,1015451163,1,'2018-12-03 14:33:30',10,'2018-12-03 15:11:09',1),(3,'Experiencia #3','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','https://www.youtube.com/embed/aUQDjK5_HQQ','public/experiencias/3/arq3.jpg','',1015451163,1,'2018-12-03 14:34:41',10,'2018-12-03 15:11:37',1),(4,'Experiencia #4','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','https://www.youtube.com/embed/aUQDjK5_HQQ','public/experiencias/4/arq4.png','',1015451163,1,'2018-12-03 14:35:39',10,'2018-12-03 15:11:42',1),(5,'Experiencia #5','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','https://www.youtube.com/embed/aUQDjK5_HQQ','public/experiencias/5/arq2.jpg',NULL,2147483647,1,'2018-12-03 15:10:12',1,'2018-12-03 15:11:47',1),(6,'Experiencia #6','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\n                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\n                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\n                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\n                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\n                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','https://www.youtube.com/embed/aUQDjK5_HQQ','public/experiencias/6/arq2.jpg',NULL,1015451163,2,'2018-12-03 15:35:58',10,'2018-12-04 12:02:17',1);
+
+/*Table structure for table `firmantes` */
+
+DROP TABLE IF EXISTS `firmantes`;
+
+CREATE TABLE `firmantes` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id',
+  `Razon_social` varchar(400) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Razon social',
+  `Nit` varchar(200) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nit',
+  `Telefono_emp` bigint(50) NOT NULL COMMENT 'Telefono empresa',
+  `Pagina_web` varchar(40) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Pagina web',
+  `Nombre_Repre` varchar(90) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre representante',
+  `Cedula_Repre` bigint(40) NOT NULL COMMENT 'Cedula representatne',
+  `Telefono_Repre` bigint(40) NOT NULL COMMENT 'Telefono representante',
+  `Email_Repre` varchar(90) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Email representante',
+  `Responsable_pacto` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Responsable',
+  `Cedula_Res` bigint(40) NOT NULL COMMENT 'Cedula responsable',
+  `Telefono_Res` bigint(40) NOT NULL COMMENT 'Telefono responsable',
+  `Email_Res` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Email responsable',
+  `Status` int(2) NOT NULL COMMENT 'Stado',
+  `Created_date` datetime NOT NULL COMMENT 'Fecha',
+  `Created_by` bigint(20) NOT NULL COMMENT 'Quien crea',
+  `Updated_date` datetime DEFAULT NULL COMMENT 'Fecha actualiza',
+  `Updated_by` bigint(20) DEFAULT NULL COMMENT 'Quien actualiza',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `firmantes` */
+
+/*Table structure for table `hoja_ruta` */
+
+DROP TABLE IF EXISTS `hoja_ruta`;
+
+CREATE TABLE `hoja_ruta` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del registro',
+  `Arquitecto` bigint(40) NOT NULL COMMENT 'Id registro',
+  `Detalle` varchar(300) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcion del paso a paso',
+  `Status` int(2) NOT NULL COMMENT 'Estado del contacto',
+  `Created_by` int(11) NOT NULL COMMENT 'Usuario que registra',
+  `Created_date` datetime NOT NULL COMMENT 'Fecha de registro',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `hoja_ruta` */
+
+/*Table structure for table `registros` */
+
+DROP TABLE IF EXISTS `registros`;
+
+CREATE TABLE `registros` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id',
+  `Cedula` bigint(20) NOT NULL COMMENT 'Documento del registro',
+  `Nombre_completo` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nombre regsitro',
+  `Celular` bigint(20) NOT NULL COMMENT 'Celular Registro',
+  `Email` varchar(60) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Email registro',
+  `Programa` varchar(45) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Programa que decea',
+  `Mensaje` varchar(400) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Mensaje del registro',
+  `Campana_Id` int(11) NOT NULL COMMENT 'Identificador campñas en medios',
+  `Created_date` datetime NOT NULL COMMENT 'Fecha Creacion',
+  `Status` int(11) NOT NULL COMMENT 'Estado del registro',
+  `Asignado_a` int(11) NOT NULL COMMENT 'Usuario al cual se asigna',
+  `Fecha_asignado` datetime DEFAULT NULL COMMENT 'Fecha de asignacion',
+  `Updated_by` int(11) DEFAULT NULL COMMENT 'Usuario que actualiza',
+  `Updated_date` datetime DEFAULT NULL COMMENT 'Fecha que actualiza',
+  PRIMARY KEY (`Id`,`Asignado_a`),
+  KEY `fk_status` (`Status`),
+  CONSTRAINT `fk_status` FOREIGN KEY (`Status`) REFERENCES `estados` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `registros` */
+
+/*Table structure for table `usuarios` */
+
+DROP TABLE IF EXISTS `usuarios`;
+
+CREATE TABLE `usuarios` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'identificador del registro',
+  `Nombre` varchar(150) NOT NULL COMMENT 'Nombre del cliente',
+  `Cedula` int(11) NOT NULL COMMENT 'cedula del cliente',
+  `Direccion` varchar(150) NOT NULL COMMENT 'Direccion del cliente',
+  `Telefono` bigint(50) NOT NULL COMMENT 'Telefono del cliente',
+  `Email` varchar(45) NOT NULL COMMENT 'Email del cliente',
+  `Usuario` varchar(45) NOT NULL COMMENT 'Usuario para la cuenta del cliente',
+  `Foto` varchar(90) NOT NULL COMMENT 'Foto de perfil usuario',
+  `Perfil` int(11) NOT NULL COMMENT 'perfil del usuario',
+  `Password` varchar(45) NOT NULL COMMENT '******** cuenta del cliente',
+  `Status` int(1) NOT NULL COMMENT 'Estado del registro',
+  `firma_pacto` int(1) NOT NULL COMMENT 'Validamos si ya firmo el pacto',
+  `Created_at` datetime NOT NULL COMMENT 'Fecha de creación del registro',
+  `Updated_by` bigint(20) DEFAULT NULL COMMENT 'usuario que actualiza',
+  `Updated_at` datetime DEFAULT NULL COMMENT 'fecha de actualizacion',
+  PRIMARY KEY (`Id`,`Cedula`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `usuarios` */
+
+insert  into `usuarios`(`Id`,`Nombre`,`Cedula`,`Direccion`,`Telefono`,`Email`,`Usuario`,`Foto`,`Perfil`,`Password`,`Status`,`firma_pacto`,`Created_at`,`Updated_by`,`Updated_at`) values (1,'CPNAA',4255,'kra 18 # 118 - 04 norte',3219881024,'info@cpnaa.com.co','Admin','public/usuarios/1/foto.png',1,'827ccb0eea8a706c4c34a16891f84e7b',1,1,'2017-12-04 14:52:09',1,'2018-12-04 11:59:05');
+
+/* Trigger structure for table `arquitectos` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `insert_Arq` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `insert_Arq` AFTER INSERT ON `arquitectos` FOR EACH ROW BEGIN
+	INSERT INTO hoja_ruta (Arquitecto, Detalle, STATUS, Created_by, Created_date) VALUES (new.Cedula, 'Pendiente por aprobación', 1, 1, NOW());
+    END */$$
+
+
+DELIMITER ;
+
+/* Trigger structure for table `hoja_ruta` */
+
+DELIMITER $$
+
+/*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `Update_hojaruta` */$$
+
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'localhost' */ /*!50003 TRIGGER `Update_hojaruta` AFTER UPDATE ON `hoja_ruta` FOR EACH ROW BEGIN
+	UPDATE arquitectos set Status = new.Status WHERE Cedula = new.Arquitecto; 
+    END */$$
+
+
+DELIMITER ;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

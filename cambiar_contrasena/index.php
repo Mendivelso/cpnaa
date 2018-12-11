@@ -52,7 +52,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas Frecuentes Pactos CPNAA</title>
+    <title>Cambiar contraseña</title>
     <link rel="stylesheet" type="text/css" href="../front/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../front/css/style.css">
     <link rel="stylesheet" type="text/css" href="../front/css/login.css">
@@ -185,8 +185,8 @@
 						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong>'.$name.'
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
-						    <li><a href="../perfil/" title="">Perfil</a></li>
-						    <li><a href="../cambiar_contrasena/" title="">Cambiar contraseña</a></li>
+						    <li><a href="#" title="">Perfil</a></li>
+						    <li><a href="#" title="">Cambiar contraseña</a></li>
 						    <li><a href="../logout.php" title="">Cerrar Sessión</a></li>
 						  </ul>
 						</div>
@@ -223,7 +223,7 @@
 	<div class="container franjapf">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
-				<h1 class="t">PREGUNTAS FRECUENTES</h1>
+				<h1 class="t">CAMBIAR CONTRASEÑA</h1>
 			</div>
 		</div>
 	</div>
@@ -231,27 +231,20 @@
 
 	<div class="container mainpf">
 		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
+			<div class="col-md-offset-1 col-md-10 pdd">
+				<form id="cambiaPass" enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="pwd">Nueva Contraseña:</label>
+						<input type="password" class="form-control" id="txtPassU" name="txtPassU" placeholder="Ingrese su contraseña"  autofocus>
+					</div>
+					<div class="form-group">
+						<label for="pwd">Confirmar Contraseña:</label>
+						<input type="password" class="form-control" id="txtPassU2" name="txtPassU2" placeholder="Confirme su contraseña">
+						<input type="hidden" name="txtIdU" id="txtIdU" value=<?php echo $Id;?>>
+						<input type="hidden" name="txtTabP" id="txtTabP" value="0">
+					</div>
+					<button type="submit" class="btn btn-default ">Cambiar</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -290,6 +283,7 @@
     <script type="text/javascript" src="../front/js/login.js"></script>
     <script type="text/javascript" src="../js/validacion.js"></script>
     <script type="text/javascript" src="../js/process/registros.js"></script>
+    <script type="text/javascript" src="../js/process/usuarios.js"></script>
 
     <script type="text/javascript" src="../front/js/sweetalert.min.js"></script>
 

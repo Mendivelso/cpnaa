@@ -50,12 +50,13 @@
 						<form id="cambiaPass" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="pwd">Nueva Contraseña:</label>
-							<input type="text" class="form-control" id="txtPass" name="txtPass" placeholder="Ingrese su contraseña"  autofocus>
+							<input type="text" class="form-control" id="txtPassU" name="txtPassU" placeholder="Ingrese su contraseña"  autofocus>
 						</div>
 						<div class="form-group">
 							<label for="pwd">Confirmar Contraseña:</label>
-							<input type="text" class="form-control" id="txtPass2" name="txtPass2" placeholder="Confirme su contraseña">
-							<input type="hidden" name="txtId" id="txtId" value=<?php echo $Id;?>>
+							<input type="text" class="form-control" id="txtPassU2" name="txtPassU2" placeholder="Confirme su contraseña">
+							<input type="hidden" name="txtIdU" id="txtIdU" value=<?php echo $Id;?>>
+							<input type="hidden" name="txtTabP" id="txtTabP" value="1">
 						</div>
 						<button type="submit" class="btn btn-default">Cambiar</button>
 						</form>

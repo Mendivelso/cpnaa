@@ -49,3 +49,20 @@
     .mis-nav-buttons a {
         color: #b11b2f;
     }
+
+
+
+@media screen and (max-width: 583px){
+  .mis-slider li img {
+      width: 250px;
+      height: auto;
+      border-radius: 50%;
+      border: 10px solid #444c5c;
+  }
+  .mis-slider {
+      margin-top: 120px;
+      height: 80px;
+      background-color: #fff;
+  }
+
+}

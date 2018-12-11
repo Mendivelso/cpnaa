@@ -26,6 +26,16 @@ body{
     right: 30px;
 
 }
+.close {
+    float: right;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 1;
+    color: #d8282b;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 1;
+}
 .cont_ali{
   min-height: 200px;
   padding-top: 20px;
@@ -1094,7 +1104,7 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
   .carousel-caption {
       right: 25%;
       left: 0;
-      padding-bottom: 80px;
+      padding-bottom: 40px;
   }
 
  }
@@ -1105,6 +1115,17 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
 
 
 @media screen and (max-width: 767px){
+  .descripcion_firma {
+      background-color: #444c5c;
+      padding: 10px 20px 10px 18px;
+  }
+  .franjapf {
+      height: auto;
+      background-image: url(../images/franja_pf.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+  }
   .cnt_t p {
       text-align: justify;
       color: #444C5C;
@@ -1249,6 +1270,16 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
 
 
 @media screen and (max-width: 641px){
+  .resultados {
+      height: auto;
+      background-image: url(../images/franja_2.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      background-color: #fff;
+      padding-top: 20px;
+      padding-bottom: 20px;
+  }
 
   .resultados .result {
     color: #fff;
@@ -1283,6 +1314,17 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
 
 
 @media screen and (max-width: 400px){
+  .login-content p {
+      color: #fff;
+      margin-top: 10px;
+      font-size: 12px;
+      float: right;
+      font-family: "MyriadPro-Regular";
+  }
+  .img_evento {
+      width: 95%;
+      margin: 0 auto;
+  }
   .navbar-brand>img {
       width: 170px;
       display: block;
@@ -1300,7 +1342,7 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
       font-size: 11px;
       position: relative;
       top: 12px;
-      padding-left: 15px;
+      padding-left: 0px;
   }
   .resultados .result {
       color: #fff;

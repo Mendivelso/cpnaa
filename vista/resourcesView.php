@@ -361,7 +361,7 @@
 		    <!-- sidebar menu start-->
 		    <ul class="sidebar-menu">
 		      <li class="active">
-		        <a class="" href="index.php">
+		        <a class="" href="../home/">
 		            <i class="icon_house_alt"></i>
 		            <span>Inicio</span>
 		        </a>

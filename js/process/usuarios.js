@@ -114,15 +114,24 @@
     /***************************************************************/
     /*               CARGA DATOS DE USUARIO                          */
     /***************************************************************/
-    function perfil(Id){
+    function perfil(Id,Tab){
       /* Realiza conexión con el servidor */
       var vId = Id;
+      var vTab = Tab;
+
+      var vurl = "";
+      if (vTab == 0) {
+        var vurl = "../controller/usuariosController.php";
+      }else{
+        var vurl = "../../controller/usuariosController.php";
+      }
       if(vId != 0){
+
         $.ajax({
           data: {"accion":"single", "pId":vId},
           type: "POST",
           datatype: "json",
-          url: "../../controller/usuariosController.php",
+          url: vurl,
         })
 
         .done(function(data){
@@ -152,29 +161,29 @@
 
     $("#cambiaPass").validate({
     rules:{
-      txtPass:{
+      txtPassU:{
         required: true
       },
-      txtPass2:{
+      txtPassU2:{
           required: true,
-          equalTo: "#txtPass"
+          equalTo: "#txtPassU"
 
       }
     },
     messages:{
-      txtPass:{
+      txtPassU:{
         required: "Debes generar una contraseña"
       },
-      txtPass2:{
+      txtPassU2:{
           required: "Debes confirmar la contraseña",
           equalTo: "Las contraseñas no coinciden"
       }
      },
 
   submitHandler: function(form){
-      var vPass2 = $('#txtPass2').val();
-      var vId = $('#txtId').val();
-
+      var vPass2 = $('#txtPassU2').val();
+      var vId = $('#txtIdU').val();
+      var vTab = $('#txtTabP').val();
 
       // if (vId > 0) {
       //  /* envia todos los campos del formulario*/
@@ -183,11 +192,19 @@
       //   var vData = new FormData(document.getElementById("usuarios"));
       // }
        var vData = {"accion":"chg", "pPass":vPass2, "pId":vId};
+       var Vurl ="";
+       if (vTab == 0 ) {
+         var Vurl = "../controller/usuariosController.php";
+       }else{
+        var Vurl = "../../controller/usuariosController.php";
+       }
+
+
       $.ajax({
         data: vData,
         type: "POST",
         datatype: "json",
-        url:"../../controller/usuariosController.php",
+        url:Vurl,
       })
       .done(function(data){
         if (data.success){

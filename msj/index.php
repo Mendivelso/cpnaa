@@ -2,15 +2,19 @@
 	$name="";
 	include_once("../AnsTek_libs/integracion.inc.php");
 	include_once("../model/usuarios.class.php");
-	// Session::valida_sesion("","../admin/logout.php");
-	if(Session::get('Perfil') != 0  ){
-		header('Location: ../admin/logout.php');
-	}
+
+	Session::valida_sesion("","../logout.php");
+	if(Session::get('Perfil') != 0)
+	header('Location: ../logout.php');
+	include_once("../model/usuarios.class.php");
+	$user = new usuario($db);
+	$result = $user->selectAll();
+	 $Id = Session::get('Id');
+
+
 	$firma ="";
 	$name = Session::get('Nombre');
 	$firmo = Session::get('firma_pacto');
-
-
 	$Id = Session::get('Id');
 
 
@@ -41,9 +45,11 @@
 	}else{
 		$IS =" INICIAR SESIÓN";
 		$firma = '<li><a href="#">FIRMA EL PACTO</a></li>';
-
 	}
 
+	$Vuser = new usuario($db);
+	$whereU = " Where firma_pacto = 1 AND Status = 1 AND Perfil != 1 ORDER BY RAND() limit 8";
+	$resultU = $Vuser->selectAll($whereU);
 
 
 ?>
@@ -52,7 +58,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preguntas Frecuentes Pactos CPNAA</title>
+    <title>Datos de perfil - <?php echo $name; ?> </title>
     <link rel="stylesheet" type="text/css" href="../front/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../front/css/style.css">
     <link rel="stylesheet" type="text/css" href="../front/css/login.css">
@@ -131,7 +137,7 @@
 											          <input type="file" class="form-control" name="txtImg" id="txtImg" autofocus>
 											      </div>
 											    <div class="form-group">
-											      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cedula">
+											      <input type="text" class="form-control" id="txtDocu" name="txtDoc" placeholder="Ingrese su cedula">
 											    </div>
 											    <div class="form-group">
 											      <input type="text" class="form-control" id="txtName" name="txtName" placeholder="Ingrese su nombre">
@@ -168,7 +174,6 @@
 	      	</div>
 	<!-- Fin modal -->
 
-
 	<div class="container login">
 		<div class="row">
 			<?php
@@ -186,7 +191,7 @@
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
 						    <li><a href="../perfil/" title="">Perfil</a></li>
-						    <li><a href="../cambiar_contrasena/" title="">Cambiar contraseña</a></li>
+						    <li><a href="../cambiar_contraseña/" title="">Cambiar contraseña</a></li>
 						    <li><a href="../logout.php" title="">Cerrar Sessión</a></li>
 						  </ul>
 						</div>
@@ -209,12 +214,12 @@
 	    <div class="collapse navbar-collapse not" id="myNavbar">
 	      <ul class="nav navbar-nav">
 	        <li><a href="../#">INICIO</a></li>
-			<?php echo $firma; ?>
+	        <?php echo $firma; ?>
 	        <li><a href="../#bene">BENEFICIOS</a></li>
 	        <li><a href="../#resultados">VIVE LOS RESULTADOS</a></li>
 	        <li><a href="../#experiencias">EXPERIENCIAS</a></li>
-	        <li><a href="#">PREGUNTAS FRECUENTES</a></li>
-	        <li><a href="../aliados/">FIRMANTES Y ALIADOS</a></li>
+	        <li><a href="../preguntas_frecuentes/">PREGUNTAS FRECUENTES</a></li>
+	        <li><a href="#">FIRMANTES Y ALIADOS</a></li>
 	      </ul>
 	    </div>
 	  </div>
@@ -223,7 +228,7 @@
 	<div class="container franjapf">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6">
-				<h1 class="t">PREGUNTAS FRECUENTES</h1>
+				<h1 class="t">info !</h1>
 			</div>
 		</div>
 	</div>
@@ -231,27 +236,9 @@
 
 	<div class="container mainpf">
 		<div class="row">
-			<div class="col-md-offset-1 col-md-10">
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
-				<div class="row">
-					<p class="pre">¿Existe algún requisito para firmar el pacto de autorregulación por el ejercicio ético de la profesión de la arquitectura y profesiones auxiliares?</p>
-					<p class="rta">Ser una ser una organización legalmente constituida en Colombia y querer que la ética en general y de estas profesiones,  haga parte de manera visible en sus procesos. </p>
-				</div>
+			<div class="col-md-offset-1 col-md-10 pdd text-center">
+				<h3>Información Actualizada Corectamente</h3>
+
 			</div>
 		</div>
 	</div>
@@ -284,6 +271,7 @@
     <script type="text/javascript" src="../front/js/jquery.min.js"></script>
     <script type="text/javascript" src="../front/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../front/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../js/process/perfil.js"></script>
     <script type="text/javascript" src="../js/process/firma_pacto.js"></script>
     <script type="text/javascript" src="../front/js/alertify.min.js"></script>
     <script type="text/javascript" src="../front/js/valid.js"></script>
@@ -291,11 +279,14 @@
     <script type="text/javascript" src="../js/validacion.js"></script>
     <script type="text/javascript" src="../js/process/registros.js"></script>
 
+
     <script type="text/javascript" src="../front/js/sweetalert.min.js"></script>
 
 
     <script type="text/javascript">
       $(document).ready(function(){
+      	var vId = '<?php echo $Id; ?>';
+      	perfil(vId,0);
 
 
 

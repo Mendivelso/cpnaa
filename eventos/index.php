@@ -77,7 +77,7 @@
 			<?php
 				if ($name == "") {
 					echo '
-						<div class="col-xs-offset-8 col-sm-offset-10 col-md-offset-10 col-xs-4 col-sm-2 col-md-2 login-content">
+						<div class="col-xs-offset-6 col-sm-offset-8 col-md-offset-10 col-xs-6 col-sm-4 col-md-2 login-content">
 							<strong class="icon"><a href="#" data-toggle="modal" data-target="#myModal"><img src="../front/images/iniciar-session.png" class="" ></strong><p>'.$IS.'</a></p>
 						</div>
 
@@ -88,6 +88,8 @@
 						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong>'.$name.'
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
+						    <li><a href="../perfil/" title="">Perfil</a></li>
+						    <li><a href="../cambiar_contrasena/" title="">Cambiar contraseña</a></li>
 						    <li><a href="../logout.php" title="">Cerrar Sessión</a></li>
 						  </ul>
 						</div>

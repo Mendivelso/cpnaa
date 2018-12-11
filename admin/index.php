@@ -38,7 +38,7 @@
           <input type="password" class="form-control" placeholder="Password" name="txtPass" id="txtPass">
         </div>
         <label class="checkbox">
-            <span class="pull-right"> <a href="remember_password.php"> Olvidaste tu contraseña ?</a></span>
+            <span class="pull-right"> <a href="../remember_password.php?v=0"> Olvidaste tu contraseña ?</a></span>
          </label>
         <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
         <button class="btn btn-info btn-lg btn-block" type="submit">Registrese</button>

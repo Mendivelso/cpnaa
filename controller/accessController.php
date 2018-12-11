@@ -71,21 +71,21 @@
 		        $jsondata = array();
 		        if($access->RememberPass($data, $whereU))
 		        {
-					// 	$header .= "X-Mailer: PHP/" . phpversion() . " \r\n";
-					// 	$header .= "Mime-Version: 1.0 \r\n";
-					// 	$header .= "Content-Type: text/plain";
-					// 	$mensaje = " \r\n";
-					//  $mensaje = '
-					//  Nueva Contraseña: '.utf8_decode($passUpd).'';
-					//  $mensaje .= "Enviado el " . date('d/m/Y', time());
-					// 	$para =  $_REQUEST['txtEmail'];
-					// 	$asunto = 'Actualización Contraseña ';
-					//  mail($_REQUEST['txtEmailEmail'],"Recordar Password Sistema de Interevenciones de la Defensoría",$message, $headers);
-					// 	mail($para, $asunto, utf8_decode($mensaje), $header);
+						$header .= "X-Mailer: PHP/" . phpversion() . " \r\n";
+						$header .= "Mime-Version: 1.0 \r\n";
+						$header .= "Content-Type: text/plain";
+						$mensaje = " \r\n";
+					 $mensaje = '
+					 Nueva Contraseña: '.utf8_decode($passUpd).'';
+					 $mensaje .= "Enviado el " . date('d/m/Y', time());
+						$para =  $_REQUEST['txtEmail'];
+						$asunto = 'Actualización Contraseña - Pactos CPNAA';
+					 mail($_REQUEST['txtEmail'],"Recordar Password pactos CPNAA",$message, $headers);
+						mail($para, $asunto, utf8_decode($mensaje), $header);
 
 		          $jsondata['success'] = true;
 		          $jsondata['pass'] = $passUpd;
-		          $jsondata['message'] = "Hemos enviado a tu correo una contraseña para ingresar al sistema ". " ".  $passUpd;
+		          $jsondata['message'] = "Hemos enviado a tu correo una contraseña para ingresar al sistema -". " ".  $passUpd;
 		          //header('Location: ../admin.php');
 		        }
         	}else{

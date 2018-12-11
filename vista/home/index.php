@@ -121,7 +121,7 @@
 	          </div>
 	        </div>
 			<button type="button" class="btn btn-primary" id="new_User">Nuevo</button>
-			<button type="button" class="btn btn-primary" id="cargar_excel">Cargar archivo</button>
+			<!-- <button type="button" class="btn btn-primary" id="cargar_excel">Cargar archivo</button> -->
 			<section class="panel">
 	            <table class="table table-striped table-bordered table-hover " id="editable" >
 		            <thead>
@@ -134,7 +134,7 @@
 	                    <th><i class="icon_mobile"></i>Usuario</th>
 	                    <th><i class="icon_mobile"></i>Perfil</th>
 	                    <th><i class="icon_cogs"></i> Action</th>
-	                    <th><i class="icon_cogs"></i> Privilegios</th>
+
 		            </tr>
 		            </thead>
 		            <tbody>
@@ -158,14 +158,7 @@
 						             <a href=\"#\" onclick=\"javascript:cargaAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-danger btn-md btn-xs\" title=\"Actividades\">Borrar</a>&nbsp;
 						              </center>
 						          </td>";
-						          echo "<td>
-						                  <center>
-						                   <a href=\"#\" onclick=\"javascript:cargarDatos();\" style=\"margin-bottom:-3px;\" class=\"btn btn-primary btn-md btn-xs\" title=\"Editar\">Registrar</a>&nbsp;
-						                   <a href=\"#\" onclick=\"javascript:cargaAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-success btn-md btn-xs\" title=\"Actividades\">Editar</a>&nbsp;
-						                   <a href=\"#\" onclick=\"javascript:cargaAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-danger btn-md btn-xs\" title=\"Actividades\">Borrar</a>&nbsp;
-						                   <a href=\"#\" onclick=\"javascript:cargaAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-info btn-md btn-xs\" title=\"Actividades\">Todos</a>&nbsp;
-						                    </center>
-						                </td>";
+
 						    echo "</tr>";
 
 

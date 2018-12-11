@@ -47,7 +47,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Firma el Pacto con el CPNAA</title>
     <link rel="stylesheet" type="text/css" href="../front/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../front/css/style.css">
     <link rel="stylesheet" type="text/css" href="../front/css/alertify.core.css">
@@ -91,6 +91,8 @@
 			  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong><?php echo $name; ?>
 			  <span class="caret"></span></button>
 			  <ul class="dropdown-menu">
+			    <li><a href="../perfil/" title="">Perfil</a></li>
+			    <li><a href="../cambiar_contrasena/" title="">Cambiar contraseña</a></li>
 			    <li><a href="../logout.php" title="">Cerrar Sessión</a></li>
 			  </ul>
 			</div>

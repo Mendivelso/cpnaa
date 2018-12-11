@@ -82,8 +82,6 @@
               var vData = new FormData(document.getElementById("usuarios"));
               var vurl = "controller/usuariosController.php";
             }
-
-
             // var vData = {"accion":"ins", "pNombre":vName, "pCedula":vDoc, "pDireccion":vDir, "pTelefono":vTel, "pEmail":vEml, "pUsuario":vUser, "pPassword":vPass, "txtImg":vImg};
             $.ajax({
               data: vData,
