@@ -12,13 +12,9 @@
 	$result = $user->selectAll();
 
 	// Objeto Arquitectos
-	$where = " Where Id > 0 ";
+	$where = " Where Id > 0 ORDER BY Id DESC ";
 	$Exp = new experiencia($db);
 	$resultExp = $Exp->selectAll($where);
-
-
-
-
 
 ?>
 <html lang="en">
@@ -33,7 +29,6 @@
  	<?php recursos_css(); ?>
 </head>
 <body>
-
 
 	<!-- Modal Cargar achivo excel -->
 	<div id="Modal_aprovacion" class="modal fade" role="dialog">
@@ -59,6 +54,60 @@
 					</select>
 				</div>
 	          <button type="submit" class="btn btn-default">Enviar</button>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- Modal Cargar achivo excel -->
+	<div id="editarExpectativa" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Estado del registro</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div id="linkImg" class="text-center"></div>
+	        <form id="upd_exp">
+	        	<div class="form-group">
+	        		<input  class="form-control" type="hidden" name="txtId" id="txtId">
+	        	</div>
+				<div class="form-group">
+				<label class="">Seleccione un estado</label>
+					<select class="form-control" name="txtStatus" id="txtStatus">
+						<option value="1">Activo</option>
+						<option value="0">Inactivo</option>
+					</select>
+				</div>
+				<div class="form-group">
+				<label class="">Título</label>
+					<input  class="form-control" type="text" name="txtTitle" id="txtTitle">
+				</div>
+				<div class="form-group">
+				<label class="">Link de Youtube</label>
+					<input  class="form-control" type="text" name="txtLink" id="txtLink">
+				</div>
+				<div class="form-group">
+				<label class="">Documento Compartido</label>
+					<input  class="form-control" type="text" name="txtDocu" id="txtDocu">
+				</div>
+				<div class="form-group">
+				<label class="">Imagen</label>
+					<input type="file" name="txtImg" id="txtImg">
+				</div>
+				<div class="form-group">
+				<label class="">Descripción</label>
+					<textarea class="form-control" name="txtDes" id="txtDes" rows="8"></textarea>
+				</div>
+				<div class="form-group" id="upd">
+			
+				</div>
+	          <button type="submit" class="btn btn-default">Actualizar</button>
 	        </form>
 	      </div>
 	      <div class="modal-footer">
@@ -94,7 +143,7 @@
 	            <table class="table table-striped table-bordered table-hover " id="editable" >
 		            <thead>
 		            <tr>
-		               <th width="5%"><i class="icon_profile"></i>Status</th>
+		               <th width=""><i class="icon_profile"></i>Status</th>
 		               <th><i class="icon_profile"></i>Título</th>
 	                    <th><i class="icon_calendar"></i> Imagen</th>
 	                    <th><i class="icon_mail_alt"></i>Descripción</th>
@@ -119,7 +168,7 @@
 						    	$msj = '<a onclick=javascript:Aprovacion('.$r['Id']. ','. $r['Status'].') class="btn btn-warning btn-md btn-xs" >Pendiente</a>';
 						    }
 						    echo "<tr>";
-						    echo "<td>" .$msj. "</td>";
+						    echo "<td>" .$msj. "<a href=\"#\" onclick=\"javascript:openExpectativa('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-primary btn-md btn-xs\" title=\"Actividades\">Editar</a>&nbsp;</td>";
 						    echo "<td>" . $r['Titulo']. " ". $r['Apellidos'] . "</td>";
 						    echo "<td>" . "<img src=../../".$r['Imagen']." width=\"100px\"  " . "</td>";
 						    echo "<td>" . $r['Descripcion'] . "</td>";
@@ -147,7 +196,7 @@
 	<?php recursos_js() ?>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-	<!-- <script type="text/javascript" src="../../js/jquery.validate.min.js"></script> -->
+	<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="../../js/process/usuarios.js"></script>
 	<script type="text/javascript" src="../../js/process/experiencias.js"></script>
 	<script>
@@ -166,8 +215,10 @@
 	                "sSwfPath": "js/plugins/dataTables/swf/copy_csv_xls_pdf.swf"
 	            }
 	        });
-	        /* Init DataTables */
-	        var oTable = $('#editable').dataTable();
+	        /* Init DataTables */	       
+	        $('#editable').DataTable( {
+	           ordering: false
+	        } );
 	    });
 	</script>
 </body>

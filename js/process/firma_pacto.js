@@ -144,3 +144,49 @@
             });
    }
 });
+
+
+    /***************************************************************/
+    /*                CARGAR INFORMACION FIRMANTE                  */
+    /***************************************************************/
+
+    function openFirmante(Id){
+
+      /* Realiza conexión con el servidor */
+      var vId = Id;
+      if(vId != 0){
+        $.ajax({
+          data: {"accion":"single", "pId":vId},
+          type: "POST",
+          datatype: "json",
+          url: "../../controller/firmantesController.php",
+        })
+
+        .done(function(data){
+          if (data.success) {
+           $('#name').text(data.Razon_social);
+           $('#ape').text(data.Nit);
+           $('#pag').text(data.Pagina_web);
+           $('#tel1').text(data.Telefono_emp);
+
+           $('#Nrl').text(data.Nombre_Repre);
+           $('#Crl').text(data.Cedula_Repre);
+           $('#Trl').text(data.Telefono_Repre);
+           $('#Erl').text(data.Email_Repre);
+
+           $('#Nr').text(data.Responsable_pacto);
+           $('#Cr').text(data.Cedula_Res);
+           $('#Tr').text(data.Telefono_Res);
+           $('#Er').text(data.Email_Res);
+
+
+           $('#date').text(data.Created_date);
+            $("#verFirmante").modal({keyboard: true});
+          }
+
+        })
+        .fail(function(){
+            alert("Ha ocurrido un problema");
+        });
+      }
+    }

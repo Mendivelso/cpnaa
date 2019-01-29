@@ -3,6 +3,7 @@
 	include_once("../AnsTek_libs/integracion.inc.php");
 	include_once("../model/eventos.class.php");
 	include_once("../model/usuarios.class.php");
+	include_once("../resources/footer.php");
 	// Session::valida_sesion("","../admin/logout.php");
 	if(Session::get('Perfil') != 0  ){
 		header('Location: ../admin/logout.php');
@@ -13,7 +14,7 @@
 	}
 	// Objeto clase eventos
 	$event = new evento($db);
-	$where = " Where Status = 1";
+	$where = " Where Status = 1 ORDER BY Id DESC";
 	$result = $event->selectAll($where);
 
 	$Id = Session::get('Id');
@@ -147,7 +148,7 @@
 							<div class="col-md-7">
 								<h3>'.$r['Titulo'].'</h3>
 								<p>'.$r['Descripcion'].'</p>
-								<h5>Fecha del evento: <strong>2018-12-07</strong></h5>
+								<h5>Fecha del evento: <strong>'.$r['Fecha'].'</strong></h5>
 								<a href="'.$r['Enlace'].'" class="btn sitio" target="black">Sitio web</a>
 
 							</div>
@@ -164,27 +165,8 @@
 		</div>
 	</div>
 
-
-
-
-	<footer class="container text-center bg">
-		<p>www.cpnaa.gov.co</p>
-		<ul class="redes">
-			<li><a href=""><img src="../front/images/face.png"></a></li>
-			<li><a href=""><img src="../front/images/twi.png"></a></li>
-			<li><a href=""><img src="../front/images/goo.png"></a></li>
-			<li><a href=""><img src="../front/images/you.png"></a></li>
-			<li><a href=""><img src="../front/images/ins.png"></a></li>
-			<li><a href=""><img src="../front/images/link.png"></a></li>
-		</ul>
-		<p>
-			Carrera 6 No. 26 B - 85 - Oficina 201 - Bogotá D.C.- Colombia. <br>
-			Línea de atención telefónica en Bogotá  (57-1)   3 50 27 00 Extensiones 101 y 124 <br>
-			Correo electrónico:  info@cpnaa.gov <br>
-			Horario de atención: Lunes a Jueves de 7:00 am a 1:00 pm y 2:00 pm a 5:00 pm y Viernes de 7:00 am a 1:00 pm y 2:00 pm a 4:00 pm. <br>
-			Consejo Profesional Nacional de Arquitectura y sus Profesiones Auxiliares. Nit. 830.059.954-7
-		</p>
-	</footer>
+	<!-- IMPRIMIMOS FOOTER -->
+	<?php footer2(); ?>
 
 
 

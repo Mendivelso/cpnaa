@@ -20,6 +20,42 @@
  	<?php recursos_css(); ?>
 </head>
 <body>
+	<!-- Modal Cargar achivo excel -->
+	<div id="verUsuario" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Información del usuario</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="row">
+	      		
+	      		<div id="cont" class="col-md-offset-2 col-md-6"></div>
+	      		<div class="col-md-offset-2 col-md-6">  	
+	      			<strong>Información de Usuario</strong>	 <br>     	  					
+	      		  	<label>Nombre: <span id="name"></span></label><br>
+	      		  	<label>Cédula: <span id="ced"></span></label><br>	      		  	
+	      		  	<label>Dirección: <span id="dir"></span></label><br>
+	      		  	<label>Teléfono: <span id="tel"></span></label><br>
+	      		  	<label>Email: <span id="mail"></span></label><br>
+	      		  	<label>Usuario: <span id="user"></span></label><br>
+	      		  	<label>Foto: <span id="foto"></span></label><br>
+	      		  	<label>Fecha Registrado: <span id="date"></span></label><br>
+	      		  	
+	      		</div>
+	      	</div>
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
 	<!-- Modal Nuevo Usuario -->
 	<div id="Modal_Usuarios" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
@@ -132,6 +168,7 @@
 	                    <th><i class="icon_mail_alt"></i>Direccion</th>
 	                    <th width="10%"><i class="icon_mobile"></i>E-mail</th>
 	                    <th><i class="icon_mobile"></i>Usuario</th>
+	                    <th><i class="icon_mobile"></i>Foto</th>
 	                    <th><i class="icon_mobile"></i>Perfil</th>
 	                    <th><i class="icon_cogs"></i> Action</th>
 
@@ -150,12 +187,11 @@
 						    echo "<td>" . $r['Direccion'] . "</td>";
 						    echo "<td>" . $r['Email'] . "</td>";
 						    echo "<td>" . $r['Usuario'] . "</td>";
+						    echo "<td>" . '<center>'.'<img src="../../'.$r['Foto'].'" width="35%"> '.'</center>' . "</td>";
 						    echo "<td>" . $perfil . "</td>";
 						    echo "<td>
 						            <center>
-						             <a href=\"#\" onclick=\"javascript:cargarDatos('');\" style=\"margin-bottom:-3px;\" class=\"btn btn-primary btn-md btn-xs\" title=\"Editar\">ver</a>&nbsp;
-						             <a href=\"#\" onclick=\"javascript:cargaAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-success btn-md btn-xs\" title=\"Actividades\">Editar</a>&nbsp;
-						             <a href=\"#\" onclick=\"javascript:cargaAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-danger btn-md btn-xs\" title=\"Actividades\">Borrar</a>&nbsp;
+						             <a href=\"#\" onclick=\"javascript:openUsuario('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-primary btn-md btn-xs\" title=\"Editar\">ver</a>&nbsp;						             
 						              </center>
 						          </td>";
 

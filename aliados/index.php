@@ -2,6 +2,8 @@
 	$name="";
 	include_once("../AnsTek_libs/integracion.inc.php");
 	include_once("../model/usuarios.class.php");
+	include_once("../model/firmantes.class.php");
+	include_once("../resources/footer.php");
 	// Session::valida_sesion("","../admin/logout.php");
 	if(Session::get('Perfil') != 0  ){
 		header('Location: ../admin/logout.php');
@@ -10,7 +12,27 @@
 	$name = Session::get('Nombre');
 	$firmo = Session::get('firma_pacto');
 	$Id = Session::get('Id');
+	$cedula1 =Session::get('Cedula');
 
+	if ($cedula1 != "") {
+		//OBJETO PARA CONSULTAR SI ES FIRMANTE
+		$firmante = new firmante($db);
+		$whereFir = " Where Cedula_Repre = ". $cedula1;
+		$resultF= $firmante->selectAll($whereFir);
+		if($db->numRows($resultF) > 0){
+			if($rF = $db->datos($resultF)){
+				$nombreEmpresa=$rF['Razon_social'];
+				$cedulaRepresentante=$rF['Cedula_Repre'];
+
+			}else{
+				$nombreEmpresa = "NO ERES FIRMANTE";
+			}
+		}
+		
+	}else{
+
+		
+	}
 
 	if ($Id != "") {
 		//OBJETO USUARIOS
@@ -44,6 +66,7 @@
 	$Vuser = new usuario($db);
 	$whereU = " Where firma_pacto = 1 AND Status = 1 AND Perfil != 1 ORDER BY RAND() limit 8";
 	$resultU = $Vuser->selectAll($whereU);
+	$resultU2 = $Vuser->selectAll($whereU);
 
 
 ?>
@@ -127,11 +150,11 @@
 										<div class="col-lg-12">
 											<form id="usuarios"  action="#" method="post" role="form" style="display: none;">
 											      <div class="form-group">
-											      <label class="">Adjuntar Logo</label>
+											      <label class="">Adjuntar Logo (Dimensiones: 225px * 225px)</label>
 											          <input type="file" class="form-control" name="txtImg" id="txtImg" autofocus>
 											      </div>
 											    <div class="form-group">
-											      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cedula">
+											      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cédula">
 											    </div>
 											    <div class="form-group">
 											      <input type="text" class="form-control" id="txtName" name="txtName" placeholder="Ingrese su nombre">
@@ -181,7 +204,7 @@
 				}else{
 					echo '
 						<div class="dropdown login-content" style="float: right;">
-						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong>'.$name.'
+						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong>'.$name.' - '.$nombreEmpresa  .'
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
 						    <li><a href="../perfil/" title="">Perfil</a></li>
@@ -232,6 +255,25 @@
 		<div class="row">
 			<div class="col-md-offset-1 col-md-10 pdd">
 				<?php
+					if($db->numRows($resultU2) > 0){
+						if ($r = $db->datos($resultU2)) {
+							# code...
+						}else{
+							echo '
+									<p class="p_info"> Próximamente encontrarás aquí nuestros aliados.</p>
+
+							';
+						}
+					
+					}else{
+						echo "NO HAY DATA";
+					}
+				?>
+			</div>
+
+
+			<div class="col-md-offset-1 col-md-10 pdd">
+				<?php
 					if($db->numRows($resultU) > 0){
 					while ($r = $db->datos($resultU)) {
 					  echo '
@@ -252,26 +294,8 @@
 	</div>
 
 
-
-
-	<footer class="container text-center bg">
-		<p>www.cpnaa.gov.co</p>
-		<ul class="redes">
-			<li><a href=""><img src="../front/images/face.png"></a></li>
-			<li><a href=""><img src="../front/images/twi.png"></a></li>
-			<li><a href=""><img src="../front/images/goo.png"></a></li>
-			<li><a href=""><img src="../front/images/you.png"></a></li>
-			<li><a href=""><img src="../front/images/ins.png"></a></li>
-			<li><a href=""><img src="../front/images/link.png"></a></li>
-		</ul>
-		<p>
-			Carrera 6 No. 26 B - 85 - Oficina 201 - Bogotá D.C.- Colombia. <br>
-			Línea de atención telefónica en Bogotá  (57-1)   3 50 27 00 Extensiones 101 y 124 <br>
-			Correo electrónico:  info@cpnaa.gov <br>
-			Horario de atención: Lunes a Jueves de 7:00 am a 1:00 pm y 2:00 pm a 5:00 pm y Viernes de 7:00 am a 1:00 pm y 2:00 pm a 4:00 pm. <br>
-			Consejo Profesional Nacional de Arquitectura y sus Profesiones Auxiliares. Nit. 830.059.954-7
-		</p>
-	</footer>
+	<!-- IMPRIMIMOS FOOTER -->
+	<?php footer2(); ?>
 
 
 

@@ -44,7 +44,7 @@
 	            </select>
 	          </div>
 	          <div class="form-group">
-	            <label for="txtImg">Imagen Principal</label>
+	            <label for="txtImg">Imagen Principal (Dimensiones: 960px * 526px)</label>
 	            <input type="file" name="txtImg" id="txtImg" class="form-control">
 	          </div>
 	      <div class="form-group">

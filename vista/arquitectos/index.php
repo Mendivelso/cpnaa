@@ -16,10 +16,6 @@
 	$Arq = new arquitecto($db);
 	$resultArq = $Arq->selectAll($where);
 
-
-
-
-
 ?>
 <html lang="en">
 <head>
@@ -33,7 +29,45 @@
  	<?php recursos_css(); ?>
 </head>
 <body>
-
+	
+	<!-- Modal Cargar achivo excel -->
+	<div id="verArquitecto" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Adjunte un archivo excel</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="row">
+	      		<div class="col-md-6">  		      	  					
+	      		  	<label>Nombre: <span id="name"></span></label><br>
+	      		  	<label>cédula: <span id="ced"></span></label><br>
+	      		  	<label>Télefono: <span id="tel1"></span></label><br>
+	      		  	<label>Nivel Educativo: <span id="NE"></span></label><br>
+	      		  	<label>Fecha Registro: <span id="date"></span></label><br>
+	      		</div>
+	      		<div class="col-md-6">
+	      			<label>Apellido: <span id="ape"></span></label><br>
+	      			<label>Mail: <span id="mail"></span></label><br>
+	      			<label>Nit Empresa: <span id="nnit"></span></label><br>
+	      			<label>Estado: <span id="st"></span></label><br>
+	      			<label>Cédula Representante: <span id="cr"></span></label><br>
+	      		</div>
+	      	</div>
+	      	
+	      	
+	        
+	         
+	        	
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 	<!-- Modal Cargar achivo excel -->
 	<div id="Modal_aprovacion" class="modal fade" role="dialog">
@@ -135,8 +169,7 @@
 						    echo "<td>" . $r['Created_date'] . "</td>";
 						    echo "<td>
 						            <center>
-						             <a href=\"#\" onclick=\"javascript:cargarDatos('');\" style=\"margin-bottom:-3px;\" class=\"btn btn-primary btn-md btn-xs\" title=\"Editar\">ver</a>&nbsp;
-						             <a href=\"#\" onclick=\"javascript:cargaAct('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-success btn-md btn-xs\" title=\"Actividades\">Editar</a>&nbsp;
+						             <a href=\"#\" onclick=\"javascript:openArquitecto('".$r['Id']."');\" style=\"margin-bottom:-3px;\" class=\"btn btn-primary btn-md btn-xs\" title=\"Editar\">ver</a>&nbsp;
 						              </center>
 						          </td>";
 						    echo "</tr>";

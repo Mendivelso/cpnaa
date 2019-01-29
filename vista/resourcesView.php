@@ -363,7 +363,7 @@
 		      <li class="active">
 		        <a class="" href="../home/">
 		            <i class="icon_house_alt"></i>
-		            <span>Inicio</span>
+		            <span>Usuarios</span>
 		        </a>
 		      </li>
 		      <li class="">

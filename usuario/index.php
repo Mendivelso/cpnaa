@@ -4,6 +4,8 @@
 	include_once("../model/arquitectos.class.php");
 	include_once("../model/beneficios.class.php");
 	include_once("../vista/resourcesView.php");
+	include_once("../model/firmantes.class.php");
+	include_once("../resources/footer.php");
 	Session::valida_sesion("","../admin/logout.php");
 	if(Session::get('Perfil') != 0)
 	header('Location: ../admin/logout.php');
@@ -19,18 +21,41 @@
 	$option="";
 	if($db->numRows($result) > 0){
 	while ($r = $db->datos($result)) {
-	  $option .= "<option value=".$r["Nit"].">" . $r["Nit"] . "</option>";
+	  $option .= "<option value=".$r["Nit"].">".$r["Nit"]." - "  . $r["Razon_social"] . "</option>";
 	}
 	}
 
 	$objArq = new arquitecto($db);
-	$whereArq = " Where arq.Cedula_RL = ". $Repre. " GROUP BY Cedula";
+	$whereArq = " Where arq.Cedula_RL = ". $Repre. " GROUP BY Cedula ORDER BY Id DESC";
 	$resultArq = $objArq->selectAll($whereArq);
 
 	//OBJETO PARA LISTAR BENEFICIOS
 	$bene = new beneficio($db);
 	$whereB = " Where Status = 1";
 	$resultB = $bene->selectAll($whereB);
+
+	$cedula1 =Session::get('Cedula');
+	if ($cedula1 != "") {
+		//OBJETO PARA CONSULTAR SI ES FIRMANTE
+		$firmante = new firmante($db);
+		$whereFir = " Where Cedula_Repre = ". $cedula1;
+		$resultF= $firmante->selectAll($whereFir);
+		if($db->numRows($resultF) > 0){
+			if($rF = $db->datos($resultF)){
+				$nombreEmpresa=$rF['Razon_social'];
+				$cedulaRepresentante=$rF['Cedula_Repre'];
+
+			}else{
+				$nombreEmpresa = "NO ERES FIRMANTE";
+			}
+		}
+		
+	}else{
+
+		
+	}
+
+
 
 
 ?>
@@ -95,7 +120,7 @@
 				<strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong><p><?php echo $name; ?></p>
 			</div> -->
 			<div class="dropdown login-content" style="float: right;">
-			  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong><?php echo $name; ?>
+			  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong><?php echo $name." - ". $nombreEmpresa; ?>
 			  <span class="caret"></span></button>
 			  <ul class="dropdown-menu">
 			    <li><a href="../perfil/" title="">Perfil</a></li>
@@ -169,6 +194,10 @@
 							      <div class="row numero">
 							          <h2>'.$rB['Titulo'].'</h2>
 							      </div>
+							      <div class="row imgB"> 
+							      	<img src="../'.$rB['Imagen_principal'].'" class="" width="100%" title=""/>
+ 										
+							      </div>
 							      <div class="row desc">
 						          <p>'.$rB['Descripcion'].'</p>
 							      </div>
@@ -206,7 +235,7 @@
 			<div class="col-md-offset-1 col-sm-12  col-md-10 cont_arq">
 				<div class="col-sm-7 col-md-7 text-center">
 					<form  class="from_arq" id="from_arq">
-						<h4>Por favor llene el siguiente formualrio para agregar sus arquitectos, si lo decea puede utilizar la opción de subir un archivo con varios registros.</h4>
+						<h4>Por favor llene el siguiente formulario para agregar sus arquitectos, si lo desea puede utilizar la opción de subir un archivo con varios registros.</h4>
 
 					  <div class="form-group">
 					    <input type="text" class="form-control input" id="txtName" name="txtName" placeholder="Ingrese un Nombre">
@@ -226,10 +255,9 @@
 					  <div class="form-group">
 					    <select class="form-control input" name="txtPro" id="txtPro">
 							<option value="">Nivel Acádemico</option>
-							<option>Arquitecto</option>
-							<option>Auxiliar</option>
-							<option>Técnico</option>
-							<option>Practicante</option>
+							<option>Arquitecto/a</option>							
+							<option>Técnico/a</option>
+							<option>Tecnólogo/a</option>
 					    </select>
 					  </div>
 					    <div class="form-group">
@@ -359,11 +387,11 @@
 				    <input type="text" class="form-control inp" id="txtTi" name="txtTi" placeholder="Título">
 				  </div>
 				  <div class="form-group">
-				  	<label>Imagen Destacada</label>
+				  	<label>Imagen Destacada (Dimensiones:400px * 400px)</label>
 				    <input class="form-control inp" type="file" name="txtImagen" id="txtImagen" placeholder="Imagen Destacada">
 				  </div>
 				  <div class="form-group">
-				    <input class="form-control inp" type="text" name="txtLink" id="txtLink" placeholder="Link del video">
+				    <input class="form-control inp" type="text" name="txtLink" id="txtLink" placeholder="Link de YouTube">
 				  </div>
 				  <div class="form-group">
 				  	<label>Documento (opcional)</label>
@@ -386,24 +414,8 @@
 	</div>
 
 
-	<footer class="container text-center bg">
-		<p>www.cpnaa.gov.co</p>
-		<ul class="redes">
-			<li><a href=""><img src="../front/images/face.png"></a></li>
-			<li><a href=""><img src="../front/images/twi.png"></a></li>
-			<li><a href=""><img src="../front/images/goo.png"></a></li>
-			<li><a href=""><img src="../front/images/you.png"></a></li>
-			<li><a href=""><img src="../front/images/ins.png"></a></li>
-			<li><a href=""><img src="../front/images/link.png"></a></li>
-		</ul>
-		<p>
-			Carrera 6 No. 26 B - 85 - Oficina 201 - Bogotá D.C.- Colombia. <br>
-			Línea de atención telefónica en Bogotá  (57-1)   3 50 27 00 Extensiones 101 y 124 <br>
-			Correo electrónico:  info@cpnaa.gov <br>
-			Horario de atención: Lunes a Jueves de 7:00 am a 1:00 pm y 2:00 pm a 5:00 pm y Viernes de 7:00 am a 1:00 pm y 2:00 pm a 4:00 pm. <br>
-			Consejo Profesional Nacional de Arquitectura y sus Profesiones Auxiliares. Nit. 830.059.954-7
-		</p>
-	</footer>
+	<!-- IMPRIMIMOS FOOTER -->
+	<?php footer2(); ?>
 	<!-- Botom ir arriba-->
 	  <div id='IrArriba'>
 	    <a href='#Arriba'><img src="../front/images/subir_lagrima.png" width="120px"></a>

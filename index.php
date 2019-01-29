@@ -3,6 +3,8 @@
 	include_once("model/beneficios.class.php");
 	include_once("model/experiencias.class.php");
 	include_once("model/usuarios.class.php");
+	include_once("model/firmantes.class.php");
+	include_once("resources/footer.php");
 	//OBJETO PARA LISTAR BENEFICIOS
 	$bene = new beneficio($db);
 	$whereB = " Where Status = 1";
@@ -12,12 +14,35 @@
 	$Exp = new experiencia($db);
 	$whereE = " Where Status = 1";
 	$resultE = $Exp->selectAll($whereE);
+	$resultE2 = $Exp->selectAll($whereE);
 	$firma ="";
 	if(Session::get('Perfil') != 0  ){
 		header('Location: admin/logout.php');
 	}
 	$name = Session::get('Nombre');
 	$firmo = Session::get('firma_pacto');
+	$cedula1 =Session::get('Cedula');
+
+	if ($cedula1 != "") {
+		//OBJETO PARA CONSULTAR SI ES FIRMANTE
+		$firmante = new firmante($db);
+		$whereFir = " Where Cedula_Repre = ". $cedula1;
+		$resultF= $firmante->selectAll($whereFir);
+		if($db->numRows($resultF) > 0){
+			if($rF = $db->datos($resultF)){
+				$nombreEmpresa=$rF['Razon_social'];
+				$cedulaRepresentante=$rF['Cedula_Repre'];
+
+			}else{
+				$nombreEmpresa = "NO ERES FIRMANTE";
+			}
+		}
+		
+	}else{
+
+		
+	}
+
 	$Id = Session::get('Id');
 
 	if ($Id != "") {
@@ -45,7 +70,7 @@
 
 	}else{
 		$IS =" INICIAR SESIÓN";
-		$firma = '<li><a href="#">FIRMA EL PACTO</a></li>';
+		$firma = '<li><a href="#" data-toggle="modal" data-target="#myModal">FIRMA EL PACTO</a></li>';
 	}
 
 
@@ -54,7 +79,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>Inicio - Pacto por la Autoregulación CPNAA </title>
     <link rel="stylesheet" type="text/css" href="front/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="front/css/style.css">
@@ -128,13 +153,13 @@
 									    </form>
 									</div>
 									<div class="col-lg-12">
-										<form id="usuarios"  action="#" method="post" role="form" style="display: none;">
+										<form id="usuarios"  action="#" method="post" role="form" style="display: none;">										
 										      <div class="form-group">
-										      <label class="">Adjuntar Logo</label>
+										      <label class="">Adjuntar Logo (Dimensiones: 225px * 225px) </label>
 										          <input type="file" class="form-control" name="txtImg" id="txtImg" autofocus>
 										      </div>
 										    <div class="form-group">
-										      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cedula">
+										      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cédula">
 										    </div>
 										    <div class="form-group">
 										      <input type="text" class="form-control" id="txtName" name="txtName" placeholder="Ingrese su nombre">
@@ -185,7 +210,7 @@
 				}else{
 					echo '
 						<div class="dropdown login-content" style="float: right;">
-						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="front/images/iniciar-session.png" class="" > </strong>'.$name.'
+						  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="front/images/iniciar-session.png" class="" > </strong>'.$name.' - '. $nombreEmpresa.'  
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
 						    <li><a href="perfil/" title="">Perfil</a></li>
@@ -376,7 +401,7 @@
 								<li class="pestana pt2">
 									<div class="pt">
 										<h1>01</h1>
-										<h3>Calidad</h3>
+										<p class="pp">Calidad</p><br>
 									</div>
 
 								</li>
@@ -439,7 +464,7 @@
 						<div class="col-sm-4 col-md-4"><img src="front/images/circle_1.png" class="num"></div>
 						<div class="col-sm-8 col-md-8">
 							<p>
-								Divulgara en sus redes sociales  las actividades y logros
+								Divulgará en sus redes sociales  las actividades y logros
 								alcanzados en el ejercicio ético y responsable de la profesión.
 							</p>
 						</div>
@@ -451,7 +476,7 @@
 						<div class="col-sm-4 col-md-4"><img src="front/images/circle_3.png" class="num"></div>
 						<div class="col-sm-8 col-md-8">
 							<p>
-								Divulgara a través del boletín que llega a las de 35.000 profesionales a Nivel Nacional.
+								Divulgará a través del boletín que llega a las de 35.000 profesionales a Nivel Nacional.
 							</p>
 						</div>
 
@@ -463,7 +488,7 @@
 						<div class="col-sm-4 col-md-4"><img src="front/images/circle_2.png" class="num"></div>
 						<div class="col-sm-8 col-md-8">
 							<p>
-								Gestiónara las comunicaciones con medios y en revistas donde se
+								Gestionará las comunicaciones con medios y en revistas donde se
 								resalte el ejercicio ético y responsable de la arquitectura de las
 								empresas que han alcanzado objetivos con el pacto.
 							</p>
@@ -508,24 +533,42 @@
 
 		<!-- Galeria -->
 		<div class="row">
+			        	<?php
+			        	if($db->numRows($resultE2) > 0){
+			        		if ($rExp = $db->datos($resultE2)) {
+
+			        		}else{
+			        	  		echo '
+			        	  				<p class="p_info"> Próximamente encontrarás aquí las principales experiencias de los firmantes del programa de Pactos de Autorregulación del CPNAA.</p>
+
+			        	  		';
+			        		}
+			        					        			
+			        					        					        		
+		        			  		        					        			  
+			        		
+			        	}else{
+			        	  echo "NO HAY REGISTROS PARA MOSTRAR";
+			        	}
+			        	?>
 			<figure class="pdd1">
 			    <div class="mis-stage">
 			        <!-- The element to select and apply miSlider to - the class is optional -->
 			        <ol class="mis-slider">
 			        	<?php
-			        	if($db->numRows($resultE) > 0){
-			        			  while ($rExp = $db->datos($resultE)) {
-			        			    echo '
-			        					<li class="mis-slide">
-			        					    <a href="experiencias/?v='.$rExp['Id'].'" class="mis-container">
-			        					        <figure onclick="">
-			        					            <img src="'.$rExp['Imagen'].'" alt="'.$rExp['Titulo'].'">
-			        					            <figcaption>'.$rExp['Titulo'].'</figcaption>
-			        					        </figure>
-			        					    </a>
-			        					</li>
-			        			    ';
-			        			  }
+			        	if($db->numRows($resultE) > 0){			        		
+		        			  while ($rExp = $db->datos($resultE)) {
+		        			    echo '
+		        					<li class="mis-slide">
+		        					    <a href="experiencias/?v='.$rExp['Id'].'" class="mis-container">
+		        					        <figure onclick="">
+		        					            <img src="'.$rExp['Imagen'].'" alt="'.$rExp['Titulo'].'">
+		        					            <figcaption>'.$rExp['Titulo'].'</figcaption>
+		        					        </figure>
+		        					    </a>
+		        					</li>
+		        			    ';
+		        			  }			        					        			  
 			        	}
 			        	else{
 			        	  echo "NO HAY REGISTROS PARA MOSTRAR";
@@ -553,25 +596,9 @@
 
 	</div>
 
+	<!-- IMPRIMIMOS FOOTER -->
+	<?php footer1(); ?>
 
-	<footer class="container text-center bg">
-		<p>www.cpnaa.gov.co</p>
-		<ul class="redes">
-			<li><a href=""><img src="front/images/face.png"></a></li>
-			<li><a href=""><img src="front/images/twi.png"></a></li>
-			<li><a href=""><img src="front/images/goo.png"></a></li>
-			<li><a href=""><img src="front/images/you.png"></a></li>
-			<li><a href=""><img src="front/images/ins.png"></a></li>
-			<li><a href=""><img src="front/images/link.png"></a></li>
-		</ul>
-		<p>
-			Carrera 6 No. 26 B - 85 - Oficina 201 - Bogotá D.C.- Colombia. <br>
-			Línea de atención telefónica en Bogotá  (57-1)   3 50 27 00 Extensiones 101 y 124 <br>
-			Correo electrónico:  info@cpnaa.gov <br>
-			Horario de atención: Lunes a Jueves de 7:00 am a 1:00 pm y 2:00 pm a 5:00 pm y Viernes de 7:00 am a 1:00 pm y 2:00 pm a 4:00 pm. <br>
-			Consejo Profesional Nacional de Arquitectura y sus Profesiones Auxiliares. Nit. 830.059.954-7
-		</p>
-	</footer>
 	<!-- Botom ir arriba-->
 	  <div id='IrArriba'>
 	    <a href='#Arriba'><img src="front/images/subir_lagrima.png" width="120px"></a>
@@ -634,15 +661,13 @@
       	jQuery('#IrArriba').fadeOut();
       	}
       	});
-      	jQuery('#IrArriba a').click(function () {
+      	jQuery('#IrArriba a').click(function () {      
       	jQuery('body,html').animate({
       	scrollTop: 0
       	}, 800);
       	return false;
       	});
       	});
-
-
 
       });
 

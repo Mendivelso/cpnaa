@@ -1,4 +1,4 @@
-@font-face {font-family: "MyriadPro-Regular";
+  @font-face {font-family: "MyriadPro-Regular";
   src: url("../css/fonts/MyriadPro-Regular.otf") format("TTF"), /* chrome、firefox */
   url("../css/fonts/MyriadPro-Regular.otf") format("truetype"); /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
 }
@@ -24,8 +24,23 @@ body{
     position: fixed;
     bottom: 30px;
     right: 30px;
+    display: none;
 
 }
+.foto_Exp{
+  max-width: 400px;
+}
+
+.sepa{
+  border-top: 3px solid #2b3541;
+  width: 90%;
+}
+.msj1{
+  color: #fff !important;
+  font-weight: 100 !important;
+}
+
+
 .close {
     float: right;
     font-size: 27px;
@@ -78,13 +93,19 @@ body{
     font-family: "MyriadPro-Regular";
 }
 
+.p_info{
+  color: #000;font-family: "MyriadPro-Regular";text-align: center;
+  font-size: 17px; padding-top: 35px;
+}
+
 .row2 {
     margin-right: -13px !important;
     margin-left: -13px !important;
 }
 
 .modal-content p, h4 {color: #fff;}
-
+.modal-content p{color: #000;font-family: "MyriadPro-Regular";    font-size: 19px;
+    font-weight: 800;}
 
 .pdd{padding: 0px 90px 0px 90px;}
 .pdd2{padding: 0px 140px 0px 140px;}
@@ -485,6 +506,17 @@ body{
 }
 
 
+footer p a {
+  color: #fff;
+  position: relative;
+  left: 18px;
+}
+
+footer p a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
 footer .redes{
   list-style: none;
 
@@ -514,11 +546,12 @@ footer .redes li{
 /*+++++++++++++++  ESTILOS PANEL DE USUARIO   ++++++++++*/
 
 .galeria_beneficios{
-  height: 1100px;
+  height: auto;
   background-image: url('../images/galeria_beneficios.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  padding-bottom: 55px;
 }
 
 .numero{
@@ -554,10 +587,12 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
   top: 25px;
 }
 
-.cont_bene{
-  height: 280px;
-  background-color: #fff;
-  margin-top: 8px;
+
+.cont_bene {
+    width: 23%;
+    height: 435px;
+    background-color: #fff;
+    margin: 8px 8px 8px 8px;
 }
 
 
@@ -833,8 +868,8 @@ box-shadow: 1px 2px 5px 0px rgba(0,0,0,0.75);
   }
 
 
-  .pre{font-family: "MyriadPro-Bold"; text-align: justify; font-size: 17px; padding: 5px 40px 0px 40px;}
-  .rta{font-family: "MyriadPro-Regular"; text-align: justify; font-size: 17px; padding: 0px 40px 0px 40px;}
+  .pre{font-family: "MyriadPro-Bold"; text-align: justify; font-size: 17px; padding: 5px 50px 0px 50px;}
+  .rta{font-family: "MyriadPro-Regular"; text-align: justify; font-size: 17px; padding: 0px 50px 0px 50px;}
 
   /*ESTILOS EVENTOS Y ACTIVIDADES CPNAA*/
 
@@ -969,6 +1004,14 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
 }
 
 @media screen and (max-width: 991px){
+
+  .cont_bene {
+      width: 29%;
+      height: 448px;
+      background-color: #fff;
+      margin-top: 8px;
+  }
+
   .pd {
       margin-left: 5px;
   }
@@ -987,13 +1030,9 @@ select:-ms-input-placeholder { color: darkgray; font-weight: bold; }*/
     font-family: "MyriadPro-Regular";
     padding: 5px 5px 0px 5px;
   }
-  .cont_bene {
-      height: 343px;
-      background-color: #fff;
-      margin-top: 8px;
-  }
+
   .galeria_beneficios {
-    height: 1200px;
+    height: auto;
     background-image: url(../images/galeria_beneficios.jpg);
     background-repeat: no-repeat;
     background-position: center;

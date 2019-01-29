@@ -7,7 +7,8 @@
   include_once("../../model/eventos.class.php");
 
   $event = new evento($db);
-  $result =  $event->selectAll();
+  $where = " Where Status = 1 ORDER BY Id DESC";
+  $result =  $event->selectAll($where);
   $vNom = Session::get('Nombre');
 ?>
 <html lang="en">
@@ -102,7 +103,7 @@
 	        </div>
 			<button type="button" class="btn btn-primary" id="new_exp_form">Nuevo</button>
 			<section class="panel">
-	            <table id="editable" class="table table-striped table-bordered table-hover table-responsive" width="100%">
+	            <table id="editable" class="table table-striped table-bordered table-hover " width="100%">
 	              <thead>
 	                <tr>
 	                   <th width="2%">#</th>
@@ -178,8 +179,10 @@
 	                "sSwfPath": "js/plugins/dataTables/swf/copy_csv_xls_pdf.swf"
 	            }
 	        });
-	        /* Init DataTables */
-	        var oTable = $('#editable').dataTable();
+	        /* Init DataTables */	        
+	        $('#editable').DataTable( {
+	           ordering: false
+	        } );
 	    });
 	</script>
 </body>

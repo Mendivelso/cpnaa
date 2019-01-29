@@ -35,6 +35,7 @@
         $jsondata['Cedula_Res'] = $r["Cedula_Res"];
         $jsondata['Telefono_Res'] = $r["Telefono_Res"];
         $jsondata['Email_Res'] = $r["Email_Res"];
+        $jsondata['Created_date'] = $r["Created_date"];
         $jsondata['Status'] = $r["Status"];
         $jsondata['success'] = true;
         $jsondata['message'] = "recuperado correctamente";

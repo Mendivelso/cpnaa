@@ -79,3 +79,47 @@
 
       }
     }
+
+
+  /***************************************************************/
+  /*                Actualizar Expectativas                      */
+  /***************************************************************/
+
+
+  /***************************************************************/
+  /*                Actualizar servicios                  */
+  /***************************************************************/
+
+  function openArquitecto(Id){
+
+    /* Realiza conexión con el servidor */
+    var vId = Id;
+    if(vId != 0){
+      $.ajax({
+        data: {"accion":"single", "pId":vId},
+        type: "POST",
+        datatype: "json",
+        url: "../../controller/arquitectosController.php",
+      })
+
+      .done(function(data){
+        if (data.success) {
+         $('#name').text(data.Nombres);
+         $('#ape').text(data.Apellidos);
+         $('#ced').text(data.Cedula);
+         $('#mail').text(data.Email);
+         $('#tel1').text(data.Telefono);
+         $('#nnit').text(data.Nit_empresa);
+         $('#NE').text(data.Nivel_educativo);
+         $('#st').text(data.Status);
+         $('#cr').text(data.Cedula_RL);
+         $('#date').text(data.Created_date);
+          $("#verArquitecto").modal({keyboard: true});
+        }
+
+      })
+      .fail(function(){
+          alert("Ha ocurrido un problema");
+      });
+    }
+  }

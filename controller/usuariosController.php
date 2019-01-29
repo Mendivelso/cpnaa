@@ -20,17 +20,17 @@
       if($db->numRows($result) > 0)
       {
         $r = $db->datos($result);
-		$jsondata['Id'] = $r["Id"];
-		$jsondata['Nombre'] = $r["Nombre"];
-		$jsondata['Cedula'] = $r["Cedula"];
-		$jsondata['Direccion'] = $r["Direccion"];
-		$jsondata['Telefono'] = $r["Telefono"];
-		$jsondata['Email'] = $r["Email"];
-		$jsondata['Usuario'] = $r["Usuario"];
-		$jsondata['Foto'] = $r["Foto"];
-		$jsondata['Status'] = $r["Status"];
-		$jsondata['success'] = true;
-		$jsondata['message'] = "recuperado correctamente";
+    		$jsondata['Id'] = $r["Id"];
+    		$jsondata['Nombre'] = $r["Nombre"];
+    		$jsondata['Cedula'] = $r["Cedula"];
+    		$jsondata['Direccion'] = $r["Direccion"];
+    		$jsondata['Telefono'] = $r["Telefono"];
+    		$jsondata['Email'] = $r["Email"];
+    		$jsondata['Usuario'] = $r["Usuario"];
+    		$jsondata['Foto'] = $r["Foto"];
+    		$jsondata['Status'] = $r["Status"];
+    		$jsondata['success'] = true;
+    		$jsondata['message'] = "recuperado correctamente";
       }
       else
       {
@@ -69,45 +69,59 @@
    		   				$vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
    		   				// validamos el formato de la imagen 'png' o 'jpg'
    		   				if(($vType == "png") or ($vType == "jpg")){
-   		   					// realiza el registro a la base de datos
-   		   					if($objUser->insertData($data))
-   		   					{
-   		   						/* Tomamos el Id del ultimo registro*/
-   		   						$vId = $db->lastInsert();
-   		   						// creamos la carpeta
-   		   						$carpeta = "../public/usuarios/".$vId;
-   		   						if (!file_exists($carpeta)) {
-   		   						    mkdir($carpeta, 0777, true);
-   		   						}
-   		   						// datos de la imagen necesarios para el registro
-   		   						$name = $_FILES['txtImg']['name'];
-   		   						$destino = "../public/usuarios/".$vId."/".$name;
-   		   						$dest = "public/usuarios/".$vId."/".$name."'-";
-   		   						$ruta = $_FILES['txtImg']['tmp_name'];
-   		   						// se mueve el archivo en la carpeta indicada
-   		   						if(copy($ruta,$destino)){
-   		   						  $data = array("Foto"=>$dest);
-   		   						  $where = " Id = " . $vId;
-   		   						  // actualizamos el ultimo regsitro
-   		   						  if($objUser->updateData($data, $where)){
-   		   						    $jsondata['success'] = true;
-   		   						    $jsondata['message'] = "Registrado correctamente";
-   		   						  }else {
-   		   						    $jsondata['success'] = false;
-   		   						    $jsondata['message'] = "No fue posible Registrar sus datos";
-   		   						  }
+                  //validamos el peso de la imagen
+                  if($_FILES['txtImg']['size'] > 1000000){
+                    $jsondata['success'] = false;
+                    $jsondata['message'] = "No se pueden subir Imagenes con pesos superiores a 1MB";
+                  }else{
+                    //validamos las dimensiones de la imagen
+                    $infoImagen = getimagesize($_FILES['txtImg']['tmp_name']);
+                    if ($infoImagen[0] <= 225 || $infoImagen[1] <= 225) {                      
+                      // realiza el registro a la base de datos
+                      if($objUser->insertData($data))
+                      {
+                       /* Tomamos el Id del ultimo registro*/
+                       $vId = $db->lastInsert();
+                       // creamos la carpeta
+                       $carpeta = "../public/usuarios/".$vId;
+                       if (!file_exists($carpeta)) {
+                           mkdir($carpeta, 0777, true);
+                       }
+                       // datos de la imagen necesarios para el registro
+                       $name = $_FILES['txtImg']['name'];
+                       $destino = "../public/usuarios/".$vId."/".$name;
+                       $dest = "public/usuarios/".$vId."/".$name."'-";
+                       $ruta = $_FILES['txtImg']['tmp_name'];
+                       // se mueve el archivo en la carpeta indicada
+                       if(copy($ruta,$destino)){
+                         $data = array("Foto"=>$dest);
+                         $where = " Id = " . $vId;
+                         // actualizamos el ultimo regsitro
+                         if($objUser->updateData($data, $where)){
+                           $jsondata['success'] = true;
+                           $jsondata['message'] = "Registrado correctamente";
+                         }else {
+                           $jsondata['success'] = false;
+                           $jsondata['message'] = "No fue posible Registrar sus datos";
+                         }
 
-   		   						}else {
-   		   						  $jsondata['success'] = false;
-   		   						  $jsondata['message'] = "No fue posible subir su Imagen";
-   		   						}
-   		   					}
-   		   					else
-   		   					{
-   		   					    $jsondata['success'] = false;
-   		   					    $jsondata['message'] = "Falla al enviar el registro";
-   		   					}
+                       }else {
+                         $jsondata['success'] = false;
+                         $jsondata['message'] = "No fue posible subir su Imagen";
+                       }
+                      }
+                      else
+                      {
+                          $jsondata['success'] = false;
+                          $jsondata['message'] = "Falla al enviar el registro";
+                      }
 
+                    }else{
+                        $jsondata['success'] = false;
+                        $jsondata['message'] = "La imagen no cumple las medidas solicitadas ";
+                    }
+                  }
+               		   					
    		   				}else{
    		   				  $jsondata['success'] = false;
    		   				  $jsondata['message'] = "Formato de imagen Incorrecto, Debe ser png o jpg";
@@ -133,25 +147,43 @@
       	$objUser->updateData($data, $where);
       	$vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
       	if(($vType == "png") or ($vType == "jpg")){
-      	  $carpeta = "../public/usuarios/".$_REQUEST['txtId'];
-      	  $destino2 = "../public/usuarios/".$_REQUEST['txtId']."/".$vimg;
-      	  $dest = "public/usuarios/".$_REQUEST['txtId']."/".$vimg."'-";
-      	  $ruta2 = $_FILES['txtImg']['tmp_name'];
-      	  if(copy($ruta2,$destino2)){
-      	    $data = array("Foto"=>$dest);
-      	    $where = " Id = " . $_REQUEST['txtId'];
-      	    if($objUser->updateData($data, $where)){
-      	      $jsondata['success'] = true;
-      	      $jsondata['message'] = "Modificado Correctamente";
-      	    }else {
-      	      $jsondata['success'] = false;
-      	      $jsondata['message'] = "No fue posible Actualizar sus Datos";
-      	    }
+            //validamos el peso de la imagen
+            if($_FILES['txtImg']['size'] <= 1000000){
+              //validamos las dimensiones de la imagen
+              $infoImagen = getimagesize($_FILES['txtImg']['tmp_name']);
+              if ($infoImagen[0] <= 225 || $infoImagen[1] <= 225) { 
 
-      	  }else{
-      	    $jsondata['success'] = false;
-      	    $jsondata['message'] = "No Fue posible subir su Imagen";
-      	  }
+                $carpeta = "../public/usuarios/".$_REQUEST['txtId'];
+                $destino2 = "../public/usuarios/".$_REQUEST['txtId']."/".$vimg;
+                $dest = "public/usuarios/".$_REQUEST['txtId']."/".$vimg."'-";
+                $ruta2 = $_FILES['txtImg']['tmp_name'];
+                if(copy($ruta2,$destino2)){
+                  $data = array("Foto"=>$dest);
+                  $where = " Id = " . $_REQUEST['txtId'];
+                  if($objUser->updateData($data, $where)){
+                    $jsondata['success'] = true;
+                    $jsondata['message'] = "Modificado Correctamente";
+                  }else {
+                    $jsondata['success'] = false;
+                    $jsondata['message'] = "No fue posible Actualizar sus Datos";
+                  }
+
+                }else{
+                  $jsondata['success'] = false;
+                  $jsondata['message'] = "No Fue posible subir su Imagen";
+                }
+
+              }else{
+                $jsondata['success'] = false;
+                $jsondata['message'] = "La imagen no cumple las medidas solicitadas ";
+              }
+
+            }else{
+              $jsondata['success'] = false;
+              $jsondata['message'] = "No se pueden subir Imagenes con pesos superiores a 1MB";
+            }
+
+
 
       	}else{
       	  $jsondata['success'] = false;
@@ -195,28 +227,51 @@
       	$objUser->updateData($data, $where);
       	$vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
       	if(($vType == "png") or ($vType == "jpg")){
-      	  $carpeta = "../public/usuarios/".$_REQUEST['txtId'];
-      	  $destino2 = "../public/usuarios/".$_REQUEST['txtId']."/".$vimg;
-      	  $dest = "public/usuarios/".$_REQUEST['txtId']."/".$vimg."'-";
-      	  $ruta2 = $_FILES['txtImg']['tmp_name'];
-      	  if(copy($ruta2,$destino2)){
-      	    $data = array("Foto"=>$dest);
-      	    $where = " Id = " . $_REQUEST['txtId'];
-      	    if($objUser->updateData($data, $where)){
-      	      header('Location: ../msj/');
-      	    }else {
-      	      $jsondata['success'] = false;
-      	      $jsondata['message'] = "No fue posible Actualizar sus Datos";
-      	    }
+          //validamos el peso de la imagen
+          if($_FILES['txtImg']['size'] <= 1000000){
+            //validamos las dimensiones de la imagen
+            $infoImagen = getimagesize($_FILES['txtImg']['tmp_name']);
+            if ($infoImagen[0] <= 225 || $infoImagen[1] <= 225) {
 
-      	  }else{
-      	    $jsondata['success'] = false;
-      	    $jsondata['message'] = "No Fue posible subir su Imagen";
-      	  }
+                $carpeta = "../public/usuarios/".$_REQUEST['txtId'];
+                $destino2 = "../public/usuarios/".$_REQUEST['txtId']."/".$vimg;
+                $dest = "public/usuarios/".$_REQUEST['txtId']."/".$vimg."'-";
+                $ruta2 = $_FILES['txtImg']['tmp_name'];
+                if(copy($ruta2,$destino2)){
+                  $data = array("Foto"=>$dest);
+                  $where = " Id = " . $_REQUEST['txtId'];
+                  if($objUser->updateData($data, $where)){
+                    $jsondata['success'] = false;
+                    $jsondata['message'] = "Actualizado Correctamente";
+                    header('Location: ../msj/?v='.$jsondata['message']);
+                  }else {
+                    $jsondata['success'] = false;
+                    $jsondata['message'] = "No fue posible Actualizar sus Datos";
+                    header('Location: ../msj/?v='.$jsondata['message']);
+                  }
+
+                }else{
+                  $jsondata['success'] = false;
+                  $jsondata['message'] = "No Fue posible subir su Imagen";
+                  header('Location: ../msj/?v='.$jsondata['message']);
+                }
+            }else{
+              $jsondata['success'] = false;
+              $jsondata['message'] = "La imagen no cumple las medidas solicitadas ";
+              header('Location: ../msj/?v='.$jsondata['message']);
+            }
+
+          }else{
+            $jsondata['success'] = false;
+            $jsondata['message'] = "No se pueden subir Imagenes con pesos superiores a 1MB";
+            header('Location: ../msj/?v='.$jsondata['message']);
+          }
+
 
       	}else{
       	  $jsondata['success'] = false;
       	  $jsondata['message'] = "Formato de imagen Incorrecto, Debe ser png o jpg";
+          header('Location: ../msj/?v='.$jsondata['message']);
       	}
 
       }else{

@@ -51,10 +51,10 @@
         * Metodo que obtiene todos los registros de la tabla categorias.
         * @param string condicion where del query, si se requiere
         */
-        public function selectOne(){
+        public function selectOne($where=""){
             /** Realiza el query */
-            $sql = "SELECT Id, Nombres
-                     FROM " . $this->table . " Where Status = 1";
+            $sql = "SELECT Id, Nombres, Apellidos, Cedula,  Email, Telefono, Nit_empresa, Nivel_educativo, Cedula_RL, Status, Created_date
+                     FROM " . $this->table . " ". $where;
             //echo $sql;
             $result = $this->db->ejecutar($sql);
             if($this->db->numRows($result)){

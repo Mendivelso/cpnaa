@@ -30,6 +30,7 @@
                 to avoid some browser shinking bugs */
             /*  for really small screens make width 100% */
             width: 100%;
+            min-height: 300px;
             height:auto;
             /*  Make image round */
             border-radius: 50%;
@@ -40,8 +41,8 @@
                 for multi-item slider, default width is 100%
                 for single-item slider. Use padding to add space
                 between slides */
-	        width: 250px;
-            height: 350px;
+	        width: 300px;
+            height: 400px;
 	        padding: 40px 5px 40px 5px !important;
             /*  Undo the margin added by slider element */
             margin-top: -138px

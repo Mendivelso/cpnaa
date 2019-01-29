@@ -53,81 +53,98 @@
 
         // Validamos Documento Compartido
         $Doc = $_FILES['txtFile']['name'];
-        $vDoc = substr($_FILES['txtFile']['name'], strlen($_FILES['txtFile']['name'])-3, strlen($_FILES['txtFile']['name']));
+        $vDoc = substr($_FILES['txtFile']['name'], strlen($_FILES['txtFile']['name'])-4, strlen($_FILES['txtFile']['name']));
 
         if(($vDoc != "exe") or ($vDoc != "txt")){
 
-          if(($vType == "png") or ($vType == "jpg")){
-
-                // Realiza Insert
-                $data = array("Titulo"=>$_REQUEST['txtTi'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$video_final, "R_Legal"=>$Cedula_RL, "Status"=>3, "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
-                );
-                if($Exp->insertData($data)){
-                    /* Tomamos el Id del ultimo registro*/
-                    $vId = $db->lastInsert();
-                    $carpeta = "../public/experiencias/".$vId;
-                    if (!file_exists($carpeta)) {
-                        mkdir($carpeta, 0777, true);
-                    }
-                    $name = $_FILES['txtImagen']['name'];
-                    $destino = "../public/experiencias/".$vId."/".$name;
-                    $dest = "public/experiencias/".$vId."/".$name."'-";
-                    $ruta = $_FILES['txtImagen']['tmp_name'];
-                    if(copy($ruta,$destino)){
-                        $data = array("Imagen"=>$dest);
-                        $where = " Id = " . $vId;
-                        if($Exp->updateData($data, $where)){
-
-                          $Doc = $_FILES['txtFile']['name'];
-                          $destinoD = "../public/experiencias/".$vId."/".$Doc;
-                          $destD = "public/experiencias/".$vId."/".$Doc."'-";
-                          $rutaD = $_FILES['txtFile']['tmp_name'];
-                          if(copy($rutaD,$destinoD)){
-                              $dataD = array("Documento"=>$destD);
-                              $whereD = " Id = " . $vId;
-                              if($Exp->updateData($dataD, $whereD)){
-                                $jsondata['success'] = true;
-                                $jsondata['message'] = "Tu Experiencia ha sido registrada";
-                              }else{
-                                $jsondata['success'] = false;
-                                $jsondata['message'] = "Algo paso al actualizar el documento";
-                              }
-
-
-                          }else{
-                            $jsondata['success'] = false;
-                            $jsondata['message'] = "No fue posible subir su documento";
+          if(($vType == "png") or ($vType == "jpg")){                        
+                //validamos el peso de la imagen
+                if($_FILES['txtImagen']['size'] <= 1000000){
+                  //validamos el peso del ARCHIVO
+                  if($_FILES['txtFile']['size'] <= 2000000){
+                    //validamos dimensiones de la Imagen
+                    $infoImagen = getimagesize($_FILES['txtImagen']['tmp_name']);
+                    if ($infoImagen[0] <= 400 || $infoImagen[1] <= 400) { 
+                      // Realiza Insert
+                      $data = array("Titulo"=>$_REQUEST['txtTi'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$video_final, "R_Legal"=>$Cedula_RL, "Status"=>3, "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
+                      );
+                      if($Exp->insertData($data)){
+                          /* Tomamos el Id del ultimo registro*/
+                          $vId = $db->lastInsert();
+                          $carpeta = "../public/experiencias/".$vId;
+                          if (!file_exists($carpeta)) {
+                              mkdir($carpeta, 0777, true);
                           }
+                          $name = $_FILES['txtImagen']['name'];
+                          $destino = "../public/experiencias/".$vId."/".$name;
+                          $dest = "public/experiencias/".$vId."/".$name."'-";
+                          $ruta = $_FILES['txtImagen']['tmp_name'];
+                          if(copy($ruta,$destino)){
+                              $data = array("Imagen"=>$dest);
+                              $where = " Id = " . $vId;
+                              if($Exp->updateData($data, $where)){
+
+                                $Doc = $_FILES['txtFile']['name'];
+                                $destinoD = "../public/experiencias/".$vId."/".$Doc;
+                                $destD = "public/experiencias/".$vId."/".$Doc."'-";
+                                $rutaD = $_FILES['txtFile']['tmp_name'];
+                                if(copy($rutaD,$destinoD)){
+                                    $dataD = array("Documento"=>$destD);
+                                    $whereD = " Id = " . $vId;
+                                    if($Exp->updateData($dataD, $whereD)){
+                                      $jsondata['success'] = true;
+                                      $jsondata['message'] = "Tu Experiencia ha sido registrada";
+                                    }else{
+                                      $jsondata['success'] = false;
+                                      $jsondata['message'] = "Algo paso al actualizar el documento";
+                                    }
 
 
-                          // $jsondata['success'] = true;
-                          // $jsondata['message'] = "Registrado correctamente";
-                        }else {
+                                }else{
+                                  $jsondata['success'] = false;
+                                  $jsondata['message'] = "No fue posible subir su documento";
+                                }
+
+
+                                // $jsondata['success'] = true;
+                                // $jsondata['message'] = "Registrado correctamente";
+                              }else {
+                                $jsondata['success'] = false;
+                                $jsondata['message'] = "NO fue posible Registrar sus datos";
+                              }
+                          }else {
                           $jsondata['success'] = false;
-                          $jsondata['message'] = "NO fue posible Registrar sus datos";
-                        }
-                    }else {
-                    $jsondata['success'] = false;
-                    $jsondata['message'] = "No fue posible subir su Imagen";
-                }
+                          $jsondata['message'] = "No fue posible subir su Imagen";
+                      }
 
-                }
-                else
-                {
+                      }
+                      else
+                      {
+                        $jsondata['success'] = false;
+                        $jsondata['message'] = "Falla al realizar el registro";
+                      }
+
+                    }else{
+                      $jsondata['success'] = false;
+                      $jsondata['message'] = "La imagen no cumple las medidas solicitadas";
+                    }
+
+                  }else{
+                    $jsondata['success'] = false;
+                    $jsondata['message'] = "No se pueden subir Archivos con pesos superiores a 2MB";
+                  }
+
+                }else{
                   $jsondata['success'] = false;
-                  $jsondata['message'] = "Falla al realizar el registro";
+                  $jsondata['message'] = "No se pueden subir Imagenes con pesos superiores a 1MB";
                 }
           }else{
               $jsondata['success'] = false;
               $jsondata['message'] = "Formato de imagen Incorrecto, Debe ser png o jpg";
           }
-
-
         }else{
-
           $jsondata['success'] = false;
           $jsondata['message'] = "El documento adjunto no es valido";
-
         }
 
        }else{
@@ -141,7 +158,11 @@
         $vType = substr($_FILES['txtImagen']['name'], strlen($_FILES['txtImagen']['name'])-3, strlen($_FILES['txtImagen']['name']));
 
         if(($vType == "png") or ($vType == "jpg")){
-
+          //validamos el peso de la imagen
+          if($_FILES['txtImagen']['size'] <= 1000000){
+            //validamos dimensiones de la Imagen
+            $infoImagen = getimagesize($_FILES['txtImagen']['tmp_name']);
+            if ($infoImagen[0] <= 400 || $infoImagen[1] <= 400) { 
               // Realiza Insert
               $data = array("Titulo"=>$_REQUEST['txtTi'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$video_final, "R_Legal"=>$Cedula_RL, "Status"=>3, "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
               );
@@ -178,6 +199,18 @@
                 $jsondata['success'] = false;
                 $jsondata['message'] = "Falla al realizar el registro";
               }
+
+            }else{
+              $jsondata['success'] = false;
+              $jsondata['message'] = "La imagen no cumple las medidas solicitadas";
+            }
+
+          }else{
+            $jsondata['success'] = false;
+            $jsondata['message'] = "No se pueden subir Imagenes con pesos superiores a 1MB";
+          }
+
+                         
         }else{
             $jsondata['success'] = false;
             $jsondata['message'] = "Formato de imagen Incorrecto, Debe ser png o jpg";
@@ -204,31 +237,47 @@
       $vimg = $_FILES['txtImg']['name'];
       if ($vimg != "") {
         // si file viene lleno
-        $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
+        $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Status"=>$_REQUEST['txtStatus'], "Documento"=>$_REQUEST['txtDocu'], "Updated_by"=>$user, "Updated_date"=>date("Y-m-d H:i:s")
         );
         $where = "Id = " . $_REQUEST['txtId'];
         $Exp->updateData($data, $where);
         $vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
         if(($vType == "png") or ($vType == "jpg")){
-          $carpeta = "../public/beneficios/".$_REQUEST['txtId'];
-          $destino2 = "../public/beneficios/".$_REQUEST['txtId']."/".$vimg;
-          $dest = "public/beneficios/".$_REQUEST['txtId']."/".$vimg."'-";
-          $ruta2 = $_FILES['txtImg']['tmp_name'];
-          if(copy($ruta2,$destino2)){
-            $data = array("Imagen_principal"=>$dest);
-            $where = " Id = " . $_REQUEST['txtId'];
-            if($Exp->updateData($data, $where)){
-              $jsondata['success'] = true;
-              $jsondata['message'] = "Modificado Correctamente";
-            }else {
+          //validamos el peso de la imagen
+          if($_FILES['txtImg']['size'] <= 1000000){
+            //validamos las dimensiones de la imagen
+            $infoImagen = getimagesize($_FILES['txtImg']['tmp_name']);
+            if ($infoImagen[0] <= 400 || $infoImagen[1] <= 400) {   
+                $carpeta = "../public/beneficios/".$_REQUEST['txtId'];
+                $destino2 = "../public/beneficios/".$_REQUEST['txtId']."/".$vimg;
+                $dest = "public/beneficios/".$_REQUEST['txtId']."/".$vimg."'-";
+                $ruta2 = $_FILES['txtImg']['tmp_name'];
+                if(copy($ruta2,$destino2)){
+                  $data = array("Imagen"=>$dest);
+                  $where = " Id = " . $_REQUEST['txtId'];
+                  if($Exp->updateData($data, $where)){
+                    $jsondata['success'] = true;
+                    $jsondata['message'] = "Modificado Correctamente";
+                  }else {
+                    $jsondata['success'] = false;
+                    $jsondata['message'] = "No fue posible Actualizar sus Datos";
+                  }
+
+                }else{
+                  $jsondata['success'] = false;
+                  $jsondata['message'] = "No Fue posible subir su Imagen";
+                }
+
+            }else{
               $jsondata['success'] = false;
-              $jsondata['message'] = "No fue posible Actualizar sus Datos";
+              $jsondata['message'] = "La imagen no cumple las medidas solicitadas ";
             }
 
           }else{
             $jsondata['success'] = false;
-            $jsondata['message'] = "No Fue posible subir su Imagen";
+            $jsondata['message'] = "No se pueden subir Imagenes con pesos superiores a 1MB";
           }
+                          
 
         }else{
           $jsondata['success'] = false;
@@ -237,7 +286,7 @@
 
       }else{
         /*si tipo file esta vacio*/
-        $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Status"=>$_REQUEST['txtStatus'], "Created_by"=>$user, "Created_date"=>date("Y-m-d H:i:s")
+        $data = array("Titulo"=>$_REQUEST['txtTitle'], "Descripcion"=>$_REQUEST['txtDes'], "Enlace"=>$_REQUEST['txtLink'], "Status"=>$_REQUEST['txtStatus'],  "Documento"=>$_REQUEST['txtDocu'], "Updated_by"=>$user, "Updated_date"=>date("Y-m-d H:i:s")
         );
         $where = "Id = " . $_REQUEST['txtId'];
         if($Exp->updateData($data, $where))

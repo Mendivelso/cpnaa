@@ -3,23 +3,48 @@
   include_once("../AnsTek_libs/integracion.inc.php");
   Session::valida_sesion("","../../index.php");
   include_once("../model/arquitectos.class.php");
+  include_once("../model/firmantes.class.php");
 
 
   /** Instancia la clase firmantes*/
     $objArq = new  arquitecto($db);
     $UserId = Session::get('Id');
     $Cedula_RL = Session::get('Cedula');
+
+    if ($Cedula_RL != "") {
+      //OBJETO PARA CONSULTAR SI ES FIRMANTE
+      $firmante = new firmante($db);
+      $whereFir = " Where Cedula_Repre = ". $Cedula_RL;
+      $resultF= $firmante->selectAll($whereFir);
+      if($db->numRows($resultF) > 0){
+        if($rF = $db->datos($resultF)){
+          $nombreEmpresa=$rF['Razon_social'];
+          $cedulaRepresentante=$rF['Cedula_Repre'];
+          $nitEmpresa=$rF['Nit'];
+
+        }else{
+          $nombreEmpresa = "No Existe el Nit";
+        }
+      }
+      
+    }else{
+
+      
+    }
+
+
+
   /** captura el tipo de accion a realizar*/
-  $accion = $_REQUEST['accion'];
+    $accion = $_REQUEST['accion'];
     /** conmutador que determina las acciones a realizar para
      * este modulo
      */
     switch($accion){
     /* Obtiene un solo registro de usuario */
-        case "single":
-        $jsondata = array();
+      case "single":
+      $jsondata = array();
       $where = " Where Id = " . $_REQUEST['pId'];
-      $result = $objArq->selectAll($where);
+      $result = $objArq->selectOne($where);
       if($db->numRows($result) > 0)
       {
         $r = $db->datos($result);
@@ -31,6 +56,8 @@
         $jsondata['Telefono'] = $r["Telefono"];
         $jsondata['Nit_empresa'] = $r["Nit_empresa"];
         $jsondata['Nivel_educativo'] = $r["Nivel_educativo"];
+        $jsondata['Cedula_RL'] = $r["Cedula_RL"];
+        $jsondata['Created_date'] = $r["Created_date"];
         $jsondata['Status'] = $r["Status"];
         $jsondata['success'] = true;
         $jsondata['message'] = "recuperado correctamente";
@@ -184,9 +211,6 @@
     break;
 
         case "imp":
-
-
-
         $file = $_FILES['txtImg']['name'];
         // echo $file;
         $vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-4, strlen($_FILES['txtImg']['name']));
@@ -225,14 +249,12 @@
 	        		  		          $cedula = $objPHPExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
 	        		  		          $email = $objPHPExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
 	        		  		          $telefono = $objPHPExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-	        		  		          $nit = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-	        		  		          $nivel = $objPHPExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-	        		  		          $cedula_rl = $objPHPExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-
+	        		  		          $nivel = $objPHPExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+	        		  		          
 
 		  		         	      		$data = array("Nombres"=>$nombres,"Apellidos"=>$apellidos, "Cedula"=>$cedula,
 		  		         	      		        "Email"=>$email, "Telefono"=>$telefono,
-		  		         	      		        "Nit_empresa"=>$nit, "Nivel_educativo"=>$nivel, "Cedula_RL" =>  $cedula_rl,
+		  		         	      		        "Nit_empresa"=>$nitEmpresa, "Nivel_educativo"=>$nivel, "Cedula_RL" =>  $Cedula_RL,
 		  		         	      		         "Status"=>3, "Created_date"=>date('Y-m-d H:i:s'), "Created_by" => $UserId
 		  		         	      		      );
 			  		         	        // realiza el registro a la base de datos

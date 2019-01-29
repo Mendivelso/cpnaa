@@ -34,7 +34,7 @@
     messages:{
 
       txtImg:{
-         extension: "Por favor adjunta un formato .png o .jpg"
+         extension: "Por favor adjunta un formato .png o .jpg, Dimensiones: 225px * 225px"
       },
       txtDoc:{
           required: "Debe escribir su cedula"
@@ -221,3 +221,45 @@
       });
    }
 });
+
+
+
+/***************************************************************/
+/*                CARGAR INFORMACION USUARIO                  */
+/***************************************************************/
+
+    function openUsuario(Id){
+
+      /* Realiza conexión con el servidor */
+      var vId = Id;
+      if(vId != 0){
+        $.ajax({
+          data: {"accion":"single", "pId":vId},
+          type: "POST",
+          datatype: "json",
+          url: "../../controller/usuariosController.php",
+        })
+
+        .done(function(data){
+          if (data.success) {
+
+           $('#name').text(data.Nombre);
+           $('#ced').text(data.Cedula);
+           $('#dir').text(data.Direccion);
+           $('#tel').text(data.Telefono);
+           $('#mail').text(data.Email);
+           $('#user').text(data.Usuario);
+           $('#foto').text(data.Foto);
+           $('#date').text(data.Created_date);
+           $('#cont').empty();
+           $('#cont').html('<img src="../../'+data.Foto+'"  width=\"150px\">');
+
+            $("#verUsuario").modal({keyboard: true});
+          }
+
+        })
+        .fail(function(){
+            alert("Ha ocurrido un problema");
+        });
+      }
+    }

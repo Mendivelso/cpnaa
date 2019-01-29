@@ -1,13 +1,37 @@
 <?php
 	include_once("../AnsTek_libs/integracion.inc.php");
 	include_once("../model/usuarios.class.php");
+	include_once("../model/firmantes.class.php");
+	include_once("../resources/footer.php");
 	Session::valida_sesion("","../admin/logout.php");
 	if(Session::get('Perfil') != 0)
 	header('Location: ../admin/logout.php');
+	
 
 	$name = Session::get('Nombre');
 	$firmo = Session::get('firma_pacto');
 	$Id = Session::get('Id');
+	$cedula1 =Session::get('Cedula');
+
+	if ($cedula1 != "") {
+		//OBJETO PARA CONSULTAR SI ES FIRMANTE
+		$firmante = new firmante($db);
+		$whereFir = " Where Cedula_Repre = ". $cedula1;
+		$resultF= $firmante->selectAll($whereFir);
+		if($db->numRows($resultF) > 0){
+			if($rF = $db->datos($resultF)){
+				$nombreEmpresa=$rF['Razon_social'];
+				$cedulaRepresentante=$rF['Cedula_Repre'];
+
+			}else{
+				$nombreEmpresa = "NO ERES FIRMANTE";
+			}
+		}
+		
+	}else{
+
+		
+	}
 
 	if ($Id != "") {
 		//OBJETO USUARIOS
@@ -75,7 +99,9 @@
 	        <h4 class="modal-title">info</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>Para Conocer los beneficios por favor complete el siguiente formulario donde firmara un pacto con el cpnaa.</p>
+	        <p class="msj1">
+	        Favor llena estos datos básicos de la empresa para iniciar el proceso para hacer parte de los Pactos de Autorregulación del CPNAA.
+	    	</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -88,7 +114,7 @@
 	<div class="container login">
 		<div class="row">
 			<div class="dropdown login-content" style="float: right;">
-			  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong><?php echo $name; ?>
+			  <button class="btn dropdown-toggle per" type="button" data-toggle="dropdown"><strong class="icon"><img src="../front/images/iniciar-session.png" class="" > </strong><?php echo $name. " - ".$nombreEmpresa; ?>
 			  <span class="caret"></span></button>
 			  <ul class="dropdown-menu">
 			    <li><a href="../perfil/" title="">Perfil</a></li>
@@ -136,7 +162,7 @@
 			<div class="col-sm-6 col-md-6">
 				<div class="row descripcion_firma">
 					<p>
-						Entiendo que la ética y el ejercicio ético de la prefesión debe hacer parte de la
+						Entiendo que la ética y el ejercicio ético de la profesión debe hacer parte de la
 						dinámica normal de las organizaciones, participar voluntariamente en este pacto
 						hemos buscado que la ejecución  no implique tareas engorrosas para las
 						organizaciones, sino por el contrario los apoye en esas dinámicas. El pacto
@@ -180,7 +206,7 @@
 						<div class="number_p">
 							<p>
 								Promover la difusión, el entendimiento  y el compromiso
-								de los pactos de autoregulación.
+								de los pactos de autorregulación.
 							</p>
 
 						</div>
@@ -192,7 +218,7 @@
 						<div class="number_p">
 							<p>
 								Nombrar un veedor de la ética dentro de la organización que ayuda a palancar
-								y transmitir la información del cpnaa relacionada con esta tématica.
+								y transmitir la información del cpnaa relacionada con esta temática.
 							</p>
 
 						</div>
@@ -205,7 +231,7 @@
 						</div>
 						<div class="number_p">
 							<p>
-								Incluir en los procesos de inducción y reinducción la participación
+								Incluir en los procesos de inducción y re inducción la participación
 								en la plataforma virtual de aprendizaje del cpnaa
 							</p>
 
@@ -231,8 +257,8 @@
 						</div>
 						<div class="number_p">
 							<p>
-								Propisiar la participación de los trabajadores en eventos que realise el CPNAA
-								y sus alidos para el fomento del ejercicio ético.
+								Propiciar la participación de los trabajadores en eventos que realice el CPNAA
+								y sus aliados para el fomento del ejercicio ético.
 							</p>
 
 						</div>
@@ -256,20 +282,26 @@
 				<div class="row">
 					<form  class="from_pacto"  id="from_pacto" enctype="multipart/form-data">
 						<h4>PACTOS POR LA  <br> AUTORREGULACIÓN</h4>
+						<div class="form-group">
+							<label>Información de la Empresa:</label>
+						</div>
 					  <div class="form-group">
-					    <input type="text" class="form-control input" id="txtRazon" name="txtRazon" placeholder="Razon Social" autofocus="true">
+					    <input type="text" class="form-control input" id="txtRazon" name="txtRazon" placeholder="Razón Social" autofocus="true">
 					  </div>
 					  <div class="form-group">
 					    <input type="text" class="form-control input" name="txtNit" id="txtNit" placeholder="Nit">
 					  </div>
 					  <div class="form-group">
-					    <input type="text" class="form-control input" name="txtTel" id="txtTel" placeholder="Teléfono de la empresa">
+					    <input type="text" class="form-control input" name="txtTel" id="txtTel" placeholder="Teléfono">
 					  </div>
 					  <div class="form-group">
 					    <input type="text" class="form-control input" name="txtPag" id="txtPag" placeholder="Página Web">
 					  </div>
 					  <div class="form-group">
-					    <input type="text" class="form-control input" name="txtRep" id="txtRep" placeholder="Répresentante legal">
+					  	<label>Información Representante Legal:</label>
+					  </div>
+					  <div class="form-group">
+					    <input type="text" class="form-control input" name="txtRep" id="txtRep" placeholder="Nombre Completo">
 					  </div>
 					  <div class="form-group">
 					    <input type="text" class="form-control input" name="txtCed" id="txtCed" placeholder="Cédula">
@@ -281,7 +313,10 @@
 					    <input type="email" class="form-control input" name="txtEmailR" id="txtEmailR" placeholder="Email">
 					  </div>
 					  <div class="form-group">
-					    <input type="text" class="form-control input" name="txtRes" id="txtRes" placeholder="Responsable del pacto">
+					  	<label>Información Responsable del Pacto:</label>
+					  </div>
+					  <div class="form-group">
+					    <input type="text" class="form-control input" name="txtRes" id="txtRes" placeholder="Nombre Completo">
 					  </div>
 						<div class="form-group">
 					    <input type="text" class="form-control input" name="txtCedR" id="txtCedR" placeholder="Cédula">
@@ -308,24 +343,8 @@
 	</div>
 
 
-	<footer class="container text-center bg">
-		<p>www.cpnaa.gov.co</p>
-		<ul class="redes">
-			<li><a href=""><img src="../front/images/face.png"></a></li>
-			<li><a href=""><img src="../front/images/twi.png"></a></li>
-			<li><a href=""><img src="../front/images/goo.png"></a></li>
-			<li><a href=""><img src="../front/images/you.png"></a></li>
-			<li><a href=""><img src="../front/images/ins.png"></a></li>
-			<li><a href=""><img src="../front/images/link.png"></a></li>
-		</ul>
-		<p>
-			Carrera 6 No. 26 B - 85 - Oficina 201 - Bogotá D.C.- Colombia. <br>
-			Línea de atención telefónica en Bogotá  (57-1)   3 50 27 00 Extensiones 101 y 124 <br>
-			Correo electrónico:  info@cpnaa.gov <br>
-			Horario de atención: Lunes a Jueves de 7:00 am a 1:00 pm y 2:00 pm a 5:00 pm y Viernes de 7:00 am a 1:00 pm y 2:00 pm a 4:00 pm. <br>
-			Consejo Profesional Nacional de Arquitectura y sus Profesiones Auxiliares. Nit. 830.059.954-7
-		</p>
-	</footer>
+	<!-- IMPRIMIMOS FOOTER -->
+	<?php footer2(); ?>
 
 
 

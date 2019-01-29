@@ -2,6 +2,7 @@
     include_once("../AnsTek_libs/integracion.inc.php");
     include_once("../model/experiencias.class.php");
     include_once("../model/usuarios.class.php");
+    include_once("../resources/footer.php");
 
     if(empty($_GET)){
         header('Location:error.php');
@@ -126,11 +127,11 @@
 										<div class="col-lg-12">
 											<form id="usuarios"  action="#" method="post" role="form" style="display: none;">
 											      <div class="form-group">
-											      <label class="">Adjuntar Logo</label>
+											      <label class="">Adjuntar Logo (Dimensiones: 225px * 225px)</label>
 											          <input type="file" class="form-control" name="txtImg" id="txtImg" autofocus>
 											      </div>
 											    <div class="form-group">
-											      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cedula">
+											      <input type="text" class="form-control" id="txtDoc" name="txtDoc" placeholder="Ingrese su cédula">
 											    </div>
 											    <div class="form-group">
 											      <input type="text" class="form-control" id="txtName" name="txtName" placeholder="Ingrese su nombre">
@@ -277,7 +278,7 @@
                         echo '
 
                             <h3>'.$rB['Titulo'].'</h3>
-                            <img src="../'.$rB['Imagen'].'">
+                            <img src="../'.$rB['Imagen'].'" class="foto_Exp">
                             <p>'.$rB['Descripcion'].'</p>
                             </div>
                             <div class="row">
@@ -307,25 +308,8 @@
     </div>
 
 
-
-    <footer class="container text-center bg">
-        <p>www.cpnaa.gov.co</p>
-        <ul class="redes">
-            <li><a href=""><img src="../front/images/face.png"></a></li>
-            <li><a href=""><img src="../front/images/twi.png"></a></li>
-            <li><a href=""><img src="../front/images/goo.png"></a></li>
-            <li><a href=""><img src="../front/images/you.png"></a></li>
-            <li><a href=""><img src="../front/images/ins.png"></a></li>
-            <li><a href=""><img src="../front/images/link.png"></a></li>
-        </ul>
-        <p>
-            Carrera 6 No. 26 B - 85 - Oficina 201 - Bogotá D.C.- Colombia. <br>
-            Línea de atención telefónica en Bogotá  (57-1)   3 50 27 00 Extensiones 101 y 124 <br>
-            Correo electrónico:  info@cpnaa.gov <br>
-            Horario de atención: Lunes a Jueves de 7:00 am a 1:00 pm y 2:00 pm a 5:00 pm y Viernes de 7:00 am a 1:00 pm y 2:00 pm a 4:00 pm. <br>
-            Consejo Profesional Nacional de Arquitectura y sus Profesiones Auxiliares. Nit. 830.059.954-7
-        </p>
-    </footer>
+    <!-- IMPRIMIMOS FOOTER -->
+    <?php footer2(); ?>
 
 
 

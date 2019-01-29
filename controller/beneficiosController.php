@@ -98,25 +98,40 @@
         $ser->updateData($data, $where);
         $vType = substr($_FILES['txtImg']['name'], strlen($_FILES['txtImg']['name'])-3, strlen($_FILES['txtImg']['name']));
         if(($vType == "png") or ($vType == "jpg")){
-          $carpeta = "../public/beneficios/".$_REQUEST['txtId'];
-          $destino2 = "../public/beneficios/".$_REQUEST['txtId']."/".$vimg;
-          $dest = "public/beneficios/".$_REQUEST['txtId']."/".$vimg."'-";
-          $ruta2 = $_FILES['txtImg']['tmp_name'];
-          if(copy($ruta2,$destino2)){
-            $data = array("Imagen_principal"=>$dest);
-            $where = " Id = " . $_REQUEST['txtId'];
-            if($ser->updateData($data, $where)){
-              $jsondata['success'] = true;
-              $jsondata['message'] = "Modificado Correctamente";
-            }else {
+          //validamos el peso de la imagen
+          if($_FILES['txtImg']['size'] <= 1000000){
+            //validamos las dimensiones de la imagen
+            $infoImagen = getimagesize($_FILES['txtImg']['tmp_name']);
+            if ($infoImagen[0] <= 960 || $infoImagen[1] <= 526) { 
+                $carpeta = "../public/beneficios/".$_REQUEST['txtId'];
+                $destino2 = "../public/beneficios/".$_REQUEST['txtId']."/".$vimg;
+                $dest = "public/beneficios/".$_REQUEST['txtId']."/".$vimg."'-";
+                $ruta2 = $_FILES['txtImg']['tmp_name'];
+                if(copy($ruta2,$destino2)){
+                  $data = array("Imagen_principal"=>$dest);
+                  $where = " Id = " . $_REQUEST['txtId'];
+                  if($ser->updateData($data, $where)){
+                    $jsondata['success'] = true;
+                    $jsondata['message'] = "Modificado Correctamente";
+                  }else {
+                    $jsondata['success'] = false;
+                    $jsondata['message'] = "No fue posible Actualizar sus Datos";
+                  }
+
+                }else{
+                  $jsondata['success'] = false;
+                  $jsondata['message'] = "No Fue posible subir su Imagen";
+                }
+            }else{
               $jsondata['success'] = false;
-              $jsondata['message'] = "No fue posible Actualizar sus Datos";
+              $jsondata['message'] = "La imagen no cumple las medidas solicitadas "; 
             }
 
           }else{
             $jsondata['success'] = false;
-            $jsondata['message'] = "No Fue posible subir su Imagen";
+            $jsondata['message'] = "No se pueden subir Imagenes con pesos superiores a 1MB";
           }
+                     
 
         }else{
           $jsondata['success'] = false;
